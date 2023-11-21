@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('direktorats', function (Blueprint $table) {
-            $table->id();
+            $table->integer("id_direktorat")->primary();
+            $table->string('direktorat');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('divisis', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_divisi')->primary();
+            $table->string('divisi');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

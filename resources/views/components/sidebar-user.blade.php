@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Inventory Asset IT</a>
+            <a href="/dashboard-user">Inventory Asset IT</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">IAIT</a>
+            <a href="/dashboard-user">IAIT</a>
         </div>
         <ul class="sidebar-menu">
             <li class='{{ Request::is('dashboard-user') ? 'active' : '' }}'>

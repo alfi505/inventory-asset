@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryMonitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,37 +32,41 @@ Route::get('/pic', function () {
 
 // inventory
 Route::get('/inventory-cpu', function () {
-    return view('main.inventory.inventory-cpu', ['type_menu'=> 'inventory']);
+    return view('main.inventory.cpu.inventory-cpu', ['type_menu'=> 'inventory']);
 });
 Route::get('/detail-cpu', function () {
-    return view('main.inventory.detail-cpu', ['type_menu'=> 'inventory']);
+    return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
 });
 Route::get('/tambah-cpu', function () {
-    return view('main.inventory.tambah-cpu', ['type_menu'=> 'inventory']);
+    return view('main.inventory.cpu.tambah-cpu', ['type_menu'=> 'inventory']);
 });
+
 Route::get('/inventory-monitor', function () {
-    return view('main.inventory.inventory-monitor', ['type_menu'=> 'inventory']);
+    return view('main.inventory.monitor.inventory-monitor', ['type_menu'=> 'inventory']);
 });
 Route::get('/tambah-monitor', function () {
-    return view('main.inventory.tambah-monitor', ['type_menu'=> 'inventory']);
+    return view('main.inventory.monitor.tambah-monitor', ['type_menu'=> 'inventory']);
 });
-Route::get('/detail-monitor', function () {
-    return view('main.inventory.detail-monitor', ['type_menu'=> 'inventory']);
-});
+Route::resource('/detail-monitor', InventoryMonitorController::class);
+// Route::get('/detail-monitor', function () {
+//     return view('main.inventory.monitor.detail-monitor', ['type_menu'=> 'inventory']);
+// });
+
+
 Route::get('/inventory-keyboard', function () {
-    return view('main.inventory.inventory-keyboard', ['type_menu'=> 'inventory']);
+    return view('main.inventory.keyboard.inventory-keyboard', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-mouse', function () {
-    return view('main.inventory.inventory-mouse', ['type_menu'=> 'inventory']);
+    return view('main.inventory.mouse.inventory-mouse', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-printer', function () {
-    return view('main.inventory.inventory-printer', ['type_menu'=> 'inventory']);
+    return view('main.inventory.printer.inventory-printer', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-speaker', function () {
-    return view('main.inventory.inventory-speaker', ['type_menu'=> 'inventory']);
+    return view('main.inventory.speaker.inventory-speaker', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-network', function () {
-    return view('main.inventory.inventory-network', ['type_menu'=> 'inventory']);
+    return view('main.inventory.network.inventory-network', ['type_menu'=> 'inventory']);
 });
 
 // pic
@@ -75,48 +80,48 @@ Route::get('/detail-pic', function () {
     return view('main.pic.detail-pic', ['type_menu' => 'pic']);
 });
 Route::get('/data-ip', function () {
-    return view('main.pic.data-ip', ['type_menu' => 'pic']);
+    return view('main.pic.no_ip.data-ip', ['type_menu' => 'pic']);
 });
 Route::get('/tambah-ip', function () {
-    return view('main.pic.tambah-ip', ['type_menu' => 'pic']);
+    return view('main.pic.no_ip.tambah-ip', ['type_menu' => 'pic']);
 });
 
 // utilities
 Route::get('/utilities-dir', function () {
-    return view('main.utilities.utilities-dir', ['type_menu' => 'utilities']);
+    return view('main.utilities.dir.utilities-dir', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-dir', function () {
-    return view('main.utilities.tambah-dir', ['type_menu' => 'utilities']);
+    return view('main.utilities.dir.tambah-dir', ['type_menu' => 'utilities']);
 });
 Route::get('/utilities-div', function () {
-    return view('main.utilities.utilities-div', ['type_menu' => 'utilities']);
+    return view('main.utilities.div.utilities-div', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-div', function () {
-    return view('main.utilities.tambah-div', ['type_menu' => 'utilities']);
+    return view('main.utilities.div.tambah-div', ['type_menu' => 'utilities']);
 });
 Route::get('/utilities-unit', function () {
-    return view('main.utilities.utilities-unit', ['type_menu' => 'utilities']);
+    return view('main.utilities.unit.utilities-unit', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-unit', function () {
     return view('main.utilities.tambah-unit', ['type_menu' => 'utilities']);
 });
 Route::get('/utilities-vendor', function () {
-    return view('main.utilities.utilities-vendor', ['type_menu' => 'utilities']);
+    return view('main.utilities.vendor.utilities-vendor', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-vendor', function () {
-    return view('main.utilities.tambah-vendor', ['type_menu' => 'utilities']);
+    return view('main.utilities.vendor.tambah-vendor', ['type_menu' => 'utilities']);
 });
 Route::get('/utilities-merk', function () {
-    return view('main.utilities.utilities-merk', ['type_menu' => 'utilities']);
+    return view('main.utilities.merk.utilities-merk', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-merk', function () {
-    return view('main.utilities.tambah-merk', ['type_menu' => 'utilities']);
+    return view('main.utilities.merk.tambah-merk', ['type_menu' => 'utilities']);
 });
 Route::get('/utilities-jenisperangkat', function () {
-    return view('main.utilities.utilities-jenisperangkat', ['type_menu' => 'utilities']);
+    return view('main.utilities.jenisperangkat.utilities-jenisperangkat', ['type_menu' => 'utilities']);
 });
 Route::get('/tambah-jenisperangkat', function () {
-    return view('main.utilities.tambah-jenisperangkat', ['type_menu' => 'utilities']);
+    return view('main.utilities.jenisperangkat.tambah-jenisperangkat', ['type_menu' => 'utilities']);
 });
 
 // user
@@ -133,28 +138,28 @@ Route::get('/pic-user', function () {
 
 // inventory
 Route::get('/inventory-cpu-user', function () {
-    return view('user.inventory.inventory-cpu-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.cpu.inventory-cpu-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/detail-cpu-user', function () {
-    return view('user.inventory.detail-cpu-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.cpu.detail-cpu-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-monitor-user', function () {
-    return view('user.inventory.inventory-monitor-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.monitor.inventory-monitor-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-keyboard-user', function () {
-    return view('user.inventory.inventory-keyboard-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.keyboard.inventory-keyboard-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-mouse-user', function () {
-    return view('user.inventory.inventory-mouse-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.mouse.inventory-mouse-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-printer-user', function () {
-    return view('main.inventory.inventory-printer-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.printer.inventory-printer-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-speaker-user', function () {
-    return view('user.inventory.inventory-speaker-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.speaker.inventory-speaker-user', ['type_menu'=> 'inventory']);
 });
 Route::get('/inventory-network-user', function () {
-    return view('main.inventory.inventory-network-user', ['type_menu'=> 'inventory']);
+    return view('user.inventory.network.inventory-network-user', ['type_menu'=> 'inventory']);
 });
 
 // pic

@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jenis_perangkats', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_jenisperangkat')->primary();
+            $table->string('jenisperangkat');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

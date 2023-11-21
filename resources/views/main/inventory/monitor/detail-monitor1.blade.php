@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
 
-@section('main')<div class="main-content">
+@foreach ($monitor as $monitorItem)
+@endforeach
+@section('main')
+    <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Detail Data Monitor</h1>
@@ -22,7 +25,8 @@
                                 <tr>
                                     <th style="width: 15%">ID Monitor</th>
                                     <td style="width: 1%">:</td>
-                                    <td>MAK/IT/MTR-PHL/1121/1144</td>
+                                    {{-- <td>MAK/IT/MTR-PHL/1121/1144</td> --}}
+                                    <td>{{ $inventory }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama Komputer</th>

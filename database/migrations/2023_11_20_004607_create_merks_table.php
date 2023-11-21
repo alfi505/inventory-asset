@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('merks', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id_merk')->primary();
             $table->string('merk');
             $table->text('keterangan');
             $table->timestamps();

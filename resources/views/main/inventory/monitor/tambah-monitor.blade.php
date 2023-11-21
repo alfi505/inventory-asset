@@ -70,7 +70,11 @@
                         </div>
                         <div class="form-group col">
                             <label>Jenis Perangkat</label>
-                            <input type="text" class="form-control">
+                            <select class="form-control">
+                                <option>Monitor</option>
+                                <option>Keyboard</option>
+                                <option>Mouse</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">

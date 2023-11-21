@@ -14,7 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inventory_speakers', function (Blueprint $table) {
-            $table->id();
+            $table->char('id_speaker',200)->primary();
+            $table->string('nama_komputer');
+            $table->string('nama_pic');
+            $table->char('id_cpu',200)->unique();
+            $table->char('id_merk_speaker',200)->unique();
+            $table->char('id_jenis_perangkat',200)->unique();
+            $table->char('id_ip',200)->unique();
+            $table->string('serial_number');
+            $table->string('model_speaker');
+            $table->string('admin');
+            $table->char('id_vendor',200)->unique();
+            $table->char('id_history',200)->unique();
+            $table->text('keterangan')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

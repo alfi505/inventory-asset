@@ -14,27 +14,26 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inventory_cpus', function (Blueprint $table) {
-            $table->id();
-            $table->char('id_cpu',100)->unique();
+            $table->char('id_cpu',200)->primary();
             $table->string('nama_komputer');
             $table->string('nama_pic');
-            $table->char('zona',100)->nullable();
-            $table->char('id_ip',100)->unique();
+            $table->char('zona',200)->nullable();
+            $table->char('id_ip',200)->unique();
             $table->string('kategori');
-            $table->char('serial_number',100);
-            $table->char('os',100);
-            $table->char('processor',100);
-            $table->char('mainboard',100);
-            $table->char('ram',100);
-            $table->char('rom',100);
-            $table->char('vga',100);
-            $table->char('soundcard',100);
-            $table->char('cdroom',100);
-            $table->char('nic',100);
-            $table->char('mac',100);
-            $table->char('casing',100);
-            $table->char('id_vendor',100)->unique();
-            $table->char('id_software',100)->unique();
+            $table->string('serial_number');
+            $table->string('os');
+            $table->string('processor');
+            $table->string('mainboard');
+            $table->string('ram');
+            $table->string('rom');
+            $table->string('vga');
+            $table->string('soundcard');
+            $table->string('cdroom')->nullable();
+            $table->string('nic')->nullable();
+            $table->string('mac')->nullable();
+            $table->string('casing');
+            $table->char('id_vendor',200)->unique();
+            $table->char('id_software',200)->unique();
             $table->date('tanggal_input');
             $table->string('status');
             $table->timestamps();
