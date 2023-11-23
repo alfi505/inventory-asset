@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pics', function (Blueprint $table) {
-            $table->char('id_pic',200)->primary();
+            $table->string('id_pic')->primary();
             $table->string('nama_komputer');
             $table->string('nama_pic');
             $table->string('katregori');
-            $table->char('id_zona',200)->unique();
-            $table->char('id_cpu',200)->unique();
-            $table->char('id_monitor',200)->unique();
-            $table->char('id_keyboard',200)->unique();
-            $table->char('id_mouse',200)->unique();
-            $table->char('id_printer',200)->unique();
-            $table->char('id_network',200)->unique();
-            $table->char('id_speaker',200)->unique();
-            $table->char('id_posisi',200)->unique();
+            $table->string('id_zona')->unique();
+            $table->string('id_cpu')->unique();
+            $table->string('id_monitor')->unique();
+            $table->string('id_keyboard')->unique();
+            $table->string('id_mouse')->unique();
+            $table->string('id_printer')->unique();
+            $table->string('id_network')->unique();
+            $table->string('id_speaker')->unique();
+            $table->string('id_posisi')->unique();
             $table->timestamps();
         });
     }

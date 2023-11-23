@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nama_komputer');
             $table->string('nama_pic');
             $table->char('id_cpu',200)->unique();
-            $table->char('id_merk_network',200)->unique();
-            $table->char('id_jenis_perangkat',200)->unique();
+            $table->char('id_merk',200)->unique();
+            $table->char('id_jenisperangkat',200)->unique();
             $table->char('id_ip',200)->unique();
             $table->string('serial_number');
             $table->string('model_network');

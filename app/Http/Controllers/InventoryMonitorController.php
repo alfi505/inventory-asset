@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_monitor;
+use App\Models\InventoryMonitor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storeinventory_monitorRequest;
 use App\Http\Requests\Updateinventory_monitorRequest;
@@ -10,16 +10,14 @@ use Illuminate\Cache\RateLimiting\Limit;
 
 class InventoryMonitorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
-        $monitors = inventory_monitor::all();
-        return view('main.inventory.monitor.detail-monitor', compact('monitors'));
+        $data = [
+        'monitors' => InventoryMonitor::get()
+        ];
+
+        return view('main.inventory.monitor.detail-monitor', $data);
     }
 
     /**

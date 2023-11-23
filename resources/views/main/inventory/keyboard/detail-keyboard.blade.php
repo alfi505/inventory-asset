@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Data Monitor')
+@section('title', 'Detail Data Keyboard')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,7 +12,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data Monitor</h1>
+                <h1>Detail Data Keyboard</h1>
             </div>
 
             @foreach ($monitors as $monitorItem)
@@ -22,7 +22,7 @@
                             <table class="table-striped table" id="table-1">
                                 <tbody>
                                     <tr>
-                                        <th style="width: 15%">ID Monitor</th>
+                                        <th style="width: 15%">ID Keyboard</th>
                                         <td style="width: 1%">:</td>
                                         {{-- <td>MAK/IT/MTR-PHL/1121/1144</td> --}}
                                         <td>{{ $monitorItem->id_monitor }}</td>
@@ -35,28 +35,27 @@
                                     <tr>
                                         <th>Nama PIC</th>
                                         <td>:</td>
-                                        <td>{{ $monitorItem->nama_pic }}</td>
+                                        <td>Alfi</td>
                                     </tr>
                                     <tr>
                                         <th>ID CPU</th>
                                         <td>:</td>
-                                        {{-- <td>MAK/IT/CPU-RKT/1105/6024</td> --}}
-                                        <td>{{ $monitorItem->id_cpu }}</td>
+                                        <td>MAK/IT/CPU-RKT/1105/6024</td>
                                     </tr>
                                     <tr>
-                                        <th>Merk Monitor</th>
+                                        <th>Merk Keyboard</th>
                                         <td>:</td>
-                                        <td>{{ $monitorItem->id_merk }}</td>
+                                        <td>Phillips</td>
                                     </tr>
                                     <tr>
-                                        <th>Model Monitor</th>
+                                        <th>Model Keyboard</th>
                                         <td>:</td>
                                         <td>Phillips 203v</td>
                                     </tr>
                                     <tr>
                                         <th>Jenis Perangkat</th>
                                         <td>:</td>
-                                        <td>Monitor</td>
+                                        <td>Keyboard</td>
                                     </tr>
                                     <tr>
                                         <th>Tanggal</th>
@@ -102,7 +101,7 @@
                             </table>
                         </div>
                         <div class="card-footer text-right">
-                            <a href="/inventory-monitor" class="btn btn-primary text-right">Kembali</a>
+                            <a href="/inventory-keyboard" class="btn btn-primary text-right">Kembali</a>
                         </div>
                     </div>
                 </div>

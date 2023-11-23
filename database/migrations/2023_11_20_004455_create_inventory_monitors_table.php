@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inventory_monitors', function (Blueprint $table) {
-            $table->char('id_monitor',200)->primary();
+            $table->string('id_monitor')->primary();
             $table->string('nama_komputer');
             $table->string('nama_pic');
-            $table->char('id_cpu',200)->unique();
-            $table->char('id_merk_monitor',200)->unique();
-            $table->char('id_jenis_perangkat',200)->unique();
-            $table->char('id_ip',200)->unique();
+            $table->string('id_cpu')->unique();
+            $table->string('id_merk')->unique();
+            $table->string('id_jenisperangkat')->unique();
+            $table->string('id_ip')->unique();
             $table->string('serial_number');
             $table->string('model_monitor');
-            $table->char('id_posisi',200)->unique();
+            $table->string('id_posisi')->unique();
             $table->string('admin');
-            $table->char('id_vendor',200)->unique();
-            $table->char('id_history',200)->unique();
+            $table->string('id_vendor')->unique();
+            // $table->string('id_history')->unique();
             $table->text('keterangan')->nullable();
             $table->string('status');
             $table->timestamps();

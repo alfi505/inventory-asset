@@ -16,6 +16,8 @@ class InventoryKeyboardController extends Controller
     public function index()
     {
         //
+        $keyboards = inventory_keyboard::all();
+        return view('main.inventory.monitor.detail-keyboard', compact('keyboards'));
     }
 
     /**

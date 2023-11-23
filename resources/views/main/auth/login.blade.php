@@ -32,14 +32,14 @@
                                 class="font-weight-bold">Inventory
                                 Asset IT</span>
                         </h4>
-                        {{-- Ganti method post nanti --}}
-                        <form method="GET" action="/dashboard-admin" class="needs-validation" novalidate="">
+                        <form method="POST" action="/postlogin">
+                            @csrf
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email" tabindex="1"
+                                <label for="username">Username</label>
+                                <input id="username" type="text" class="form-control" name="username" tabindex="1"
                                     required autofocus>
                                 <div class="invalid-feedback">
-                                    Please fill in your email
+                                    Please fill in your username
                                 </div>
                             </div>
 
@@ -50,7 +50,7 @@
                                 <input id="password" type="password" class="form-control" name="password"
                                     tabindex="2" required>
                                 <div class="invalid-feedback">
-                                    please fill in your password
+                                    Please fill in your password
                                 </div>
                             </div>
 

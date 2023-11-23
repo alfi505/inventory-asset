@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\InventoryMonitorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\InventoryMonitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', [LoginController::class, 'halamanLogin'])->name('login');
+Route::post('/postlogin', [LoginController::class, 'postLogin'])->name('postlogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 //admin
-Route::get('/login', function () {
-    return view('main.auth.auth-login');
-});
+// Route::get('/login', function () {
+//     return view('main.auth.login');
+// });
 
 // navbar dashboard
 Route::get('/dashboard-admin', function () {
