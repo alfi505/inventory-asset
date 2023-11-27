@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\merk;
+use App\Models\Merk;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\StoremerkRequest;
 use App\Http\Requests\UpdatemerkRequest;
 
 class MerkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
+        $data = [
+        'merk' => Merk::get()
+        ];
+        return view('main.utilities.merk.utilities-merk', $data);
     }
 
     /**

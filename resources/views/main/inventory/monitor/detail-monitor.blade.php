@@ -46,7 +46,7 @@
                                     <tr>
                                         <th>Merk Monitor</th>
                                         <td>:</td>
-                                        <td>{{ $monitorItem->id_merk }}</td>
+                                        <td>{{ $monitorItem->merk->keterangan }}</td>
                                     </tr>
                                     <tr>
                                         <th>Model Monitor</th>
@@ -56,7 +56,8 @@
                                     <tr>
                                         <th>Jenis Perangkat</th>
                                         <td>:</td>
-                                        <td>Monitor</td>
+                                        {{-- <td>Monitor</td> --}}
+                                        <td>{{ $monitorItem->jenisperangkat->keterangan }}</td>
                                     </tr>
                                     <tr>
                                         <th>Tanggal</th>
@@ -81,7 +82,8 @@
                                     <tr>
                                         <th>Vendor</th>
                                         <td>:</td>
-                                        <td>ELS Komputer</td>
+                                        {{-- <td>ELS Komputer</td> --}}
+                                        <td>{{ $monitorItem->vendor->perusahaan }}</td>
                                     </tr>
                                     <tr>
                                         <th>Admin</th>

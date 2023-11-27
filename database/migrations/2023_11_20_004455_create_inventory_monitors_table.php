@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('nama_komputer');
             $table->string('nama_pic');
             $table->string('id_cpu')->unique();
-            $table->string('id_merk')->unique();
-            $table->string('id_jenisperangkat')->unique();
+            $table->foreignId('merk_id');
+            $table->foreignId('jenisperangkat_id');
             $table->string('id_ip')->unique();
             $table->string('serial_number');
             $table->string('model_monitor');
             $table->string('id_posisi')->unique();
             $table->string('admin');
-            $table->string('id_vendor')->unique();
+            $table->foreignId('vendor_id');
             // $table->string('id_history')->unique();
             $table->text('keterangan')->nullable();
             $table->foreignId('status_id');

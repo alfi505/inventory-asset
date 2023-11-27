@@ -65,34 +65,12 @@
                                     </tr>
                                     @foreach ($aug as $krissbatik)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $krissbatik->nama_pic }}</td>
                                             <td>{{ $krissbatik->id_monitor }}</td>
                                             <td>-</td>
                                             <td>
                                                 <a href="/detail-monitor" class="btn btn-info">Detail</a>
-                                                <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Andrew</td>
-                                            <td>MAK/IT/MTR-PHL/0420/1030</td>
-                                            <td>-</td>
-                                            <td>
-                                                <a href="#" class="btn btn-info">Detail</a>
-                                                <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Budi</td>
-                                            <td>MAK/IT/MTR-PHL/1230/1044</td>
-                                            <td>-</td>
-                                            <td>
-                                                <a href="#" class="btn btn-info">Detail</a>
                                                 <a href="#" class="btn btn-secondary">Edit</a>
                                                 <a href="#" class="btn btn-danger">Hapus</a>
                                             </td>

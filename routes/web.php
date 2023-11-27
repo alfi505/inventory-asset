@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\InventoryCpuController;
 use App\Http\Controllers\InventoryMonitorController;
 use App\Http\Controllers\DetailInventoryMonitorController;
-use App\Http\Controllers\InventoryCpuController;
+use App\Http\Controllers\MerkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +38,7 @@ Route::get('/pic', function () {
     return view('main.home.pic', ['type_menu' => 'dashboard']);
 });
 
-// inventory
-// Route::get('/inventory-cpu', function () {
-//     return view('main.inventory.cpu.inventory-cpu', ['type_menu'=> 'inventory']);
-// });
+
 Route::resource('/inventory-cpu',InventoryCpuController::class);
 Route::get('/detail-cpu', function () {
     return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
@@ -49,17 +47,11 @@ Route::get('/tambah-cpu', function () {
     return view('main.inventory.cpu.tambah-cpu', ['type_menu'=> 'inventory']);
 });
 
-// Route::get('/inventory-monitor', function () {
-//     return view('main.inventory.monitor.inventory-monitor', ['type_menu'=> 'inventory']);
-// });
-Route::get('/tambah-monitor', function () {
-    return view('main.inventory.monitor.tambah-monitor', ['type_menu'=> 'inventory']);
-});
-Route::resource('/detail-monitor', DetailInventoryMonitorController::class);
-Route::resource('/inventory-monitor', InventoryMonitorController::class);
-// Route::get('/detail-monitor', function () {
-//     return view('main.inventory.monitor.detail-monitor', ['type_menu'=> 'inventory']);
-// });
+
+Route::get('/tambah-monitor', [InventoryMonitorController::class, 'create']);
+Route::get('/inventory-monitor', [InventoryMonitorController::class, 'index']);
+Route::get('/detail-monitor', [InventoryMonitorController::class, 'detail']);
+Route::post('/store', [InventoryMonitorController::class, 'store']);
 
 
 Route::get('/inventory-keyboard', function () {
@@ -120,9 +112,10 @@ Route::get('/utilities-vendor', function () {
 Route::get('/tambah-vendor', function () {
     return view('main.utilities.vendor.tambah-vendor', ['type_menu' => 'utilities']);
 });
-Route::get('/utilities-merk', function () {
-    return view('main.utilities.merk.utilities-merk', ['type_menu' => 'utilities']);
-});
+// Route::get('/utilities-merk', function () {
+//     return view('main.utilities.merk.utilities-merk', ['type_menu' => 'utilities']);
+// });
+Route::get('/utilities-merk', [MerkController::class, 'index']);
 Route::get('/tambah-merk', function () {
     return view('main.utilities.merk.tambah-merk', ['type_menu' => 'utilities']);
 });

@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jenis_perangkat;
+use App\Models\JenisPerangkat;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\Storejenis_perangkatRequest;
 use App\Http\Requests\Updatejenis_perangkatRequest;
 
 class JenisPerangkatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
+        $data = [
+        'jenisPerangkat' => JenisPerangkat::get()
+        ];
+        return view('main.utilities.jenisperangkat.utilities-jenisperangkat', $data);
     }
 
     /**

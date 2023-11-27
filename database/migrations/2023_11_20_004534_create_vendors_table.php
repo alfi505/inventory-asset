@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vendors', function (Blueprint $table) {
-            $table->id('id_vendor');
+            $table->id();
             $table->string('nama');
             $table->string('perusahaan');
             $table->string('jabatan');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('kota');
             $table->string('daerah');
             $table->integer('kode_pos');
-            $table->float('no_telpon');
+            $table->string('no_telpon');
             $table->char('fax',200)->nullable();
             $table->text('tambahan')->nullable();
             $table->timestamps();

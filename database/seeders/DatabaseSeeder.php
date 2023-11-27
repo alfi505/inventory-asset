@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PicSeeder::class);
         $this->call(InventoryMonitorSeeder::class);
         $this->call(StatusSeeder::class);
+        $this->call(MerkSeeder::class);
+        $this->call(JenisPerangkatSeeder::class);
+        $this->call(VendorSeeder::class);
     }
 }

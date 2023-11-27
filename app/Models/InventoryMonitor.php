@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Merk;
 use App\Models\Status;
+use App\Models\JenisPerangkat;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InventoryMonitor extends Model
 {
@@ -14,6 +16,19 @@ class InventoryMonitor extends Model
     public function status():BelongsTo{
         return $this->belongsTo(Status::class);
     }
+
+    public function merk():BelongsTo{
+        return $this->belongsTo(Merk::class);
+    }
+
+    public function jenisperangkat():BelongsTo{
+        return $this->belongsTo(JenisPerangkat::class);
+    }
+
+    public function vendor():BelongsTo{
+        return $this->belongsTo(Vendor::class);
+    }
+
     protected $primaryKey = 'id_monitor';
     public $incrementing = false;
     protected $keyType = 'string';

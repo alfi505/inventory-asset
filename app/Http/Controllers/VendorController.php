@@ -9,14 +9,13 @@ use App\Http\Requests\UpdatevendorRequest;
 
 class VendorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
+        $data = [
+        'vendor' => Vendor::get()
+        ];
+        return view('main.utilities.vendor.utilities-vendor', $data);
     }
 
     /**
