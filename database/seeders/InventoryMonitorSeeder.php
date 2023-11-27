@@ -30,7 +30,7 @@ class InventoryMonitorSeeder extends Seeder
             'admin' => 'Dre',
             'id_vendor' => 'ELS Komputer',
             'keterangan' => '',
-            'status' => 'Continue - Baik',
+            'status_id' => '1',
         ]);
 
     }

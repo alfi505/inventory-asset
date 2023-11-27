@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('id_pic')->primary();
             $table->string('nama_komputer');
             $table->string('nama_pic');
-            $table->string('katregori');
+            $table->string('kategori');
             $table->string('id_zona')->unique();
             $table->string('id_cpu')->unique();
             $table->string('id_monitor')->unique();

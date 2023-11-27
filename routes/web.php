@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InventoryMonitorController;
+use App\Http\Controllers\DetailInventoryMonitorController;
+use App\Http\Controllers\InventoryCpuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +38,10 @@ Route::get('/pic', function () {
 });
 
 // inventory
-Route::get('/inventory-cpu', function () {
-    return view('main.inventory.cpu.inventory-cpu', ['type_menu'=> 'inventory']);
-});
+// Route::get('/inventory-cpu', function () {
+//     return view('main.inventory.cpu.inventory-cpu', ['type_menu'=> 'inventory']);
+// });
+Route::resource('/inventory-cpu',InventoryCpuController::class);
 Route::get('/detail-cpu', function () {
     return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
 });
@@ -46,13 +49,14 @@ Route::get('/tambah-cpu', function () {
     return view('main.inventory.cpu.tambah-cpu', ['type_menu'=> 'inventory']);
 });
 
-Route::get('/inventory-monitor', function () {
-    return view('main.inventory.monitor.inventory-monitor', ['type_menu'=> 'inventory']);
-});
+// Route::get('/inventory-monitor', function () {
+//     return view('main.inventory.monitor.inventory-monitor', ['type_menu'=> 'inventory']);
+// });
 Route::get('/tambah-monitor', function () {
     return view('main.inventory.monitor.tambah-monitor', ['type_menu'=> 'inventory']);
 });
-Route::resource('/detail-monitor', InventoryMonitorController::class);
+Route::resource('/detail-monitor', DetailInventoryMonitorController::class);
+Route::resource('/inventory-monitor', InventoryMonitorController::class);
 // Route::get('/detail-monitor', function () {
 //     return view('main.inventory.monitor.detail-monitor', ['type_menu'=> 'inventory']);
 // });

@@ -167,7 +167,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data</h4>
+                        <h4>Data Jumlah</h4>
                     </div>
                     <div class="card-body">
                         {{-- myChart nya ada di public -> js -> page -> index-0.js --}}

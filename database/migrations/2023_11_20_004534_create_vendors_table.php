@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vendors', function (Blueprint $table) {
-            $table->integer('id_vendor')->primary();
+            $table->id('id_vendor');
             $table->string('nama');
             $table->string('perusahaan');
             $table->string('jabatan');

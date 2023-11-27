@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('no_ips', function (Blueprint $table) {
-            $table->integer('id_ip')->primary();
-            $table->char('no_ip_address',200);
-            $table->text('keterangan');
+            $table->id('id_ip');
+            $table->string('no_ip_address');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

@@ -4,15 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Status;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InventoryMonitor extends Model
 {
     use HasFactory;
 
-    // @var array<int, string>
-
-    // protected $table = 'inventory_monitors';
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
     protected $primaryKey = 'id_monitor';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'id_monitor',
@@ -28,6 +32,6 @@ class InventoryMonitor extends Model
         'admin',
         'id_vendor',
         'keterangan',
-        'status',
+        'id_status',
     ];
 }

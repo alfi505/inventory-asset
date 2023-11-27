@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_cpu;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\Storeinventory_cpuRequest;
 use App\Http\Requests\Updateinventory_cpuRequest;
+use App\Models\InventoryCpu;
 
 class InventoryCpuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
+        $data = [
+        'cpu' => InventoryCpu::get()
+        ];
+
+        return view('main.inventory.cpu.inventory-cpu', $data);
     }
 
     /**

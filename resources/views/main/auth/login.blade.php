@@ -26,8 +26,10 @@
             <div class="d-flex align-items-stretch flex-wrap">
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                     <div class="m-3 p-4">
-                        <img src="{{ asset('img/MAK.jpg') }}" alt="logo" width="80"
-                            class="shadow-light rounded-circle mb-5 mt-2">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ asset('img/MAK.jpg') }}" alt="logo" width="200"
+                                class="shadow-light rounded-circle mb-5 mt-2">
+                        </div>
                         <h4 class="text-dark font-weight-normal mb-5">Welcome to <span
                                 class="font-weight-bold">Inventory
                                 Asset IT</span>

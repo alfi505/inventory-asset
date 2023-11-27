@@ -76,7 +76,7 @@
                                     <tr>
                                         <th>Serial Number</th>
                                         <td>:</td>
-                                        <td>3423-3453-7876-2332</td>
+                                        <td>{{ $monitorItem->serial_number }}</td>
                                     </tr>
                                     <tr>
                                         <th>Vendor</th>
@@ -96,7 +96,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <td>:</td>
-                                        <td>Continue - Baik</td>
+                                        <td>{{ $monitorItem->status->status }}</td>
                                     </tr>
                                 </tbody>
                             </table>

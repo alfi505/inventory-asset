@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\InventoryCpu;
+use App\Models\Pic;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +24,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         // User::factory(5)->create();
+        // Pic::factory(5)->create();
+        // InventoryCpu::factory(5)->create();
         $this->call(UserSeeder::class);
+        $this->call(InventoryCpuSeeder::class);
+        $this->call(PicSeeder::class);
         $this->call(InventoryMonitorSeeder::class);
+        $this->call(StatusSeeder::class);
     }
 }

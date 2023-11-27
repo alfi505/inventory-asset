@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_keyboard;
 use App\Http\Requests\Storeinventory_keyboardRequest;
 use App\Http\Requests\Updateinventory_keyboardRequest;
+use App\Models\InventoryKeyboard;
 
 class InventoryKeyboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
-        $keyboards = inventory_keyboard::all();
-        return view('main.inventory.monitor.detail-keyboard', compact('keyboards'));
+        $data =[
+            'keyboards' => InventoryKeyboard::get()
+        ];
+        return view('main.inventory.monitor.detail-keyboard', $data);
     }
 
     /**

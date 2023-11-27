@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('id_vendor')->unique();
             // $table->string('id_history')->unique();
             $table->text('keterangan')->nullable();
-            $table->string('status');
+            $table->foreignId('status_id');
             $table->timestamps();
         });
     }

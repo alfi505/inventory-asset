@@ -136,58 +136,27 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Statistics</h4>
-                            <div class="card-header-action">
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-primary">Week</a>
-                                    <a href="#" class="btn">Month</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myChart" height="182"></canvas>
-                            <div class="statistic-details mt-sm-4">
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 7%</span>
-                                    <div class="detail-value">$243</div>
-                                    <div class="detail-name">Today's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-danger"><i
-                                                class="fas fa-caret-down"></i></span> 23%</span>
-                                    <div class="detail-value">$2,902</div>
-                                    <div class="detail-name">This Week's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span>9%</span>
-                                    <div class="detail-value">$12,821</div>
-                                    <div class="detail-name">This Month's Sales</div>
-                                </div>
-                                <div class="statistic-details-item">
-                                    <span class="text-muted"><span class="text-primary"><i
-                                                class="fas fa-caret-up"></i></span> 19%</span>
-                                    <div class="detail-value">$92,142</div>
-                                    <div class="detail-name">This Year's Sales</div>
-                                </div>
-                            </div>
-                        </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Data Perolehan</h4>
+                    </div>
+                    <div class="card-body">
+                        {{-- myChart nya ada di public -> js -> page -> index-0.js --}}
+                        <canvas id="chart_inventory" width="1200" height="400"></canvas>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Pie Chart</h4>
+                        <h4>Data Jumlah</h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="myChart3"></canvas>
+                        {{-- myChart nya ada di public -> js -> page -> index-0.js --}}
+                        <canvas id="chart_pic" width="1200" height="400"></canvas>
                     </div>
                 </div>
             </div>
@@ -207,5 +176,7 @@
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
     <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/chart.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script src="{{ asset('js/page/dashboard.js') }}"></script>
 @endpush

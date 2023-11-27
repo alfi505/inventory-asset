@@ -54,6 +54,7 @@
                                 </form>
                             </div>
                         </div>
+                        @csrf
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table-striped table-md table">
@@ -66,21 +67,23 @@
                                         <th>Unit</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Alfi</td>
-                                        <td>Parangkusumo</td>
-                                        <td>127.11.1.156</td>
-                                        <td>MAK/IT/CPU-RKT/1105/6024</td>
-                                        <td>RND</td>
-                                        <td>
-                                            <a href="/detail-cpu" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($cpu as $cpus)
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $cpus->nama_pic }}</td>
+                                            <td>{{ $cpus->nama_komputer }}</td>
+                                            <td>{{ $cpus->id_ip }}</td>
+                                            <td>{{ $cpus->id_cpu }}</td>
+                                            <td>RND</td>
+                                            <td>
+                                                <a href="/detail-cpu" class="btn btn-info">Detail</a>
+                                                <a href="#" class="btn btn-secondary">Edit</a>
+                                                <a href="#">
+                                                    <button class="btn btn-danger" id="swal-6">Hapus</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     <tr>
                                         <td>2</td>
                                         <td>Andrew</td>
