@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('no_ips', function (Blueprint $table) {
+        Schema::create('posisis', function (Blueprint $table) {
             $table->id();
-            $table->string('no_ip_address');
-            $table->text('keterangan')->nullable();
+            $table->foreignId('direktorat_id');
+            $table->foreignId('divisi_id');
+            $table->foreignId('unit_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('no_ips');
+        Schema::dropIfExists('posisis');
     }
 };

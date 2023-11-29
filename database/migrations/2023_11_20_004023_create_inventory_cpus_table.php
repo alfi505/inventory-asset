@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_pic');
             $table->string('id_zona')->nullable();
             $table->string('id_ip')->unique();
+            $table->string('id_spek')->unique()->nullable();
             $table->string('kategori');
             $table->string('serial_number');
             $table->string('os');

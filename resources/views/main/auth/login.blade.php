@@ -34,7 +34,7 @@
                                 class="font-weight-bold">Inventory
                                 Asset IT</span>
                         </h4>
-                        <form method="POST" action="/postlogin">
+                        <form method="POST" action="{{ url('/postlogin') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="username">Username</label>

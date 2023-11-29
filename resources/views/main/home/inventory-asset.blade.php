@@ -16,7 +16,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-cpu">
+                    <a href="{{ url('/inventory-cpu') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
                                 <i class="fas fa-computer"></i>
@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-monitor">
+                    <a href="{{ url('/inventory-monitor') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
                                 <i class="fas fa-desktop"></i>
@@ -50,7 +50,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-keyboard">
+                    <a href="{{ url('/inventory-keyboard') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-warning">
                                 <i class="fas fa-keyboard"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="inventory-mouse">
+                    <a href="{{ url('/inventory-mouse') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-success">
                                 <i class="fas fa-mouse"></i>
@@ -84,7 +84,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-speaker">
+                    <a href="{{ url('/inventory-speaker') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-warning">
                                 <i class="fas fa-headphones"></i>
@@ -101,7 +101,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-network">
+                    <a href="{{ url('/inventory-network') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-success">
                                 <i class="fas fa-network-wired"></i>
@@ -118,7 +118,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/inventory-printer">
+                    <a href="{{ url('/inventory-printer') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
                                 <i class="fas fa-print"></i>
