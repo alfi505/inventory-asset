@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_monitor_x_pics', function (Blueprint $table) {
-            $table->id();
+        Schema::create('detail_monitor_x_p_i_c_s', function (Blueprint $table) {
+            $table->string('id_detailmonitorxpic')->primary();
+            $table->foreignId('monitor_id');
+            $table->foreignId('pic_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('workstation_id');
             $table->timestamps();
         });
     }

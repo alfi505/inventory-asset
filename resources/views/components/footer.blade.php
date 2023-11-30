@@ -4,6 +4,6 @@
             href="https://www.youtube.com/watch?v=Shm39XHEiuw&ab_channel=CPRP07">Wibu Garis Keras</a>
     </div>
     <div class="footer-right">
-        Oaa Oee
+        Teehee~
     </div>
 </footer>

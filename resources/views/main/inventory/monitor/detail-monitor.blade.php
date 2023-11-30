@@ -28,16 +28,6 @@
                                         <td>{{ $monitorItem->id_monitor }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Nama Komputer</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->nama_komputer }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama PIC</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->nama_pic }}</td>
-                                    </tr>
-                                    <tr>
                                         <th>ID CPU</th>
                                         <td>:</td>
                                         {{-- <td>MAK/IT/CPU-RKT/1105/6024</td> --}}

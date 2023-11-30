@@ -2,18 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Workstation;
+use App\Models\DetailMonitorXPIC;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pic extends Model
 {
     use HasFactory;
 
-    public function InventoryCpu(){
-        return $this->hasMany(InventoryCpu::class);
+    public function monitor():HasMany{
+        return $this->hasMany(DetailMonitorXPIC::class);
     }
 
     protected $primaryKey = 'id_pic';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
         'id_pic',
         'nama_komputer',
@@ -21,7 +27,7 @@ class Pic extends Model
         'kategori',
         'id_zona',
         'id_cpu',
-        'id_monitor',
+        'id_detailmonitorxpic',
         'id_keyboard',
         'id_mouse',
         'id_printer',

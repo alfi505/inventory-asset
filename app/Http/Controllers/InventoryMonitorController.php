@@ -36,7 +36,7 @@ class InventoryMonitorController extends Controller
     //  */
     public function create()
     {
-        return view('main.inventory.monitor.tambah-monitor');
+        // return view('main.inventory.monitor.tambah-monitor');
     }
 
     // /**

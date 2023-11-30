@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('workstation', function (Blueprint $table) {
+        Schema::create('workstations', function (Blueprint $table) {
             $table->id();
             $table->string('no_ip_address');
-            $table->string('host_name');
+            $table->string('hostname');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workstation');
+        Schema::dropIfExists('workstations');
     }
 };

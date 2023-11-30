@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\InventoryMonitor;
+use App\Models\DetailMonitorXPIC;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +12,8 @@ class Vendor extends Model
     use HasFactory;
 
     protected $primaryKey = 'id';
-    public function monitor():HasOne{
-        return $this->hasOne(InventoryMonitor::class);
+    public function detailmonitor():HasOne{
+        return $this->hasOne(DetailMonitorXPIC::class);
     }
 
     protected $fillable =[

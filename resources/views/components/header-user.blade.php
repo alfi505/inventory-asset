@@ -73,6 +73,13 @@
         </div>
     </form>
     <ul class="navbar-nav navbar-right">
+        <li>
+            <div class="">
+                <iframe
+                    src="https://free.timeanddate.com/clock/i94tvgvv/n666/tlid38/fn7/fs15/fcfff/tct/pct/ftb/tt0/tw0/tm1/td2/th1/tb1"
+                    frameborder="0" width="239" height="30" allowtransparency="true"></iframe>
+            </div>
+        </li>
         <div>
             <a href="/login" class="has-icon text-white">
                 <i class="fas fa-right-to-bracket mb-3"></i> Login

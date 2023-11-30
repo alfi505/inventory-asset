@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\no_ip;
+use App\Models\Workstation;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\Storeno_ipRequest;
 use App\Http\Requests\Updateno_ipRequest;
 
-class NoIpController extends Controller
+class WorkstationController extends Controller
 {
     /**
      * Display a listing of the resource.

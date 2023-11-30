@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('inventory_networks', function (Blueprint $table) {
-            $table->char('id_network',200)->primary();
-            $table->char('id_merk',200)->unique();
-            $table->char('id_jenisperangkat',200)->unique();
+            $table->string('id_network')->primary();
+            $table->string('id_merk');
+            $table->string('id_jenisperangkat');
             $table->string('serial_number');
             $table->string('model_network');
             $table->string('admin');

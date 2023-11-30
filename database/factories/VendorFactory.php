@@ -17,7 +17,14 @@ class VendorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nama' => fake()->name(),
+            'perusahaan' => fake()->company(),
+            'jabatan' => fake()->jobTitle(),
+            'alamat' => fake()->address(),
+            'kota' => fake()->city(),
+            'daerah' => fake()->citySuffix(),
+            'kode_pos' => fake()->postcode(),
+            'no_telpon' => fake()->phoneNumber(),
         ];
     }
 }

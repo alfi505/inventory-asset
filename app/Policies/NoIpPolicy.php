@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\no_ip;
+use App\Models\Workstation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class NoIpPolicy
+class WorkstationPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class NoIpPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\no_ip  $noIp
+     * @param  \App\Models\Workstation  $workstation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, no_ip $noIp)
+    public function view(User $user, Workstation $workstation)
     {
         //
     }
@@ -48,10 +48,10 @@ class NoIpPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\no_ip  $noIp
+     * @param  \App\Models\Workstation  $workstation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, no_ip $noIp)
+    public function update(User $user, Workstation $workstation)
     {
         //
     }
@@ -60,10 +60,10 @@ class NoIpPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\no_ip  $noIp
+     * @param  \App\Models\Workstation  $workstation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, no_ip $noIp)
+    public function delete(User $user, Workstation $workstation)
     {
         //
     }
@@ -72,10 +72,10 @@ class NoIpPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\no_ip  $noIp
+     * @param  \App\Models\Workstation  $workstation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, no_ip $noIp)
+    public function restore(User $user, Workstation $workstation)
     {
         //
     }
@@ -84,10 +84,10 @@ class NoIpPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\no_ip  $noIp
+     * @param  \App\Models\Workstation  $workstation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, no_ip $noIp)
+    public function forceDelete(User $user, Workstation $workstation)
     {
         //
     }

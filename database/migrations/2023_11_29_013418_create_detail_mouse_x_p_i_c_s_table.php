@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_mouse_x_pics', function (Blueprint $table) {
-            $table->id();
+        Schema::create('detail_mouse_x_p_i_c_s', function (Blueprint $table) {
+            $table->string('id_detailmousexpic');
+            $table->string('mouse_id');
+            $table->string('pic_id');
+            $table->string('vendor_id');
+            $table->string('workstation_id');
             $table->timestamps();
         });
     }

@@ -18,15 +18,15 @@ return new class extends Migration
             $table->string('nama_komputer');
             $table->string('nama_pic');
             $table->string('kategori');
-            $table->string('id_zona')->unique();
-            $table->string('id_cpu')->unique();
-            $table->string('id_monitor')->unique();
-            $table->string('id_keyboard')->unique();
-            $table->string('id_mouse')->unique();
-            $table->string('id_printer')->unique();
-            $table->string('id_network')->unique();
-            $table->string('id_speaker')->unique();
-            $table->string('id_posisi')->unique();
+            $table->string('id_zona');
+            $table->string('id_cpu');
+            $table->string('id_detailmonitorxpic');
+            $table->string('id_keyboard');
+            $table->string('id_mouse');
+            $table->string('id_printer');
+            $table->string('id_network');
+            $table->string('id_speaker');
+            $table->string('id_posisi');
             $table->timestamps();
         });
     }

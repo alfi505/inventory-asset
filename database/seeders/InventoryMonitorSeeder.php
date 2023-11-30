@@ -23,6 +23,7 @@ class InventoryMonitorSeeder extends Seeder
             'serial_number' => '6RG6-RF45-GR32',
             'model_monitor' => 'Logitech Pro',
             'admin' => 'Dre',
+            'tanggal_input' => '0820',
             'keterangan' => '',
             'status_id' => '1',
         ],[
@@ -32,6 +33,7 @@ class InventoryMonitorSeeder extends Seeder
             'serial_number' => '6RG6-RF45-GR32',
             'model_monitor' => 'Logitech Pro',
             'admin' => 'Dre',
+            'tanggal_input' => '0311',
             'keterangan' => '',
             'status_id' => '1',
         ],[
@@ -41,6 +43,7 @@ class InventoryMonitorSeeder extends Seeder
             'serial_number' => '6RG6-RF45-GR32',
             'model_monitor' => 'Logitech Pro',
             'admin' => 'Dre',
+            'tanggal_input' => '1030',
             'keterangan' => '',
             'status_id' => '1',
         ],];
