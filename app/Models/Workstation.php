@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\DetailMouseXPIC;
 use App\Models\DetailMonitorXPIC;
+use App\Models\DetailKeyboardXPIC;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Workstation extends Model
 {
@@ -13,6 +15,12 @@ class Workstation extends Model
 
     public function monitorxpic():HasOne{
         return $this->hasOne(DetailMonitorXPIC::class);
+    }
+    public function keyboardxpic():HasOne{
+        return $this->hasOne(DetailKeyboardXPIC::class);
+    }
+    public function mousexpic():HasOne{
+        return $this->hasOne(DetailMouseXPIC::class);
     }
 
     // protected $primaryKey = 'id';
