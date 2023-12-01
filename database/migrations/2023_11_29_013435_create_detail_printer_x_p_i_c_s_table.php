@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('detail_printer_x_p_i_c_s', function (Blueprint $table) {
             $table->string('id_detailprinterxpic');
-            $table->string('printer_id');
-            $table->string('pic_id');
-            $table->string('vendor_id');
-            $table->string('workstation_id');
+            $table->foreignId('printer_id');
+            $table->foreignId('pic_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('workstation_id');
             $table->timestamps();
         });
     }

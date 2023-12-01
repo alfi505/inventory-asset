@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_speaker_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailspeakerxpic');
-            $table->foreignId('speaker_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
-            $table->foreignId('workstation_id');
+        Schema::create('areas', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_speaker_x_pics');
+        Schema::dropIfExists('areas');
     }
 };

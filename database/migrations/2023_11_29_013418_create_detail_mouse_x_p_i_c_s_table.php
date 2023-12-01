@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('detail_mouse_x_p_i_c_s', function (Blueprint $table) {
             $table->string('id_detailmousexpic');
-            $table->string('mouse_id');
-            $table->string('pic_id');
-            $table->string('vendor_id');
-            $table->string('workstation_id');
+            $table->foreignId('mouse_id');
+            $table->foreignId('pic_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('workstation_id');
             $table->timestamps();
         });
     }

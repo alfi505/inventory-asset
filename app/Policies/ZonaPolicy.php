@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Workstation;
+use App\Models\Zona;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class WorkstationPolicy
+class ZonaPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class WorkstationPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Workstation  $workstation
+     * @param  \App\Models\Zona  $zona
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Workstation $workstation)
+    public function view(User $user, Zona $zona)
     {
         //
     }
@@ -48,10 +48,10 @@ class WorkstationPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Workstation  $workstation
+     * @param  \App\Models\Zona  $zona
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Workstation $workstation)
+    public function update(User $user, Zona $zona)
     {
         //
     }
@@ -60,10 +60,10 @@ class WorkstationPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Workstation  $workstation
+     * @param  \App\Models\Zona  $zona
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Workstation $workstation)
+    public function delete(User $user, Zona $zona)
     {
         //
     }
@@ -72,10 +72,10 @@ class WorkstationPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Workstation  $workstation
+     * @param  \App\Models\Zona  $zona
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Workstation $workstation)
+    public function restore(User $user, Zona $zona)
     {
         //
     }
@@ -84,10 +84,10 @@ class WorkstationPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Workstation  $workstation
+     * @param  \App\Models\Zona  $zona
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Workstation $workstation)
+    public function forceDelete(User $user, Zona $zona)
     {
         //
     }

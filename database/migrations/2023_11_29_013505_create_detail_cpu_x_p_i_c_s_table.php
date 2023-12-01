@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('detail_cpu_x_pics', function (Blueprint $table) {
             $table->string('id_detailcpuxpic');
-            $table->string('cpu_id');
-            $table->string('pic_id');
-            $table->string('vendor_id');
-            $table->string('workstation_id');
+            $table->foreignId('cpu_id');
+            $table->foreignId('pic_id');
+            $table->foreignId('vendor_id');
+            $table->foreignId('workstation_id');
+            $table->foreignId('software_id');
             $table->timestamps();
         });
     }
