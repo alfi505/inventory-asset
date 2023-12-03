@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Pic;
+use App\Models\Vendor;
 use App\Models\Workstation;
 use App\Models\InventoryMonitor;
 use Illuminate\Database\Eloquent\Model;

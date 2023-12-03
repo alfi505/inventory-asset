@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_mouse_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailmousexpic');
+            $table->string('id_detailmousexpic')->primary();
             $table->foreignId('mouse_id');
             $table->foreignId('pic_id');
             $table->foreignId('vendor_id');

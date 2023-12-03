@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_printer_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailprinterxpic');
+            $table->string('id_detailprinterxpic')->primary();
             $table->foreignId('printer_id');
             $table->foreignId('pic_id');
             $table->foreignId('vendor_id');

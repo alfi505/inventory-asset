@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('inventory_printers', function (Blueprint $table) {
             $table->string('id_printer')->primary();
-            $table->string('id_merk');
-            $table->string('id_jenisperangkat');
+            $table->foreignId('merk_id');
+            $table->foreignId('jenisperangkat_id');
             $table->string('serial_number');
             $table->string('model_printer');
             $table->string('admin');
             $table->text('keterangan')->nullable();
-            $table->string('status');
+            $table->foreignId('status_id');
             $table->timestamps();
         });
     }

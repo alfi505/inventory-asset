@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InventoryCpuController;
 use App\Http\Controllers\InventoryMonitorController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\MerkController;
 */
 
 Route::get('/login', [LoginController::class, 'halamanLogin'])->name('login');
-Route::post('/postlogin', [LoginController::class, 'postLogin'])->name('postlogin');
+Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //admin
@@ -27,9 +28,10 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // });
 
 // navbar dashboard
-Route::get('/dashboard-admin', function () {
-    return view('main.home.dashboard-admin', ['type_menu' => 'dashboard']);
-});
+// Route::get('/dashboard-admin', function () {
+//     return view('main.home.dashboard-admin', ['type_menu' => 'dashboard']);
+// });
+Route::get('/dashboard-admin', [DashboardAdminController::class, 'index']);
 Route::get('/inventory-asset', function () {
     return view('main.home.inventory-asset', ['type_menu' => 'dashboard']);
 });

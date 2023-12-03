@@ -74,7 +74,7 @@
     </form>
     <ul class="navbar-nav navbar-right">
         <li>
-            <div class="">
+            <div class="mt-2">
                 <iframe
                     src="https://free.timeanddate.com/clock/i94tvgvv/n666/tlid38/fn7/fs15/fcfff/tct/pct/ftb/tt0/tw0/tm1/td2/th1/tb1"
                     frameborder="0" width="239" height="30" allowtransparency="true"></iframe>
@@ -83,7 +83,7 @@
         <li class="dropdown"><a href="" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Wibu Garis Keras</div>
+                <div class="d-sm-none d-lg-inline-block">Halo, {{ $hehe->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>

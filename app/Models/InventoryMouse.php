@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Merk;
+use App\Models\JenisPerangkat;
+use App\Models\DetailMouseXPIC;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_speaker_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailspeakerxpic');
+            $table->string('id_detailspeakerxpic')->primary();
             $table->foreignId('speaker_id');
             $table->foreignId('pic_id');
             $table->foreignId('vendor_id');

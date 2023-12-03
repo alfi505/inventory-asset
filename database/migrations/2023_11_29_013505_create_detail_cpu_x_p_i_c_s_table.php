@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_cpu_x_pics', function (Blueprint $table) {
-            $table->string('id_detailcpuxpic');
+            $table->string('id_detailcpuxpic')->primary();
             $table->foreignId('cpu_id');
             $table->foreignId('pic_id');
             $table->foreignId('vendor_id');

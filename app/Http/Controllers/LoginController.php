@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 // use Illuminate\Support\Facades\Auth;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -14,11 +15,15 @@ class LoginController extends Controller
         return view('main.auth.login');
     }
 
-    public function postLogin(Request $request){
-        if (Auth::attempt($request->only('username', 'password'))) {
-            return redirect('/dashboard-admin');
+    public function authenticate(Request $request): RedirectResponse{
+
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('/dashboard-admin');
         }
-        return redirect('/login');
     }
 
     public function logout(){

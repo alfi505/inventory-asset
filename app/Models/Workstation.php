@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Models\DetailMouseXPIC;
 use App\Models\DetailMonitorXPIC;
+use App\Models\DetailNetworkXPIC;
+use App\Models\DetailPrinterXPIC;
+use App\Models\DetailSpeakerXPIC;
 use App\Models\DetailKeyboardXPIC;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -21,6 +24,15 @@ class Workstation extends Model
     }
     public function mousexpic():HasOne{
         return $this->hasOne(DetailMouseXPIC::class);
+    }
+    public function networkxpic():HasOne{
+        return $this->hasOne(DetailNetworkXPIC::class);
+    }
+    public function printerxpic():HasOne{
+        return $this->hasOne(DetailPrinterXPIC::class);
+    }
+    public function speakerxpic():HasOne{
+        return $this->hasOne(DetailSpeakerXPIC::class);
     }
 
     // protected $primaryKey = 'id';
