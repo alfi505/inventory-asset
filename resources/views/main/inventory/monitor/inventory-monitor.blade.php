@@ -14,6 +14,7 @@
             <div class="section-header">
                 <h1>Monitor</h1>
             </div>
+            @csrf
             <div class="row position-relative">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
@@ -32,7 +33,7 @@
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
                     <div class="buttons py-5">
-                        <a href="/tambah-monitor" class="btn btn-primary">Tambah Monitor</a>
+                        <a href="/inventory-monitor/create" class="btn btn-primary">Tambah Monitor</a>
                     </div>
                 </div>
             </div>
@@ -58,19 +59,20 @@
                                 <table class="table-striped table-md table">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama PIC</th>
                                         <th>ID Monitor</th>
+                                        <th>No Ip</th>
                                         <th>Posisi</th>
                                         <th>Action</th>
                                     </tr>
                                     @foreach ($aug as $krissbatik)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $krissbatik->nama_pic }}</td>
                                             <td>{{ $krissbatik->id_monitor }}</td>
+                                            <td>{{ $krissbatik->id_ip_address }}</td>
                                             <td>-</td>
                                             <td>
-                                                <a href="/detail-monitor" class="btn btn-info">Detail</a>
+                                                <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '-', $krissbatik->id_monitor) }}"
+                                                    class="btn btn-info">Detail</a>
                                                 <a href="#" class="btn btn-secondary">Edit</a>
                                                 <a href="#" class="btn btn-danger">Hapus</a>
                                             </td>

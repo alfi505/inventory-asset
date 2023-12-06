@@ -12,10 +12,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data Monitor</h1>
+                <h1>Detail Data Monitor {{ $monitor->id_monitor }}</h1>
             </div>
 
-            @foreach ($monitors as $monitorItem)
+            @foreach ($monitor as $monitorItem)
                 <div class="section-body">
                     <div class="card">
                         <div class="card-body">
@@ -24,13 +24,11 @@
                                     <tr>
                                         <th style="width: 15%">ID Monitor</th>
                                         <td style="width: 1%">:</td>
-                                        {{-- <td>MAK/IT/MTR-PHL/1121/1144</td> --}}
                                         <td>{{ $monitorItem->id_monitor }}</td>
                                     </tr>
                                     <tr>
                                         <th>ID CPU</th>
                                         <td>:</td>
-                                        {{-- <td>MAK/IT/CPU-RKT/1105/6024</td> --}}
                                         <td>{{ $monitorItem->id_cpu }}</td>
                                     </tr>
                                     <tr>
@@ -46,7 +44,6 @@
                                     <tr>
                                         <th>Jenis Perangkat</th>
                                         <td>:</td>
-                                        {{-- <td>Monitor</td> --}}
                                         <td>{{ $monitorItem->jenisperangkat->keterangan }}</td>
                                     </tr>
                                     <tr>
@@ -72,7 +69,6 @@
                                     <tr>
                                         <th>Vendor</th>
                                         <td>:</td>
-                                        {{-- <td>ELS Komputer</td> --}}
                                         <td>{{ $monitorItem->vendor->perusahaan }}</td>
                                     </tr>
                                     <tr>

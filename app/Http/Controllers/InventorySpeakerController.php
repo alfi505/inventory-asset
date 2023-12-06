@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_speaker;
-use App\Http\Requests\Storeinventory_speakerRequest;
-use App\Http\Requests\Updateinventory_speakerRequest;
+use App\Models\InventorySpeaker;
 
 class InventorySpeakerController extends Controller
 {
@@ -15,7 +13,10 @@ class InventorySpeakerController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+        'speaker' => InventorySpeaker::get()
+        ];
+        return view('main.inventory.speaker.inventory-speaker', $data);
     }
 
     /**
@@ -25,16 +26,21 @@ class InventorySpeakerController extends Controller
      */
     public function create()
     {
-        //
+        $status = Status::all();
+        $jenisPerangkat = JenisPerangkat::all();
+        $merk = Merk::all();
+        $vendor = Vendor::all();
+        $workstation = Workstation::all();
+        return view('main.inventory.network.tambah-network', compact('status','jenisPerangkat','merk', 'vendor', 'workstation'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeinventory_speakerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeinventory_speakerRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +48,10 @@ class InventorySpeakerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inventory_speaker  $inventory_speaker
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inventory_speaker $inventory_speaker)
+    public function show($id)
     {
         //
     }
@@ -53,10 +59,10 @@ class InventorySpeakerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inventory_speaker  $inventory_speaker
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventory_speaker $inventory_speaker)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +70,11 @@ class InventorySpeakerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateinventory_speakerRequest  $request
-     * @param  \App\Models\inventory_speaker  $inventory_speaker
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateinventory_speakerRequest $request, inventory_speaker $inventory_speaker)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +82,10 @@ class InventorySpeakerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inventory_speaker  $inventory_speaker
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventory_speaker $inventory_speaker)
+    public function destroy($id)
     {
         //
     }

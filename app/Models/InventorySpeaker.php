@@ -26,19 +26,21 @@ class InventorySpeaker extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_speaker'];
     protected $primaryKey = 'id_speaker';
+    protected $table = 'inventory_speakers';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id_speaker',
-        'id_merk',
-        'id_jenisperangkat',
+        'merk_id',
+        'jenisperangkat_id',
         'serial_number',
         'model_speaker',
         'admin',
         'tanggal_input',
         'keterangan',
-        'id_status',
+        'status_id',
     ];
 }

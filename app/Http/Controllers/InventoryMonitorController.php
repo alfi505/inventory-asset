@@ -2,78 +2,99 @@
 
 namespace App\Http\Controllers;
 
-use view;
-use App\Models\InventoryMonitor;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Storeinventory_monitorRequest;
-use App\Http\Requests\Updateinventory_monitorRequest;
+use App\Models\Merk;
+use App\Models\Status;
+use App\Models\Vendor;
+use App\Models\Workstation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\JenisPerangkat;
+use App\Models\InventoryMonitor;
+use Illuminate\Routing\Controller;
 
 class InventoryMonitorController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
         $pbrungkad = [
         'aug' => InventoryMonitor::get()
         ];
         return view('main.inventory.monitor.inventory-monitor', $pbrungkad);
-        // return view('main.inventory.monitor.detail-monitor', $pbrungkad);
     }
 
-    public function detail(){
-        $data = [
-        'monitors' => InventoryMonitor::get()
-        ];
-        return view('main.inventory.monitor.detail-monitor', $data);
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function detail($id){
+        $id_monitor = str_replace('-', '/', $id);
+        $data = InventoryMonitor::findOrFail($id_monitor);
+        return view('main.inventory.monitor.detail-monitor', compact('data'));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        // return view('main.inventory.monitor.tambah-monitor');
+        $status = Status::all();
+        $jenisPerangkat = JenisPerangkat::all();
+        $merk = Merk::all();
+        $vendor = Vendor::all();
+        $workstation = Workstation::all();
+        return view('main.inventory.monitor.tambah-monitor', compact('status','jenisPerangkat','merk', 'vendor', 'workstation'));
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \App\Http\Requests\Storeinventory_monitorRequest  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        DB::table('inventory_monitors')->insert([
-            'monitor_id_monitor' => $request->id_monitor,
-            'monitor_nama_komputer' => $request->nama_komputer,
-            'monitor_nama_pic' => $request->nama_pic,
-            'monitor_id_cpu' => $request->id_cpu,
-            'monitor_merk_id' => $request->merk_id,
-            'monitor_jenisperangkat_id' => $request->jenisperrangkat_id,
-            'monitor_id_ip' => $request->id_ip,
-            'monitor_serial_number' => $request->serial_number,
-            'monitor_model_monitor' => $request->model_monitor,
-            'monitor_id_poisi' => $request->id_posisi,
-            'monitor_admin' => $request->admin,
-            'monitor_vendor_id' => $request->vendor_id,
-            'monitor_keterangan' => $request->keterangan,
-            'monitor_status_id' => $request->status_id,
+        // dd($request);
+        // validasi data
+        $validateData1 = $request->validate([
+            'id_monitor' => 'required',
+            'model_monitor' => 'required',
+            'merk_id' => 'required',
+            'serial_number' => 'required',
+            'jenisperangkat_id' => 'required',
+            'admin' => 'required',
+            'tanggal_input' => 'required',
+            'status_id' => 'required',
+        ]);
+        $validateData2 = $request->validate([
+            'vendor_id' => 'required',
+            'workstation_id' => 'required',
         ]);
 
+        dd($validateData2);
+        //create post
+        // InventoryMonitor::create($validateData1);
+        // DetailMonitorXPIC::create($validateData2);
+
+        //balik
         return redirect('/inventory-monitor');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inventory_monitor  $inventory_monitor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inventory_monitor $inventory_monitor)
+    public function show($id)
     {
         //
     }
@@ -81,10 +102,10 @@ class InventoryMonitorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inventory_monitor  $inventory_monitor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventory_monitor $inventory_monitor)
+    public function edit($id)
     {
         //
     }
@@ -92,11 +113,11 @@ class InventoryMonitorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateinventory_monitorRequest  $request
-     * @param  \App\Models\inventory_monitor  $inventory_monitor
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateinventory_monitorRequest $request, inventory_monitor $inventory_monitor)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -104,10 +125,10 @@ class InventoryMonitorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inventory_monitor  $inventory_monitor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventory_monitor $inventory_monitor)
+    public function destroy($id)
     {
         //
     }

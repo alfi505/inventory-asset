@@ -38,7 +38,7 @@ class DetailMonitorXPIC extends Model
         'id_detailmonitorxpic',
         'id_monitor',
         'id_pic',
-        'id_vendor',
-        'id_workstation',
+        'vendor_id',
+        'workstation_id',
     ];
 }

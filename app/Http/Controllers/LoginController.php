@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-// use Illuminate\Support\Facades\Auth;
-use Auth;
 use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
 
-    public function halamanLogin(){
+    public function index(){
         return view('main.auth.login');
     }
 
@@ -24,6 +23,9 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/dashboard-admin');
         }
+        return back()->withErrors([
+            'loginerror', 'login failed!'
+        ]);
     }
 
     public function logout(){

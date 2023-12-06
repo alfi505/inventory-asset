@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
+use App\Models\Status;
+use App\Models\Vendor;
+use App\Models\Workstation;
+use Illuminate\Http\Request;
+use App\Models\JenisPerangkat;
+use App\Models\InventoryKeyboard;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\Storeinventory_keyboardRequest;
 use App\Http\Requests\Updateinventory_keyboardRequest;
-use App\Models\InventoryKeyboard;
 
 class InventoryKeyboardController extends Controller
 {
     public function index()
     {
-        //
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
         $data =[
             'keyboards' => InventoryKeyboard::get()
         ];
-        return view('main.inventory.monitor.detail-keyboard', $data);
+        return view('main.inventory.keyboard.inventory-keyboard', $data);
     }
 
     /**
@@ -24,16 +35,21 @@ class InventoryKeyboardController extends Controller
      */
     public function create()
     {
-        //
+        $status = Status::all();
+        $jenisPerangkat = JenisPerangkat::all();
+        $merk = Merk::all();
+        $vendor = Vendor::all();
+        $workstation = Workstation::all();
+        return view('main.inventory.keyboard.tambah-keyboard', compact('status','jenisPerangkat','merk', 'vendor', 'workstation'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeinventory_keyboardRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeinventory_keyboardRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -41,21 +57,20 @@ class InventoryKeyboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inventory_keyboard  $inventory_keyboard
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inventory_keyboard $inventory_keyboard)
-    {
+    public function show($id){
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inventory_keyboard  $inventory_keyboard
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventory_keyboard $inventory_keyboard)
+    public function edit($id)
     {
         //
     }
@@ -63,11 +78,11 @@ class InventoryKeyboardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateinventory_keyboardRequest  $request
-     * @param  \App\Models\inventory_keyboard  $inventory_keyboard
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateinventory_keyboardRequest $request, inventory_keyboard $inventory_keyboard)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +90,10 @@ class InventoryKeyboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inventory_keyboard  $inventory_keyboard
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventory_keyboard $inventory_keyboard)
+    public function destroy($id)
     {
         //
     }

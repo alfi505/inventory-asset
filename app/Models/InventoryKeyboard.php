@@ -26,7 +26,9 @@ class InventoryKeyboard extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_keyboard'];
     protected $primaryKey = 'id_keyboard';
+    protected $table = 'inventory_keyboards';
     public $incrementing = false;
     protected $keyType = 'string';
 

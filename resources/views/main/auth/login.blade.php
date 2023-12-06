@@ -28,7 +28,7 @@
                     <div class="m-3 p-4">
                         <div class="d-flex justify-content-center">
                             <img src="{{ asset('img/MAK.jpg') }}" alt="logo" width="200"
-                                class="shadow-light rounded-circle mb-5 mt-2">
+                                class="shadow-dark rounded-circle mb-5 mt-2">
                         </div>
                         <h4 class="text-dark font-weight-normal mb-5">Welcome to <span
                                 class="font-weight-bold">Inventory

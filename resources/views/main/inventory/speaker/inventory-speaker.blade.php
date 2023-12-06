@@ -52,44 +52,24 @@
                                 <table class="table-striped table-md table">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama PIC</th>
                                         <th>ID Speaker</th>
+                                        <th>No Ip</th>
                                         <th>Posisi</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Alfi</td>
-                                        <td>MAK/IT/SPK-LGH/1105/4024</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="/detail-speaker" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andrew</td>
-                                        <td>MAK/IT/SPK-LGH/0420/4030</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Budi</td>
-                                        <td>MAK/IT/SPK-LH/1230/4044</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($speaker as $data)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $data->id_speaker }}</td>
+                                            <td>{{ $data->id_ip_address }}</td>
+                                            <td>-</td>
+                                            <td>
+                                                <a href="/detail-speaker" class="btn btn-info">Detail</a>
+                                                <a href="#" class="btn btn-secondary">Edit</a>
+                                                <a href="#" class="btn btn-danger">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

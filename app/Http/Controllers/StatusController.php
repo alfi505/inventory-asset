@@ -8,14 +8,12 @@ use App\Http\Requests\UpdatestatusRequest;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $data = [
+        'status' => Status::all()
+        ];
+        return view('main.inventory.monitor.tambah-monitor', $data);
     }
 
     /**

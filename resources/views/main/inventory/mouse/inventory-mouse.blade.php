@@ -52,44 +52,24 @@
                                 <table class="table-striped table-md table">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama PIC</th>
                                         <th>ID Mouse</th>
+                                        <th>No Ip</th>
                                         <th>Posisi</th>
                                         <th>Action</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Alfi</td>
-                                        <td>MAK/IT/MOS-LGH/1105/3024</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="/detail-mouse" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andrew</td>
-                                        <td>MAK/IT/MOS-LGH/0420/3030</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Budi</td>
-                                        <td>MAK/IT/MOS-LGH/1230/3044</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($mouse as $data)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $data->id_mouse }}</td>
+                                            <td>{{ $data->id_ip_address }}</td>
+                                            <td>-</td>
+                                            <td>
+                                                <a href="/detail-mouse" class="btn btn-info">Detail</a>
+                                                <a href="#" class="btn btn-secondary">Edit</a>
+                                                <a href="#" class="btn btn-danger">Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

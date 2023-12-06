@@ -74,7 +74,7 @@
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    {{-- <script src='https://cdn.jsdelivr.net/npm/chart.js'></script> --}}
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>

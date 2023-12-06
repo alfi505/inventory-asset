@@ -30,6 +30,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
+                    <div class="buttons py-5">
+                        <a href="/inventory-keyboard/create" class="btn btn-primary">Tambah Keyboard</a>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -63,7 +68,7 @@
                                         <td>MAK/IT/KBR-LGH/1105/2024</td>
                                         <td>-</td>
                                         <td>
-                                            <a href="/detai-keyboard" class="btn btn-info">Detail</a>
+                                            <a href="/detail-keyboard" class="btn btn-info">Detail</a>
                                             <a href="#" class="btn btn-secondary">Edit</a>
                                             <a href="#" class="btn btn-danger">Hapus</a>
                                         </td>

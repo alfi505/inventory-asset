@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Monitor')
+@section('title', 'Mouse')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,9 +18,9 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Monitor</h1>
+                <h1>Mouse</h1>
             </div>
-            <form action="{{ url('/inventory-monitor') }}" method="post">
+            <form action="{{ url('/inventory-mouse') }}" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-header">
@@ -30,8 +30,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>ID Monitor</label>
-                                    <input type="text" class="form-control" name="id_monitor" id="id_monitor">
+                                    <label>ID Mouse</label>
+                                    <input type="text" class="form-control" name="id_mouse" id="id_mouse">
                                 </div>
                             </div>
                         </div>
@@ -49,8 +49,8 @@
                                 <input type="text" class="form-control" name="serial_number" id="serial_number" required>
                             </div>
                             <div class="form-group col">
-                                <label>Model Monitor</label>
-                                <input type="text" class="form-control" name="model_monitor" id="model_monitor" required>
+                                <label>Model Mouse</label>
+                                <input type="text" class="form-control" name="model_mouse" id="model_mouse" required>
                             </div>
                         </div>
                         <div class="row">
@@ -63,7 +63,7 @@
                                 </select>
                             </div>
                             <div class="form-group col">
-                                <label>Merk Monitor</label>
+                                <label>Merk mouse</label>
                                 <select class="form-control select2" name="merk_id" id="merk_id">
                                     @foreach ($merk as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>

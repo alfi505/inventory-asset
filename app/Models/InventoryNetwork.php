@@ -26,19 +26,21 @@ class InventoryNetwork extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_network'];
     protected $primaryKey = 'id_network';
+    protected $table = 'inventory_networks';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id_network',
-        'id_merk',
-        'id_jenisperangkat',
+        'merk_id',
+        'jenisperangkat_id',
         'serial_number',
         'model_network',
         'admin',
         'tanggal_input',
         'keterangan',
-        'id_status',
+        'status_id',
     ];
 }

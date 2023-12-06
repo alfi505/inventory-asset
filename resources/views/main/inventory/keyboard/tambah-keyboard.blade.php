@@ -20,108 +20,105 @@
             <div class="section-header">
                 <h1>Keyborad</h1>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Form Tambah</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>ID Keyboard</label>
-                                <input type="text" class="form-control">
+            <form action="{{ url('/inventory-keyboard') }}" method="post">
+                @csrf
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Form Tambah</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>ID Keyboard</label>
+                                    <input type="text" class="form-control" name="id_keyboard" id="id_keyboard">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>PIC</label>
+                                <select class="form-control select2" name="pic_id" id="pic_id">
+                                    <option value="1">Alfi</option>
+                                    <option value="2">Alfi2</option>
+                                    <option value="3">Alfi3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Serial Number</label>
+                                <input type="text" class="form-control" name="serial_number" id="serial_number">
+                            </div>
+                            <div class="form-group col">
+                                <label>Model Keyboard</label>
+                                <input type="text" class="form-control" name="model_keyboard" id="model_keyboard">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Jenis Perangkat</label>
+                                <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
+                                    @foreach ($jenisPerangkat as $data)
+                                        <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Merk Keyboard</label>
+                                <select class="form-control select2" name="merk_id" id="merk_id">
+                                    @foreach ($merk as $data)
+                                        <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Workstation</label>
+                                <select class="form-control select2" name="workstation_id" id="workstation_id">
+                                    @foreach ($workstation as $data)
+                                        <option value="{{ $data->id }}">{{ $data->no_ip_address }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Vendor</label>
+                                <select class="form-control select2" name="vendor_id" id="vendor_id">
+                                    @foreach ($vendor as $data)
+                                        <option value="{{ $data->id }}">{{ $data->perusahaan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Tanggal Input</label>
+                                <input type="text" class="form-control" name="tanggal_input" id="tanggal_input">
+                            </div>
+                            <div class="form-group col">
+                                <label>Admin</label>
+                                <input type="text" class="form-control" name="admin" id="admin">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Status</label>
+                            <select class="form-control select2" name="status_id" id="status_id">
+                                @foreach ($status as $data)
+                                    <option value="{{ $data->id }}">{{ $data->status }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label for="Keterangan" class="form-label">Keterangan</label>
+                                <textarea class="form-control" id="keterangan" style="height: 100%"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Nama Komputer</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>Nama PIC</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>ID CPU</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Merk Keyboard</label>
-                            <select class="form-control">
-                                <option>Phillips</option>
-                                <option>Lenovo</option>
-                                <option>LG</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label>Model Keyboard</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Serial Number</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>Jenis Perangkat</label>
-                            <select class="form-control">
-                                <option>Monitor</option>
-                                <option>Keyboard</option>
-                                <option>Mouse</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>ID IP</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>Admin</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Tanggal</label>
-                            <input type="text" class="form-control datepicker">
-                        </div>
-                        <div class="form-group col">
-                            <label>Vendor</label>
-                            <select class="form-control">
-                                <option>Ace Komputer</option>
-                                <option>ELS Komputer</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Pilih Status</label>
-                        <select class="form-control">
-                            <option>Continue - Baik</option>
-                            <option>Continue - Rusak</option>
-                            <option>Discontinue</option>
-                            <option>Dimusnahkan</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="Keterangan" class="form-label">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" style="height: 100%"></textarea>
+                    <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
+                        <div class="buttons">
+                            <button class="btn btn-primary" type="submit" name="submit" id="submit">Tambah</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
-                    <div class="buttons">
-                        <a href="/inventory-keyboard" class="btn btn-primary">Tambah</a>
-                    </div>
-                </div>
-            </div>
+            </form>
 
     </div>
     </section>

@@ -26,19 +26,21 @@ class InventoryPrinter extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_printer'];
     protected $primaryKey = 'id_printer';
+    protected $table = 'inventory_printers';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id_printer',
-        'id_merk',
-        'id_jenisperangkat',
+        'merk_id',
+        'jenisperangkat_id',
         'serial_number',
         'model_printer',
         'admin',
         'tanggal_input',
         'keterangan',
-        'id_status',
+        'status_id',
     ];
 }

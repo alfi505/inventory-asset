@@ -26,19 +26,21 @@ class InventoryMonitor extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_monitor'];
     protected $primaryKey = 'id_monitor';
+    protected $table = 'inventory_monitors';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id_monitor',
-        'id_merk',
-        'id_jenisperangkat',
+        'merk_id',
+        'jenisperangkat_id',
         'serial_number',
         'model_monitor',
         'admin',
         'tanggal_input',
         'keterangan',
-        'id_status',
+        'status_id',
     ];
 }

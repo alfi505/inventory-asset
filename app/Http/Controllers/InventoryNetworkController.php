@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_network;
-use App\Http\Requests\Storeinventory_networkRequest;
-use App\Http\Requests\Updateinventory_networkRequest;
+use App\Models\Merk;
+use App\Models\Status;
+use App\Models\Vendor;
+use App\Models\Workstation;
+use Illuminate\Http\Request;
+use App\Models\JenisPerangkat;
+use App\Models\InventoryNetwork;
+use Illuminate\Routing\Controller;
 
 class InventoryNetworkController extends Controller
 {
@@ -15,7 +20,10 @@ class InventoryNetworkController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+        'network' => InventoryNetwork::get()
+        ];
+        return view('main.inventory.network.inventory-network', $data);
     }
 
     /**
@@ -25,16 +33,21 @@ class InventoryNetworkController extends Controller
      */
     public function create()
     {
-        //
+        $status = Status::all();
+        $jenisPerangkat = JenisPerangkat::all();
+        $merk = Merk::all();
+        $vendor = Vendor::all();
+        $workstation = Workstation::all();
+        return view('main.inventory.network.tambah-network', compact('status','jenisPerangkat','merk', 'vendor', 'workstation'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeinventory_networkRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeinventory_networkRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +55,10 @@ class InventoryNetworkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inventory_network  $inventory_network
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inventory_network $inventory_network)
+    public function show($id)
     {
         //
     }
@@ -53,10 +66,10 @@ class InventoryNetworkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inventory_network  $inventory_network
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventory_network $inventory_network)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +77,11 @@ class InventoryNetworkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateinventory_networkRequest  $request
-     * @param  \App\Models\inventory_network  $inventory_network
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateinventory_networkRequest $request, inventory_network $inventory_network)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +89,10 @@ class InventoryNetworkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inventory_network  $inventory_network
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventory_network $inventory_network)
+    public function destroy($id)
     {
         //
     }

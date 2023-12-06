@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\inventory_printer;
-use App\Http\Requests\Storeinventory_printerRequest;
-use App\Http\Requests\Updateinventory_printerRequest;
+use App\Models\Merk;
+use App\Models\Status;
+use App\Models\Vendor;
+use App\Models\Workstation;
+use Illuminate\Http\Request;
+use App\Models\JenisPerangkat;
+use App\Models\InventoryPrinter;
+use Illuminate\Routing\Controller;
 
 class InventoryPrinterController extends Controller
 {
@@ -15,7 +20,10 @@ class InventoryPrinterController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+        'printer' => InventoryPrinter::get()
+        ];
+        return view('main.inventory.printer.inventory-printer', $data);
     }
 
     /**
@@ -25,16 +33,21 @@ class InventoryPrinterController extends Controller
      */
     public function create()
     {
-        //
+        $status = Status::all();
+        $jenisPerangkat = JenisPerangkat::all();
+        $merk = Merk::all();
+        $vendor = Vendor::all();
+        $workstation = Workstation::all();
+        return view('main.inventory.printer.tambah-printer', compact('status','jenisPerangkat','merk', 'vendor', 'workstation'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeinventory_printerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeinventory_printerRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +55,10 @@ class InventoryPrinterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\inventory_printer  $inventory_printer
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(inventory_printer $inventory_printer)
+    public function show($id)
     {
         //
     }
@@ -53,10 +66,10 @@ class InventoryPrinterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\inventory_printer  $inventory_printer
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventory_printer $inventory_printer)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +77,11 @@ class InventoryPrinterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateinventory_printerRequest  $request
-     * @param  \App\Models\inventory_printer  $inventory_printer
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateinventory_printerRequest $request, inventory_printer $inventory_printer)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +89,10 @@ class InventoryPrinterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\inventory_printer  $inventory_printer
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(inventory_printer $inventory_printer)
+    public function destroy($id)
     {
         //
     }

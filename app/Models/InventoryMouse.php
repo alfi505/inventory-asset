@@ -26,19 +26,21 @@ class InventoryMouse extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
+    protected $guarded = ['id_mouse'];
     protected $primaryKey = 'id_mouse';
+    protected $table = 'inventory_mice';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id_mouse',
-        'id_merk',
-        'id_jenisperangkat',
+        'merk_id',
+        'jenisperangkat_id',
         'serial_number',
         'model_mouse',
         'admin',
         'tanggal_input',
         'keterangan',
-        'id_status',
+        'status_id',
     ];
 }

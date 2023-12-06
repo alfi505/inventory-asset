@@ -12,7 +12,7 @@ class DashboardAdminController extends Controller
         // dd($id);
 
         return view('main.home.dashboard-admin',[
-            'hehe'=>Auth::user()
+            'user'=>Auth::user()
         ]);
     }
 }
