@@ -23,7 +23,7 @@ class InventoryMouseController extends Controller
         $data= [
         'mouse' => InventoryMouse::get()
         ];
-        return view('main.inventory.mous.inventory-mouse', $data);
+        return view('main.inventory.mouse.inventory-mouse', $data);
     }
 
     /**

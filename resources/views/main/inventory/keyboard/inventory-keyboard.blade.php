@@ -70,29 +70,7 @@
                                         <td>
                                             <a href="/detail-keyboard" class="btn btn-info">Detail</a>
                                             <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andrew</td>
-                                        <td>MAK/IT/KBR-LGH/0420/2030</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Budi</td>
-                                        <td>MAK/IT/KBR-LGH/1230/2044</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger">Hapus</a>
+                                            <a href="#" class="btn btn-danger" id="swal-6">Hapus</a>
                                         </td>
                                     </tr>
                                 </table>

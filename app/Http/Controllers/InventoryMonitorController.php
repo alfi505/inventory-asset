@@ -9,7 +9,9 @@ use App\Models\Workstation;
 use Illuminate\Http\Request;
 use App\Models\JenisPerangkat;
 use App\Models\InventoryMonitor;
+use App\Models\DetailMonitorXPIC;
 use Illuminate\Routing\Controller;
+use App\Http\Controllers\DetailMonitorXPICController;
 
 class InventoryMonitorController extends Controller
 {
@@ -33,9 +35,15 @@ class InventoryMonitorController extends Controller
      */
 
     public function detail($id){
-        $id_monitor = str_replace('-', '/', $id);
-        $data = InventoryMonitor::findOrFail($id_monitor);
-        return view('main.inventory.monitor.detail-monitor', compact('data'));
+
+        $id_monitor = str_replace('_', '/', $id);
+        $data = [
+            // 'monitor' => InventoryMonitor::findOrFail($id_monitor),
+            'monitor' => InventoryMonitor::where('id_monitor', $id_monitor)->first(),
+            'monitorData' => DetailMonitorXPIC::where('id', $id)->first(),
+        ];
+
+        return view('main.inventory.monitor.detail-monitor', $data);
     }
 
 
@@ -73,16 +81,19 @@ class InventoryMonitorController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
+            'keterangan' => 'required',
         ]);
         $validateData2 = $request->validate([
+            // 'monitor_id' => 'required',
+            'pic_id' => 'required',
             'vendor_id' => 'required',
             'workstation_id' => 'required',
         ]);
 
-        dd($validateData2);
+        // dd($validateData2);
         //create post
-        // InventoryMonitor::create($validateData1);
-        // DetailMonitorXPIC::create($validateData2);
+        InventoryMonitor::create($validateData1);
+        DetailMonitorXPIC::create($validateData2);
 
         //balik
         return redirect('/inventory-monitor');

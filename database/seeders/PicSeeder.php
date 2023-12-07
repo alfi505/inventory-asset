@@ -16,7 +16,6 @@ class PicSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'id_pic' => '6754-8755',
             'nama_komputer' => 'Proapply',
             'nama_pic' => 'Gress',
             'kategori' => 'Administrasi',
@@ -30,7 +29,6 @@ class PicSeeder extends Seeder
             'id_speaker' => 'fdsfds/fdgdfg',
             'id_posisi' => 'fdsfds/fdgdfg',
         ],[
-            'id_pic' => '6754-4353',
             'nama_komputer' => 'OaaOee',
             'nama_pic' => 'Giovani',
             'kategori' => 'Administrasi',

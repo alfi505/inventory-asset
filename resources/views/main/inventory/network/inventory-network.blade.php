@@ -30,6 +30,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
+                    <div class="buttons py-5">
+                        <a href="/inventory-network/create" class="btn btn-primary">Tambah Network</a>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
@@ -66,7 +71,7 @@
                                             <td>
                                                 <a href="/detail-network" class="btn btn-info">Detail</a>
                                                 <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
+                                                <a href="#" class="btn btn-danger" id="swal-6">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach

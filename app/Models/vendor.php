@@ -17,8 +17,25 @@ class Vendor extends Model
     use HasFactory;
 
     protected $primaryKey = 'id';
+    protected $guarded = ['id'];
+    protected $table = 'vendors';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected $fillable =[
+        'nama',
+        'perusahaan',
+        'jabatan',
+        'alamat',
+        'kota',
+        'daerah',
+        'kode_pos',
+        'no_telpon',
+        'fax',
+        'tambahan',
+    ];
+
     public function detailmonitor():HasOne{
-        return $this->hasOne(DetailMonitorXPIC::class);
+        return $this->hasOne(DetailMonitorXPIC::class, 'id', 'vendor_id');
     }
     public function detailmouse():HasOne{
         return $this->hasOne(DetailMouseXPIC::class);
@@ -36,17 +53,4 @@ class Vendor extends Model
         return $this->hasOne(DetailSpeakerXPIC::class);
     }
 
-    protected $fillable =[
-        'vendor_id',
-        'nama',
-        'perusahaan',
-        'jabatan',
-        'alamat',
-        'kota',
-        'daerah',
-        'kode_pos',
-        'no_telpon',
-        'fax',
-        'tambahan',
-    ];
 }

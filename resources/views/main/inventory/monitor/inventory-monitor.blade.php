@@ -13,7 +13,12 @@
         <section class="section">
             <div class="section-header">
                 <h1>Monitor</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Inventory Monitor</div>
+                </div>
             </div>
+
             @csrf
             <div class="row position-relative">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -71,10 +76,10 @@
                                             <td>{{ $krissbatik->id_ip_address }}</td>
                                             <td>-</td>
                                             <td>
-                                                <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '-', $krissbatik->id_monitor) }}"
+                                                <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
                                                     class="btn btn-info">Detail</a>
                                                 <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger">Hapus</a>
+                                                <a href="#" class="btn btn-danger" id="swal-6">Hapus</a>
                                             </td>
                                         </tr>
                                     @endforeach

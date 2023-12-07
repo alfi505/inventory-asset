@@ -16,14 +16,17 @@ class DetailMonitorXPICSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'id_detailmonitorxpic' => '1',
-            'monitor_id' => '1',
+            'monitor_id' => 'MAK/IT/MTR-LGH/0820/1056',
             'pic_id' => '1',
             'vendor_id' => '1',
             'workstation_id' => '1'
         ],[
-            'id_detailmonitorxpic' => '2',
-            'monitor_id' => '2',
+            'monitor_id' => 'MAK/IT/MTR-PHL/0311/1140',
+            'pic_id' => '2',
+            'vendor_id' => '1',
+            'workstation_id' => '1'
+        ],[
+            'monitor_id' => 'MAK/IT/MTR-LGH/1030/1119',
             'pic_id' => '2',
             'vendor_id' => '1',
             'workstation_id' => '1'

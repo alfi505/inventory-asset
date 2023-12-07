@@ -9,13 +9,27 @@ use App\Models\InventoryMonitor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DetailMonitorXPIC extends Model
 {
     use HasFactory;
+    protected $guarded = ['id_detailmonitorxpic'];
+    protected $primaryKey = 'id_detailmonitorxpic';
+    protected $table = 'detail_monitor_x_p_i_c_s';
+    public $incrementing = true;
+    protected $keyType = 'string';
 
-    public function monitor():BelongsTo{
-        return $this->belongsTo(InventoryMonitor::class);
+    protected $fillable = [
+        'id_detailmonitorxpic',
+        'monitor_id',
+        'pic_id',
+        'vendor_id',
+        'workstation_id',
+    ];
+
+    public function monitor(){
+        return $this->belongsTo(InventoryMonitor::class,  'monitor_id','id_monitor');
     }
 
     public function pic():BelongsTo{
@@ -23,22 +37,11 @@ class DetailMonitorXPIC extends Model
     }
 
         public function workstation():BelongsTo{
-        return $this->belongsTo(Workstation::class);
+        return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
     }
 
     public function vendor():BelongsTo{
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
     }
 
-    protected $primaryKey = 'id_detailmonitorxpic';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
-    protected $fillable = [
-        'id_detailmonitorxpic',
-        'id_monitor',
-        'id_pic',
-        'vendor_id',
-        'workstation_id',
-    ];
 }

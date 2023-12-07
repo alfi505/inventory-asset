@@ -14,18 +14,6 @@ class InventoryMonitor extends Model
 {
     use HasFactory;
 
-    public function detailmonitor():HasMany{
-        return $this->hasMany(DetailMonitorXPIC::class);
-    }
-
-    public function merk():BelongsTo{
-        return $this->belongsTo(Merk::class);
-    }
-
-    public function jenisperangkat():BelongsTo{
-        return $this->belongsTo(JenisPerangkat::class);
-    }
-
     protected $guarded = ['id_monitor'];
     protected $primaryKey = 'id_monitor';
     protected $table = 'inventory_monitors';
@@ -43,4 +31,19 @@ class InventoryMonitor extends Model
         'keterangan',
         'status_id',
     ];
+
+    public function detailmonitor():HasMany{
+        return $this->hasMany(DetailMonitorXPIC::class);
+    }
+
+    public function merk():BelongsTo{
+        return $this->belongsTo(Merk::class, 'merk_id', 'id');
+    }
+
+    public function jenisperangkat():BelongsTo{
+        return $this->belongsTo(JenisPerangkat::class);
+    }
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
 }

@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
+use App\Models\Status;
+use App\Models\Vendor;
+use App\Models\Workstation;
+use Illuminate\Http\Request;
+use App\Models\JenisPerangkat;
 use App\Models\InventorySpeaker;
+use Illuminate\Routing\Controller;
 
 class InventorySpeakerController extends Controller
 {

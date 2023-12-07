@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
                     <div class="buttons py-5">
-                        <a href="/tambah-ip" class="btn btn-primary">Tambah IP</a>
+                        <a href="/tambah-workstation" class="btn btn-primary">Tambah IP</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                                         <td>-</td>
                                         <td>
                                             <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
+                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
                                             <a href="#">
                                                 <button class="btn btn-danger" id="swal-6">Hapus</button>
                                             </a>
@@ -83,7 +83,7 @@
                                         <td>-</td>
                                         <td>
                                             <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
+                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
                                             <a href="#">
                                                 <button class="btn btn-danger" id="swal-6">Hapus</button>
                                             </a>
@@ -96,7 +96,7 @@
                                         <td>-</td>
                                         <td>
                                             <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
+                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
                                             <a href="#">
                                                 <button class="btn btn-danger" id="swal-6">Hapus</button>
                                             </a>

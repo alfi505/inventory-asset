@@ -20,123 +20,116 @@
             <div class="section-header">
                 <h1>CPU</h1>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Form Tambah</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Nama Komputer</label>
+
+            <form action="{{ url('inventory-cpu') }}" method="post">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Form Tambah</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>ID CPU</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Nama Komputer</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group col">
+                                <label>Tanggal Input</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>Kategori</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Nama PIC</label>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Serial Number</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>OS</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>Processor</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Date Picker</label>
-                            <input type="text" class="form-control datepicker">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Mainboard</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>RAM</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>ROM</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-group col">
-                            <label>Default Input Text 2</label>
-                            <input type="text" class="form-control">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>VGA</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>Soundcard</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>CDRom</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Kategori</label>
-                            <input type="text" class="form-control">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>NIC</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col">
+                                <label>Casing</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-group col">
-                            <label>Serial Number</label>
-                            <input type="text" class="form-control">
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Vendor</label>
+                                <select class="form-control select2" name="vendor_id" id="vendor_id"></select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Software</label>
+                                <select class="form-control select2" name="software_id" id="software_id"></select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>OS</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>Processor</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Mainboard</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>RAM</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>ROM</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>VGA</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Soundcard</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>CDRom</label>
-                            <input type="text" class="form-control">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control">
+                                <option>Continue - Baik</option>
+                                <option>Continue - Rusak</option>
+                                <option>Discontinue</option>
+                                <option>Dimusnahkan</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>NIC</label>
-                            <input type="text" class="form-control">
+                    <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
+                        <div class="buttons">
+                            <a href="/inventory-cpu" class="btn btn-primary">Sumbit</a>
                         </div>
-                        <div class="form-group col">
-                            <label>Casing</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Vendor</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label>Software Lainnya</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    {{-- <div class="row"> --}}
-                    <div class="section-title mt-0">Status</div>
-                    <div class="form-group">
-                        <label>Pilih Status</label>
-                        <select class="form-control">
-                            <option>Continue - Baik</option>
-                            <option>Continue - Rusak</option>
-                            <option>Discontinue</option>
-                            <option>Dimusnahkan</option>
-                        </select>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
-                    <div class="buttons">
-                        <a href="/inventory-cpu" class="btn btn-primary">Sumbit</a>
-                    </div>
-                </div>
-            </div>
+            </form>
 
     </div>
     </section>

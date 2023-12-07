@@ -34,7 +34,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth.data'])->group(function () {
 
-
     // navbar dashboard
     Route::get('/dashboard-admin', function () {
         return view('main.home.dashboard-admin', ['type_menu' => 'dashboard']);
@@ -49,10 +48,10 @@ Route::middleware(['auth.data'])->group(function () {
     });
 
 
-    Route::resource('/inventory-cpu',InventoryCpuController::class);
-    Route::get('/detail-cpu', function () {
-        return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
-    });
+Route::resource('/inventory-cpu',InventoryCpuController::class);
+Route::get('/detail-cpu', function () {
+    return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
+});
 Route::get('/tambah-cpu', function () {
     return view('main.inventory.cpu.tambah-cpu', ['type_menu'=> 'inventory']);
 });
@@ -81,11 +80,11 @@ Route::get('/tambah-pic', function () {
 Route::get('/detail-pic', function () {
     return view('main.pic.detail-pic', ['type_menu' => 'pic']);
 });
-Route::get('/data-ip', function () {
-    return view('main.pic.no_ip.data-ip', ['type_menu' => 'pic']);
+Route::get('/data-workstation', function () {
+    return view('main.pic.workstation.data-workstation', ['type_menu' => 'pic']);
 });
-Route::get('/tambah-ip', function () {
-    return view('main.pic.no_ip.tambah-ip', ['type_menu' => 'pic']);
+Route::get('/tambah-workstation', function () {
+    return view('main.pic.workstation.tambah-workstation', ['type_menu' => 'pic']);
 });
 
 // utilities
@@ -126,6 +125,7 @@ Route::get('/utilities-jenisperangkat', function () {
 Route::get('/tambah-jenisperangkat', function () {
     return view('main.utilities.jenisperangkat.tambah-jenisperangkat', ['type_menu' => 'utilities']);
 });
+
 });
 
 

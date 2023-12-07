@@ -69,7 +69,7 @@
                                     </tr>
                                     @foreach ($cpu as $cpus)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $cpus->nama_pic }}</td>
                                             <td>{{ $cpus->nama_komputer }}</td>
                                             <td>{{ $cpus->id_ip }}</td>
@@ -84,36 +84,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andrew</td>
-                                        <td>Semen Tiga Roda</td>
-                                        <td>127.11.1.160</td>
-                                        <td>MAK/IT/CPU-RKT/0420/6030</td>
-                                        <td>MARK</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Budi</td>
-                                        <td>Cap Badak</td>
-                                        <td>127.11.1.78</td>
-                                        <td>MAK/IT/CPU-RKT/1230/6044</td>
-                                        <td>HRD</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
                                 </table>
                             </div>
                         </div>

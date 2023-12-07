@@ -14,6 +14,7 @@
             <div class="section-header">
                 <h1>Inventory Asset</h1>
             </div>
+
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <a href="{{ url('/inventory-cpu') }}">

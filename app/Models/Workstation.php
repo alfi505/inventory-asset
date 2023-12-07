@@ -17,7 +17,7 @@ class Workstation extends Model
     use HasFactory;
 
     public function monitorxpic():HasOne{
-        return $this->hasOne(DetailMonitorXPIC::class);
+        return $this->hasOne(DetailMonitorXPIC::class, 'id', 'workstation_id');
     }
     public function keyboardxpic():HasOne{
         return $this->hasOne(DetailKeyboardXPIC::class);
@@ -35,8 +35,9 @@ class Workstation extends Model
         return $this->hasOne(DetailSpeakerXPIC::class);
     }
 
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     protected $guarded = ['id'];
+    protected $table = 'workstations';
     public $incrementing = false;
     protected $keyType = 'string';
 

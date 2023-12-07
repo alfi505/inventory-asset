@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pics', function (Blueprint $table) {
-            $table->string('id_pic')->primary();
+            $table->id();
             $table->string('nama_komputer');
             $table->string('nama_pic');
             $table->string('kategori');
             $table->string('id_zona');
-            $table->string('id_cpu');
-            $table->string('id_detailmonitorxpic');
-            $table->string('id_keyboard');
-            $table->string('id_mouse');
-            $table->string('id_printer');
-            $table->string('id_network');
-            $table->string('id_speaker');
+            $table->string('id_cpu')->nullable();
+            $table->string('id_detailmonitorxpic')->nullable();
+            $table->string('id_keyboard')->nullable();
+            $table->string('id_mouse')->nullable();
+            $table->string('id_printer')->nullable();
+            $table->string('id_network')->nullable();
+            $table->string('id_speaker')->nullable();
             $table->string('id_posisi');
             $table->timestamps();
         });

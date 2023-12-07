@@ -19,7 +19,13 @@
         <section class="section">
             <div class="section-header">
                 <h1>Monitor</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/inventory-monitor') }}">Inventory Monitor</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Tambah Monitor</div>
+                </div>
             </div>
+
             <form action="{{ url('/inventory-monitor') }}" method="post">
                 @csrf
                 <div class="card">
@@ -108,7 +114,7 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label for="Keterangan" class="form-label">Keterangan</label>
-                                <textarea class="form-control" id="keterangan" style="height: 100%"></textarea>
+                                <textarea class="form-control" id="keterangan" style="height: 100%" name="keterangan" id="keterangan"></textarea>
                             </div>
                         </div>
                     </div>

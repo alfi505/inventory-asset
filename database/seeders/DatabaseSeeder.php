@@ -28,16 +28,16 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(InventoryCpuSeeder::class);
         $this->call(InventoryMonitorSeeder::class);
+        Vendor::factory(5)->create();
+        Workstation::factory(5)->create();
+        // $this->call(DetailMonitorXPICSeeder::class);
         $this->call(InventoryKeyboardSeeder::class);
         $this->call(InventoryMouseSeeder::class);
         $this->call(JenisPerangkatSeeder::class);
-        $this->call(DetailMonitorXPICSeeder::class);
         $this->call(DetailKeyboardXPICSeeder::class);
         $this->call(DetailMouseXPICSeeder::class);
         $this->call(PicSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(MerkSeeder::class);
-        Workstation::factory(5)->create();
-        Vendor::factory(5)->create();
     }
 }

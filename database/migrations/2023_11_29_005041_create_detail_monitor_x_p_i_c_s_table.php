@@ -14,10 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_monitor_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailmonitorxpic')->primary();
-            $table->foreignId('monitor_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
+            // $table->string('id_detailmonitorxpic')->primary()->autoIncrement();
+            $table->id();
+            $table->string('monitor_id')->nullable();
+            $table->foreign('monitor_id')->references('id_monitor')->on('inventory_monitors')->onDelete('cascade');
+            $table->foreignId('pic_id')->constrained();
+            $table->foreignId('vendor_id')->constrained();
+            // $table->foreign('vendor_id')->references('id_vendors')->on('vendors')->onDelete('cascade');
             $table->foreignId('workstation_id');
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'PIC')
+@section('title', 'Workstation')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -18,10 +18,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>PIC</h1>
+                <h1>Workstation</h1>
             </div>
 
-            <form action="{{ url('/data-pic') }}" method="POST">
+            <form action="{{ url('/data-workstation') }}" method="POST">
                 <div class="card">
                     <div class="card-header">
                         <h4>Form Tambah</h4>
@@ -30,22 +30,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label>ID PIC</label>
+                                    <label>Nomor Ip Address</label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
-                                <label>Nama Komputer</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col">
-                                <label>Nama PIC</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col">
-                                <label>Posisi</label>
+                                <label>Hostname</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
