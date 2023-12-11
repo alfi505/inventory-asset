@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
                     <div class="buttons py-5">
-                        <a href="/tambah-pic" class="btn btn-primary">Tambah PIC</a>
+                        <a href="/data-pic/create" class="btn btn-primary">Tambah PIC</a>
                     </div>
                 </div>
             </div>

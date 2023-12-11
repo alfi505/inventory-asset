@@ -76,10 +76,18 @@
                                             <td>{{ $krissbatik->id_ip_address }}</td>
                                             <td>-</td>
                                             <td>
-                                                <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                    class="btn btn-info">Detail</a>
-                                                <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger" id="swal-6">Hapus</a>
+
+                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                    action="/inventory-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                        class="btn btn-info">Detail</a>
+                                                    <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                        class="btn btn-secondary">Edit</a>
+                                                    <button class="btn btn-danger" type="submit">Hapus</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

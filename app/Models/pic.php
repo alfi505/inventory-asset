@@ -35,16 +35,15 @@ class Pic extends Model
         return $this->hasMany(DetailSpeakerXPIC::class);
     }
 
-    protected $primaryKey = 'id_pic';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
+    protected $guarded = ['id'];
+    protected $table = 'pics';
+    public $incrementing = true;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_pic',
-        'nama_komputer',
         'nama_pic',
-        'kategori',
-        'id_zona',
+        'posisi_id',
         'id_cpu',
         'id_detailmonitorxpic',
         'id_keyboard',
@@ -52,6 +51,5 @@ class Pic extends Model
         'id_printer',
         'id_network',
         'id_speaker',
-        'id_posisi',
     ];
 }

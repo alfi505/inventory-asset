@@ -12,7 +12,8 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class='{{ Request::is('inventory-asset') ? 'active' : '' }}'>
+            <li
+                class='{{ Request::is('inventory-asset', 'inventory-monitor', 'inventory-monitor/create') ? 'active' : '' }}'>
                 <a href="{{ url('inventory-asset') }}"><i class="fas fa-warehouse"></i>
                     <span>Inventory Asset</span>
                 </a>

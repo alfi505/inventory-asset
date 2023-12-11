@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pic;
 use App\Models\Vendor;
 use App\Models\Workstation;
 use Illuminate\Database\Seeder;
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
         // InventoryCpu::factory(5)->create();
         $this->call(UserSeeder::class);
         $this->call(InventoryCpuSeeder::class);
-        $this->call(InventoryMonitorSeeder::class);
+        // $this->call(InventoryMonitorSeeder::class);
         Vendor::factory(5)->create();
         Workstation::factory(5)->create();
         // $this->call(DetailMonitorXPICSeeder::class);
@@ -36,7 +37,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisPerangkatSeeder::class);
         $this->call(DetailKeyboardXPICSeeder::class);
         $this->call(DetailMouseXPICSeeder::class);
-        $this->call(PicSeeder::class);
+        // $this->call(PicSeeder::class);
+        Pic::factory(5)->create();
         $this->call(StatusSeeder::class);
         $this->call(MerkSeeder::class);
     }

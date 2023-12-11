@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pic;
+use App\Models\Pic;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StorepicRequest;
 use App\Http\Requests\UpdatepicRequest;
+use Illuminate\Http\Request;
 
 class PicController extends Controller
 {
@@ -16,7 +16,7 @@ class PicController extends Controller
      */
     public function index()
     {
-        //
+        return view('main.pic.data-pic');
     }
 
     /**
@@ -26,18 +26,24 @@ class PicController extends Controller
      */
     public function create()
     {
-        //
+        return view('main.pic.tambah-pic');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorepicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorepicRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_pic' => 'required',
+        ]);
+
+        Pic::create($validateData);
+
+        return redirect('/data-pic');
     }
 
     /**

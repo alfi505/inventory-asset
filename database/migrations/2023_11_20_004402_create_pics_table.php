@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('pics', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_komputer');
             $table->string('nama_pic');
-            $table->string('kategori');
-            $table->string('id_zona');
+            $table->string('posisi_id')->nullable();
             $table->string('id_cpu')->nullable();
             $table->string('id_detailmonitorxpic')->nullable();
             $table->string('id_keyboard')->nullable();
@@ -26,7 +24,6 @@ return new class extends Migration
             $table->string('id_printer')->nullable();
             $table->string('id_network')->nullable();
             $table->string('id_speaker')->nullable();
-            $table->string('id_posisi');
             $table->timestamps();
         });
     }

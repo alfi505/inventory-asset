@@ -21,7 +21,6 @@ class DetailMonitorXPIC extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_detailmonitorxpic',
         'monitor_id',
         'pic_id',
         'vendor_id',

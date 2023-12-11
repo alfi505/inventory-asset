@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->string('id_history')->unique();
             $table->text('keterangan')->nullable();
             $table->foreignId('status_id');
-            $table->string('tanggal_input');
+            $table->date('tanggal_input');
             $table->timestamps();
         });
     }

@@ -16,10 +16,8 @@ class PicSeeder extends Seeder
     public function run()
     {
         $data = [[
-            'nama_komputer' => 'Proapply',
             'nama_pic' => 'Gress',
-            'kategori' => 'Administrasi',
-            'id_zona' => '1',
+            'posisi_id' => '1',
             'id_cpu' => 'MAK/IT/CPU-RKT/0820/6056',
             'id_detailmonitorxpic' => 'fdsfds/fdgdfg',
             'id_keyboard' => 'fdsfds/fdgdfg',
@@ -27,12 +25,9 @@ class PicSeeder extends Seeder
             'id_printer' => 'fdsfds/fdgdfg',
             'id_network' => 'fdsfds/fdgdfg',
             'id_speaker' => 'fdsfds/fdgdfg',
-            'id_posisi' => 'fdsfds/fdgdfg',
         ],[
-            'nama_komputer' => 'OaaOee',
             'nama_pic' => 'Giovani',
-            'kategori' => 'Administrasi',
-            'id_zona' => '1',
+            'posisi_id' => '1',
             'id_cpu' => 'MAK/IT/CPU-RKT/0820/6056',
             'id_detailmonitorxpic' => 'fdsfds/fdgdfg',
             'id_keyboard' => 'fdsfds/fdgdfg',
@@ -40,7 +35,6 @@ class PicSeeder extends Seeder
             'id_printer' => 'fdsfds/fdgdfg',
             'id_network' => 'fdsfds/fdgdfg',
             'id_speaker' => 'fdsfds/fdgdfg',
-            'id_posisi' => 'fdsfds/fdgdfg',
         ]];
 
         DB::table("pics")->insert($data);

@@ -17,7 +17,7 @@ class PicFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nama_pic' => fake()->name(),
         ];
     }
 }

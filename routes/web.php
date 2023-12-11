@@ -11,6 +11,8 @@ use App\Http\Controllers\InventoryNetworkController;
 use App\Http\Controllers\InventoryPrinterController;
 use App\Http\Controllers\InventorySpeakerController;
 use App\Http\Controllers\InventoryKeyboardController;
+use App\Http\Controllers\PicController;
+use App\Models\Pic;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,8 @@ Route::resource('/inventory-monitor',InventoryMonitorController::class);
 // Route::get('/tambah-monitor', [InventoryMonitorController::class, 'create']);
 // Route::get('/inventory-monitor', [InventoryMonitorController::class, 'index']);
 Route::get('/inventory-monitor/detail-monitor/{id}', [InventoryMonitorController::class, 'detail']);
+Route::get('/inventory-monitor/edit-monitor/{id}', [InventoryMonitorController::class, 'edit']);
+Route::patch('/inventory-monitor/edit-monitor/{id}', [InventoryMonitorController::class, 'edit']);
 // Route::post('/store', [InventoryMonitorController::class, 'store']);
 
 
@@ -71,9 +75,11 @@ Route::resource('/inventory-speaker', InventorySpeakerController::class);
 Route::resource('/inventory-network', InventoryNetworkController::class);
 
 // pic
-Route::get('/data-pic', function () {
-    return view('main.pic.data-pic', ['type_menu' => 'pic']);
-});
+// Route::get('/data-pic', function () {
+//     return view('main.pic.data-pic', ['type_menu' => 'pic']);
+// });
+Route::resource('/data-pic', PicController::class);
+
 Route::get('/tambah-pic', function () {
     return view('main.pic.tambah-pic', ['type_menu' => 'pic']);
 });

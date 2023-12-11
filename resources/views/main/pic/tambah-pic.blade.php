@@ -22,31 +22,20 @@
             </div>
 
             <form action="{{ url('/data-pic') }}" method="POST">
+                @csrf
                 <div class="card">
                     <div class="card-header">
                         <h4>Form Tambah</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label>ID PIC</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col">
-                                <label>Nama Komputer</label>
-                                <input type="text" class="form-control">
-                            </div>
                             <div class="form-group col">
                                 <label>Nama PIC</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="nama_pic" id="nama_pic">
                             </div>
                             <div class="form-group col">
                                 <label>Posisi</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="posisi_id" id="posisi_id">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
