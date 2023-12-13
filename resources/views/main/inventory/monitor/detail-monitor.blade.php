@@ -48,7 +48,7 @@
                                 <tr>
                                     <th>Tanggal</th>
                                     <td>:</td>
-                                    <td>21-November-2022</td>
+                                    <td>{{ $monitor->tanggal_input }}</td>
                                 </tr>
                                 <tr>
                                     <th>Posisi</th>
@@ -58,7 +58,7 @@
                                 <tr>
                                     <th>No IP Address</th>
                                     <td>:</td>
-                                    {{-- <td>{{ $monitorData->workstation_id }}</td> --}}
+                                    <td>{{ $monitorData->Workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Serial Number</th>
@@ -68,7 +68,7 @@
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    {{-- <td>{{ $monitorData->vendor->perusahaan }}</td> --}}
+                                    <td>{{ $monitorData->id_vendor->perusahaan ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Admin</th>

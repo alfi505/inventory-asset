@@ -16,8 +16,25 @@ class Pic extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    protected $guarded = ['id'];
+    protected $table = 'pics';
+    public $incrementing = true;
+    protected $keyType = 'string';
+
+    protected $fillable = [
+        'nama_pic',
+        'posisi_id',
+        'id_cpu',
+        'id_monitor',
+        'id_keyboard',
+        'id_mouse',
+        'id_printer',
+        'id_network',
+        'id_speaker',
+    ];
     public function monitor():HasMany{
-        return $this->hasMany(DetailMonitorXPIC::class);
+        return $this->hasMany(DetailMonitorXPIC::class, 'id', 'detailmonitorxoic_id');
     }
     public function keyboard():HasMany{
         return $this->hasMany(DetailKeyboardXPIC::class);
@@ -35,21 +52,4 @@ class Pic extends Model
         return $this->hasMany(DetailSpeakerXPIC::class);
     }
 
-    protected $primaryKey = 'id';
-    protected $guarded = ['id'];
-    protected $table = 'pics';
-    public $incrementing = true;
-    protected $keyType = 'string';
-
-    protected $fillable = [
-        'nama_pic',
-        'posisi_id',
-        'id_cpu',
-        'id_detailmonitorxpic',
-        'id_keyboard',
-        'id_mouse',
-        'id_printer',
-        'id_network',
-        'id_speaker',
-    ];
 }

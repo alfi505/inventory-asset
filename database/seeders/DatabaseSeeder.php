@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Pic;
+use App\Models\Software;
 use App\Models\Vendor;
 use App\Models\Workstation;
 use Illuminate\Database\Seeder;
@@ -37,8 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call(JenisPerangkatSeeder::class);
         $this->call(DetailKeyboardXPICSeeder::class);
         $this->call(DetailMouseXPICSeeder::class);
-        // $this->call(PicSeeder::class);
         Pic::factory(5)->create();
+        // Software::factory(5)->create();
         $this->call(StatusSeeder::class);
         $this->call(MerkSeeder::class);
     }

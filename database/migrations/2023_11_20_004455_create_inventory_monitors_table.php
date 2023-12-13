@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('model_monitor');
             $table->string('admin');
             // $table->string('id_history')->unique();
-            $table->text('keterangan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->foreignId('status_id');
             $table->date('tanggal_input');
             $table->timestamps();

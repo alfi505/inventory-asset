@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama_pic');
             $table->string('posisi_id')->nullable();
             $table->string('id_cpu')->nullable();
-            $table->string('id_detailmonitorxpic')->nullable();
+            $table->string('id_monitor')->nullable();
             $table->string('id_keyboard')->nullable();
             $table->string('id_mouse')->nullable();
             $table->string('id_printer')->nullable();

@@ -55,12 +55,15 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label>Jenis Perangkat</label>
-                                <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
+                                <p class="form-control">
+                                    Monitor
+                                </p>
+                                {{-- <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
                                     <option value="">Pilih Dulu</option>
                                     @foreach ($jenisPerangkat as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
                             </div>
                             <div class="form-group col">
                                 <label>Merk Monitor</label>

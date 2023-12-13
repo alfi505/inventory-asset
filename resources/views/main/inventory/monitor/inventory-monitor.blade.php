@@ -9,6 +9,19 @@
 @endpush
 
 @section('main')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -31,14 +44,9 @@
                                 <h4>Monitor</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCount }}
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
-                    <div class="buttons py-5">
-                        <a href="/inventory-monitor/create" class="btn btn-primary">Tambah Monitor</a>
                     </div>
                 </div>
             </div>
@@ -49,48 +57,56 @@
                         <div class="card-header">
                             <h4>Data Monitor</h4>
                             <div class="card-header-form">
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/inventory-monitor/create" class="btn btn-primary">Tambah Monitor</a>
                                     </div>
-                                </form>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search" id="myInput">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table-striped table-md table">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>ID Monitor</th>
-                                        <th>No Ip</th>
-                                        <th>Posisi</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    @foreach ($aug as $krissbatik)
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $krissbatik->id_monitor }}</td>
-                                            <td>{{ $krissbatik->id_ip_address }}</td>
-                                            <td>-</td>
-                                            <td>
-
-                                                <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                    action="/inventory-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                        class="btn btn-info">Detail</a>
-                                                    <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                        class="btn btn-secondary">Edit</a>
-                                                    <button class="btn btn-danger" type="submit">Hapus</button>
-                                                </form>
-                                            </td>
+                                            <th>No</th>
+                                            <th>ID Monitor</th>
+                                            <th>No Ip</th>
+                                            <th>Posisi</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody id="myTable">
+                                        @foreach ($aug as $krissbatik)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $krissbatik->id_monitor }}</td>
+                                                <td>{{ $krissbatik->id_ip_address }}</td>
+                                                <td>-</td>
+                                                <td>
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="/inventory-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                            class="btn btn-info">Detail</a>
+                                                        <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                            class="btn btn-secondary">Edit</a>
+                                                        <button class="btn btn-danger" type="submit">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

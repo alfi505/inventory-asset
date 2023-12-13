@@ -32,7 +32,7 @@ class DetailMonitorXPIC extends Model
     }
 
     public function pic():BelongsTo{
-        return $this->belongsTo(Pic::class);
+        return $this->belongsTo(Pic::class, 'pic_id', 'id');
     }
 
         public function workstation():BelongsTo{

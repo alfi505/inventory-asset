@@ -40,52 +40,55 @@
                             <div class="form-group col">
                                 <label>PIC</label>
                                 <select class="form-control select2" name="pic_id" id="pic_id">
-                                    <option value="1">Alfi</option>
-                                    <option value="2">Alfi2</option>
-                                    <option value="3">Alfi3</option>
+                                    @foreach ($pic as $pics)
+                                        <option value="{{ $pics->id }}"
+                                            @if ($pics->id == $detail->pic_id) selected @endif>
+                                            {{ $pics->nama_pic }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col">
                                 <label>Serial Number</label>
-                                <input type="text" class="form-control" name="serial_number" id="serial_number" required
+                                <input type="text" class="form-control" name="serial_number" id="serial_number" readonly
                                     value="{{ $data->serial_number }}">
                             </div>
                             <div class="form-group col">
                                 <label>Model Monitor</label>
-                                <input type="text" class="form-control" name="model_monitor" id="model_monitor" required
+                                <input type="text" class="form-control" name="model_monitor" id="model_monitor" readonly
                                     value="{{ $data->model_monitor }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label>Jenis Perangkat</label>
-                                <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
-                                    @foreach ($jenisPerangkat as $data)
-                                        <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" name="jenisperangkat_id" id="jenisperangkat_id"
+                                    value="{{ $data->jenisperangkat_id }}" hidden>
+                                <p class="form-control" @readonly(true)>{{ $data->JenisPerangkat->keterangan }}</p>
                             </div>
                             <div class="form-group col">
                                 <label>Merk Monitor</label>
-                                <select class="form-control select2" name="merk_id" id="merk_id">
-                                    @foreach ($merks as $data)
-                                        <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" name="merk_id" id="merk_id"
+                                    value="{{ $data->merk_id }}" hidden>
+                                <p class="form-control" @readonly(true)>{{ $data->Merk->keterangan }}</p>
                             </div>
                             <div class="form-group col">
                                 <label>Workstation</label>
                                 <select class="form-control select2" name="workstation_id" id="workstation_id">
-                                    @foreach ($workstation as $data)
-                                        <option value="{{ $data->id }}">{{ $data->no_ip_address }}</option>
+                                    <option value="">-</option>
+                                    @foreach ($workstation as $workstations)
+                                        <option value="{{ $workstations->id }}"
+                                            @if ($workstations->id == $detail->workstation_id) selected @endif>
+                                            {{ $workstations->no_ip_address }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col">
                                 <label>Vendor</label>
                                 <select class="form-control select2" name="vendor_id" id="vendor_id">
-                                    @foreach ($vendor as $data)
-                                        <option value="{{ $data->id }}">{{ $data->perusahaan }}</option>
+                                    @foreach ($vendor as $vendors)
+                                        <option value="{{ $vendors->id }}"
+                                            @if ($vendors->id == $detail->vendor_id) selected @endif>
+                                            {{ $vendors->perusahaan }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -105,22 +108,22 @@
                         <div class="form-group">
                             <label>Pilih Status</label>
                             <select class="form-control select2" name="status_id" id="status_id">
-                                @foreach ($status as $data)
-                                    <option value="{{ $data->id }}">{{ $data->status }}</option>
+                                @foreach ($status as $statuses)
+                                    <option value="{{ $statuses->id }}" @if ($statuses->id == $monitors->status_id) selected @endif>
+                                        {{ $statuses->status }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label for="Keterangan" class="form-label">Keterangan</label>
-                                <textarea class="form-control" id="keterangan" style="height: 100%" name="keterangan" id="keterangan">
-                                {{ $data->keterangan }}</textarea>
+                                <textarea class="form-control" id="keterangan" style="height: 100%" name="keterangan" id="keterangan">{{ $data->keterangan }}</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
                         <div class="buttons">
-                            <button class="btn btn-primary" type="submit" name="submit" id="submit">Edit</button>
+                            <button class="btn btn-primary" type="submit" id="submit">Edit</button>
                         </div>
                     </div>
                 </div>

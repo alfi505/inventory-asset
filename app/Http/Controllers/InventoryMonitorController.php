@@ -23,7 +23,8 @@ class InventoryMonitorController extends Controller
     public function index()
     {
         $pbrungkad = [
-        'aug' => InventoryMonitor::get()
+        'aug' => InventoryMonitor::get(),
+        'totalCount' => InventoryMonitor::count()
         ];
         return view('main.inventory.monitor.inventory-monitor', $pbrungkad);
     }
@@ -91,6 +92,8 @@ class InventoryMonitorController extends Controller
         $originalDate = $request->tanggal_input;
         $newDate = date("md", strtotime($originalDate));
 
+        $jenisP = $request->jenisperangkat_id = 1;
+
         $id = $this->generateId($request->jenisperangkat_id, $request->merk_id, $newDate);
         // validasi data
         $validateData1 = $request->validate([
@@ -98,12 +101,15 @@ class InventoryMonitorController extends Controller
             'model_monitor' => 'required',
             'merk_id' => 'required',
             'serial_number' => 'required',
-            'jenisperangkat_id' => 'required',
+            // 'jenisperangkat_id' => 'required',
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            // 'keterangan' => 'required',
+            'keterangan' => 'required',
         ]);
+
+        $validateData1['jenisperangkat_id'] = $jenisP;
+
         $validateData2 = $request->validate([
             // 'monitor_id' => 'required',
             'pic_id' => 'required',
@@ -121,10 +127,6 @@ class InventoryMonitorController extends Controller
 
         $data2 = array_merge($validateData2, $newData);
 
-        // $tglData = $request->tanggal_input->format('md');
-        // $tglData = now()->format('md');
-
-        // dd($validateData2);
         //create post
         InventoryMonitor::create($data1);
         DetailMonitorXPIC::create($data2);
@@ -153,15 +155,19 @@ class InventoryMonitorController extends Controller
     public function edit($id)
     {
         $id_monitor = str_replace('_', '/', $id);
-        $data = InventoryMonitor::findOrFail($id_monitor);
 
-        $status = Status::all();
-        $jenisPerangkat = JenisPerangkat::all();
-        $merks = Merk::all();
-        $vendor = Vendor::all();
-        $workstation = Workstation::all();
-        $monitors = InventoryMonitor::all();
-        return view('main.inventory.monitor.edit-monitor', compact('status','jenisPerangkat','merks', 'vendor', 'workstation', 'monitors', 'data'));
+        $hehe = [
+            'data' => InventoryMonitor::findOrFail($id_monitor),
+            'status' => Status::all(),
+            'jenisPerangkat' => JenisPerangkat::all(),
+            'merks' => Merk::all(),
+            'vendor' => Vendor::all(),
+            'workstation' => Workstation::all(),
+            'detail' => DetailMonitorXPIC::where('monitor_id', $id_monitor)->first(),
+            'monitors' => InventoryMonitor::where('id_monitor', $id_monitor)->first(),
+            'pic' => Pic::all(),
+        ];
+        return view('main.inventory.monitor.edit-monitor', $hehe);
     }
 
     /**
@@ -173,11 +179,11 @@ class InventoryMonitorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $id_monitor = str_replace('_', '/', $id);
         $invenMonitor = InventoryMonitor::where('id_monitor', $id_monitor)->first();
         $detailMonitor = DetailMonitorXPIC::where('monitor_id', $id_monitor)->first();
 
-        if ($invenMonitor && $detailMonitor) {
         $validateData1 = $request->validate([
             'id_monitor' => 'required',
             'model_monitor' => 'required',
@@ -187,28 +193,21 @@ class InventoryMonitorController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            // 'keterangan' => 'required',
+            'keterangan' => 'required',
         ]);
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
             'workstation_id' => 'required',
         ]);
-
+        
+        // dd($validateData2);
         //update post
         $invenMonitor->update($validateData1);
         $detailMonitor->update($validateData2);
 
-        //Balik
-        return redirect('/inventory-monitor')->with('status', 'Records updated successfully');
-        } else {
+        return redirect('/inventory-monitor');
 
-        // Debugging statements
-        dd($id_monitor, $invenMonitor, $detailMonitor);
-
-        // Handle the case where records are not found
-        return redirect('/inventory-monitor')->with('error', 'Records not found');
-        }
     }
 
 
