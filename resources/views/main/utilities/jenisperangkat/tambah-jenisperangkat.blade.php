@@ -17,40 +17,45 @@
             <div class="section-header">
                 <h1>Jenis Perangkat</h1>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Form Tambah</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>ID Jenis Perangkat</label>
-                                <input type="text" class="form-control">
+
+            <form action="{{ url('/utilities-jenisperangkat') }}" method="POST">
+                @csrf
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Form Tambah</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>ID Jenis Perangkat</label>
+                                    <input type="text" class="form-control" name="id_detail" id="id_detail"
+                                        placeholder="Contoh: Monitor = 1, Keyboard = 2, Mouse = 3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Jenis Perangkat</label>
+                                <input type="text" class="form-control" name="jenisperangkat" id="jenisperangkat"
+                                    placeholder="Contoh: MTR, KBR, MOS">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>Keterangan</label>
+                                <input type="text" class="form-control" name="keterangan" id="keterangan"
+                                    placeholder="Contoh: Monitor, Keyboard, Monitor">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Jenis Perangkat</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label for="Keterangan" class="form-label">Keterangan</label>
-                            <textarea class="form-control" id="keterangan" style="height: 100%"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
-                    <div class="buttons">
-                        <a href="/utilities-jenisperangkat" class="btn btn-primary">Tambah</a>
-                    </div>
+            </form>
+            <div class="col-lg-12 col-md-6 col-sm-6 col-12 text-center">
+                <div class="buttons">
+                    <button class="btn btn-primary" type="submit" name="submit" id="submit">Tambah</button>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
 @endsection
 

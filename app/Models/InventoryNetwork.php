@@ -14,24 +14,12 @@ class InventoryNetwork extends Model
 {
     use HasFactory;
 
-    public function detailnetwork():HasMany{
-        return $this->hasMany(DetailNetworkXPIC::class);
-    }
-
-    public function merk():BelongsTo{
-        return $this->belongsTo(Merk::class);
-    }
-
-    public function jenisperangkat():BelongsTo{
-        return $this->belongsTo(JenisPerangkat::class);
-    }
-
     protected $guarded = ['id_network'];
     protected $primaryKey = 'id_network';
     protected $table = 'inventory_networks';
     public $incrementing = false;
     protected $keyType = 'string';
-
+    
     protected $fillable = [
         'id_network',
         'merk_id',
@@ -43,4 +31,17 @@ class InventoryNetwork extends Model
         'keterangan',
         'status_id',
     ];
+
+    public function detailnetwork():HasMany{
+        return $this->hasMany(DetailNetworkXPIC::class);
+    }
+    public function merk():BelongsTo{
+        return $this->belongsTo(Merk::class);
+    }
+    public function jenisperangkat():BelongsTo{
+        return $this->belongsTo(JenisPerangkat::class);
+    }
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
 }

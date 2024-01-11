@@ -50,7 +50,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col">
+            {{-- <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h4>Data</h4>
@@ -59,7 +59,7 @@
                         <canvas id="chart_pic" width="1200" height="400"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> --}}
     </div>
     </div>
     </section>

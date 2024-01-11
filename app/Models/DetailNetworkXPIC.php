@@ -13,32 +13,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DetailNetworkXPIC extends Model
 {
     use HasFactory;
-
-    public function network():BelongsTo{
-        return $this->belongsTo(InventoryNetwork::class);
-    }
-
-    public function pic():BelongsTo{
-        return $this->belongsTo(Pic::class);
-    }
-
-        public function workstation():BelongsTo{
-        return $this->belongsTo(Workstation::class);
-    }
-
-    public function vendor():BelongsTo{
-        return $this->belongsTo(Vendor::class);
-    }
-
-    protected $primaryKey = 'id_detailnetworkxpic';
-    public $incrementing = false;
+    
+    protected $guarded = ['id'];
+    protected $primaryKey = 'id';
+    protected $table = 'detail_network_x_p_i_c_s';
+    public $incrementing = true;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_detailnetworkxpic',
-        'id_network',
-        'id_pic',
-        'id_vendor',
-        'id_workstation',
+        'network_id',
+        'pic_id',
+        'vendor_id',
+        'workstation_id',
     ];
+
+    public function monitor(){
+        return $this->belongsTo(InventoryMonitor::class,  'monitor_id','id_monitor');
+    }
+
+    public function pic():BelongsTo{
+        return $this->belongsTo(Pic::class, 'pic_id', 'id');
+    }
+
+    public function workstation():BelongsTo{
+    return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
+    }
+
+    public function vendor():BelongsTo{
+        return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
+    }
+
 }

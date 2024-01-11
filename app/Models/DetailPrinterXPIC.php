@@ -14,31 +14,32 @@ class DetailPrinterXPIC extends Model
 {
     use HasFactory;
 
-    public function printer():BelongsTo{
-        return $this->belongsTo(InventoryPrinter::class);
-    }
-
-    public function pic():BelongsTo{
-        return $this->belongsTo(Pic::class);
-    }
-
-        public function workstation():BelongsTo{
-        return $this->belongsTo(Workstation::class);
-    }
-
-    public function vendor():BelongsTo{
-        return $this->belongsTo(Vendor::class);
-    }
-
-    protected $primaryKey = 'id_detailprinterxpic';
-    public $incrementing = false;
+    protected $guarded = ['id'];
+    protected $primaryKey = 'id';
+    protected $table = 'detail_printer_x_p_i_c_s';
+    public $incrementing = true;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_detailprinterxpic',
-        'id_printer',
-        'id_pic',
-        'id_vendor',
-        'id_workstation',
+        'printer_id',
+        'pic_id',
+        'vendor_id',
+        'workstation_id',
     ];
+
+    public function printer(){
+        return $this->belongsTo(InventoryPrinter::class,  'printer_id','id_printer');
+    }
+
+    public function pic():BelongsTo{
+        return $this->belongsTo(Pic::class, 'pic_id', 'id');
+    }
+
+    public function workstation():BelongsTo{
+    return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
+    }
+
+    public function vendor():BelongsTo{
+        return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
+    }
 }

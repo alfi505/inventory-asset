@@ -16,7 +16,24 @@ class WorkstationController extends Controller
      */
     public function index()
     {
-        //
+        return view('main.pic.workstation.data-workstation');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function detail($id){
+
+        $id_monitor = str_replace('_', '/', $id);
+        $data = [
+            'workstation' => Workstation::where('id', $id)->first(),
+            'slug' => 'pic',
+        ];
+
+        return view('main.pic.workstation.detail-workstation', $data);
     }
 
     /**

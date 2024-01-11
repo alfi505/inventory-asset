@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('inventory_mice', function (Blueprint $table) {
             $table->string('id_mouse')->primary();
+            $table->integer('no_mouse');
             $table->foreignId('merk_id');
             $table->foreignId('jenisperangkat_id');
             $table->string('serial_number');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('admin');
             $table->text('keterangan')->nullable();
             $table->foreignId('status_id');
-            $table->string('tanggal_input');
+            $table->date('tanggal_input');
             $table->timestamps();
         });
     }

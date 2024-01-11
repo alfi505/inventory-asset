@@ -35,7 +35,13 @@
                         <h4>Form Edit</h4>
                     </div>
                     <div class="card-body">
-                        <input type="text" name="id_monitor" value="{{ $data->id_monitor }}" hidden>
+                        <div class="row">
+                            <div class="form-group col">
+                                <label>ID monitor</label>
+                                <input type="text" class="form-control" name="id_monitor"
+                                    value="{{ $data->id_monitor }}" readonly>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="form-group col">
                                 <label>PIC</label>
@@ -96,13 +102,18 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label>Tanggal Input</label>
-                                <input type="text" class="form-control" name="tanggal_input" id="tanggal_input"
+                                <input type="date" class="form-control" name="tanggal_input" id="tanggal_input"
                                     value="{{ $data->tanggal_input }}">
                             </div>
                             <div class="form-group col">
                                 <label>Admin</label>
-                                <input type="text" class="form-control" name="admin" id="admin"
-                                    value="{{ $data->admin }}">
+                                <select class="form-control select2" name="admin" id="admin">
+                                    <option value="">Pilih Dulu</option>
+                                    @foreach ($admin as $admins)
+                                        <option value="{{ $admins->id }}"
+                                            @if ($admins->id == $admins->id) selected @endif>{{ $admins->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">

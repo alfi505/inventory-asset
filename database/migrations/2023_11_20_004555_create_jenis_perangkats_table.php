@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jenis_perangkats', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_detail');
+            $table->integer('detail');
             $table->string('jenisperangkat');
             $table->text('keterangan')->nullable();
             $table->timestamps();

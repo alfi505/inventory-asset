@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Data Monitor')
+@section('title', 'Detail Data Mouse')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,89 +12,87 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data Mouse</h1>
+                <a href="/inventory-mouse">
+                    <i class="fas fa-arrow-left ml-1"></i>
+                </a>
+                <h1 class="ml-3">Detail Data Mouse</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/inventory-mouse') }}">Inventory Mouse</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Detail Mouse</div>
+                </div>
             </div>
 
-            {{-- @foreach ($monitor as $monitorItem)
-                <div class="section-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table-striped table" id="table-1">
-                                <tbody>
-                                    <tr>
-                                        <th style="width: 15%">ID Monitor</th>
-                                        <td style="width: 1%">:</td>
-                                        <td>{{ $monitorItem->id_monitor }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>ID CPU</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->id_cpu }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Merk Monitor</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->merk->keterangan }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Model Monitor</th>
-                                        <td>:</td>
-                                        <td>Phillips 203v</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Jenis Perangkat</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->jenisperangkat->keterangan }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <td>:</td>
-                                        <td>21-November-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Posisi</th>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>No IP Address</th>
-                                        <td>:</td>
-                                        <td>127.11.1.156</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Serial Number</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->serial_number }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Vendor</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->vendor->perusahaan }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Admin</th>
-                                        <td>:</td>
-                                        <td>Udin</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Keterangan</th>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Status</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->status->status }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer text-right">
-                            <a href="/inventory-monitor" class="btn btn-primary text-right">Kembali</a>
-                        </div>
+            <div class="section-body">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table-striped table" id="table-1">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 15%">ID Mouse</th>
+                                    <td style="width: 1%">:</td>
+                                    <td>{{ $mouse->id_mouse }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Merk Mouse</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->merk->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Model Mouse</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->model_mouse }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Jenis Perangkat</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->jenisperangkat->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->tanggal_input }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Posisi</th>
+                                    <td>:</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <th>No IP Address</th>
+                                    <td>:</td>
+                                    <td>{{ $mouseData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Serial Number</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->serial_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <td>:</td>
+                                    <td>{{ $mouseData->id_vendor->perusahaan ?? 'N/A' }}</td>
+                                </tr>
+                                {{-- <tr>
+                                    <th>Admin</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->admin }}</td>
+                                </tr> --}}
+                                <tr>
+                                    <th>Status</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->status->status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keterangan</th>
+                                    <td>:</td>
+                                    <td>{{ $mouse->keterangan }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            @endforeach --}}
+            </div>
 
         </section>
     </div>

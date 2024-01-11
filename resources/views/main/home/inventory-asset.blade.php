@@ -27,7 +27,7 @@
                                     <h4>CPU</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+                                    {{ $totalCpu }}
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                     <h4>Monitor</h4>
                                 </div>
                                 <div class="card-body">
-                                    42
+                                    {{ $totalMonitor }}
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                     <h4>Keyboard</h4>
                                 </div>
                                 <div class="card-body">
-                                    1,201
+                                    {{ $totalKeyboard }}
                                 </div>
                             </div>
                         </div>
@@ -78,13 +78,13 @@
                                     <h4>Mouse</h4>
                                 </div>
                                 <div class="card-body">
-                                    47
+                                    {{ $totalMouse }}
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <a href="{{ url('/inventory-speaker') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-warning">
@@ -95,13 +95,13 @@
                                     <h4>Speaker</h4>
                                 </div>
                                 <div class="card-body">
-                                    56
+                                    {{ $totalSpeaker }}
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <a href="{{ url('/inventory-network') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-success">
@@ -112,13 +112,13 @@
                                     <h4>Network</h4>
                                 </div>
                                 <div class="card-body">
-                                    87
+                                    {{ $totalNetwork }}
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <a href="{{ url('/inventory-printer') }}">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
@@ -129,7 +129,7 @@
                                     <h4>Printer</h4>
                                 </div>
                                 <div class="card-body">
-                                    110
+                                    {{ $totalPrinter }}
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            {{-- <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h4>Data Perolehan</h4>
@@ -146,7 +146,7 @@
                         <canvas id="chart_inventory" width="1200" height="400"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
     </div>
     </section>

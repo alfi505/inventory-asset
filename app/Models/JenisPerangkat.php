@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Models\InventoryMouse;
 use App\Models\InventoryMonitor;
+use App\Models\InventoryNetwork;
+use App\Models\InventoryPrinter;
+use App\Models\InventorySpeaker;
 use App\Models\InventoryKeyboard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -12,8 +15,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class JenisPerangkat extends Model
 {
     use HasFactory;
-
+    
+    protected $guarded = ['id'];
     protected $primaryKey = 'id';
+    protected $table = 'jenis_perangkats';
+    protected $fillable =[
+        'id_detail',
+        'jenisperangkat',
+        'keterangan',
+    ];
     public function monitor():HasOne{
         return $this->hasOne(InventoryMonitor::class);
     }
@@ -33,9 +43,4 @@ class JenisPerangkat extends Model
         return $this->hasOne(InventorySpeaker::class);
     }
 
-    protected $fillable =[
-        'jenisperangkat_id',
-        'jenisperangkat',
-        'keterangan',
-    ];
 }

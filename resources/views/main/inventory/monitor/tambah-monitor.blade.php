@@ -55,15 +55,14 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label>Jenis Perangkat</label>
-                                <p class="form-control">
+                                {{-- <p class="form-control">
                                     Monitor
-                                </p>
-                                {{-- <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
-                                    <option value="">Pilih Dulu</option>
+                                </p> --}}
+                                <select class="form-control select2" name="jenisperangkat_id" id="jenisperangkat_id">
                                     @foreach ($jenisPerangkat as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
                                     @endforeach
-                                </select> --}}
+                                </select>
                             </div>
                             <div class="form-group col">
                                 <label>Merk Monitor</label>
@@ -77,7 +76,6 @@
                             <div class="form-group col">
                                 <label>Workstation</label>
                                 <select class="form-control select2" name="workstation_id" id="workstation_id">
-                                    <option value="">Pilih Dulu</option>
                                     <option value="0">-</option>
                                     @foreach ($workstation as $data)
                                         <option value="{{ $data->id }}">{{ $data->no_ip_address }}</option>
@@ -101,7 +99,12 @@
                             </div>
                             <div class="form-group col">
                                 <label>Admin</label>
-                                <input type="text" class="form-control" name="admin" id="admin">
+                                <select class="form-control select2" name="admin" id="admin">
+                                    <option value="">Pilih Dulu</option>
+                                    @foreach ($admin as $data)
+                                        <option value="{{ $data->id }}">{{ $data->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group col">
                                 <label>Pilih Status</label>
@@ -135,23 +138,29 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
     <script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
     <script src="{{ asset('library/cleave.js/dist/addons/cleave-phone.us.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script>
     <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
+    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <!-- Page Specific JS File -->
+    <script src="{{ asset('js/page/modules-sweetalert.js') }}"></script>
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+    <script>
+        $(".select2").select2({
+            tags: true
+        });
+    </script>
 
 
     {{-- <script>

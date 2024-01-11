@@ -6,6 +6,7 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 
 @section('main')
@@ -72,9 +73,10 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table-striped table-md table">
+                                <table class="table-striped table-md table" id="monitor">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -84,25 +86,30 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="myTable">
+                                    <tbody>
                                         @foreach ($aug as $krissbatik)
                                             <tr>
+                                                {{-- <td>{{ $krissbatik->no_monitor }}</td> --}}
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $krissbatik->id_monitor }}</td>
                                                 <td>{{ $krissbatik->id_ip_address }}</td>
                                                 <td>-</td>
                                                 <td>
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="/inventory-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+
+                                                    <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('inventory-monitor.destroy', str_replace('/', '_', $krissbatik->id_monitor)) }}">
                                                         <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
                                                             class="btn btn-info">Detail</a>
                                                         <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
                                                             class="btn btn-secondary">Edit</a>
-                                                        <button class="btn btn-danger" type="submit">Hapus</button>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
                                                     </form>
+
+                                                    {{-- <a href="/inventory-monitor/hapus/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                            onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
+                                                            class="btn btn-danger">Delete</a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -127,7 +134,49 @@
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
     <script src="{{ asset('library/jquery-ui-dist/jquery-ui.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your data has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+        });
+    </script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#monitor').DataTable({
+                searching: false, // Disable searching
+                paging: false, // Hide Pagination
+                info: false, // Hide information
+                lengthChange: false, // Hide entries per page
+                order: [
+                    [1, 'asc']
+                ]
+            });
+        });
+    </script>
 @endpush

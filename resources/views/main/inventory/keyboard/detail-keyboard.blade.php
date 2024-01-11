@@ -12,99 +12,87 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data Keyboard</h1>
+                <a href="/inventory-keyboard">
+                    <i class="fas fa-arrow-left ml-1"></i>
+                </a>
+                <h1 class="ml-3">Detail Data Keyboard</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/inventory-keyboard') }}">Inventory Keyboard</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Detail Keyboard</div>
+                </div>
             </div>
 
-            {{-- @foreach ($monitors as $monitorItem)
-                <div class="section-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <table class="table-striped table" id="table-1">
-                                <tbody>
-                                    <tr>
-                                        <th style="width: 15%">ID Keyboard</th>
-                                        <td style="width: 1%">:</td>
-                                        <td>{{ $monitorItem->id_monitor }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama Komputer</th>
-                                        <td>:</td>
-                                        <td>{{ $monitorItem->nama_komputer }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama PIC</th>
-                                        <td>:</td>
-                                        <td>Alfi</td>
-                                    </tr>
-                                    <tr>
-                                        <th>ID CPU</th>
-                                        <td>:</td>
-                                        <td>MAK/IT/CPU-RKT/1105/6024</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Merk Keyboard</th>
-                                        <td>:</td>
-                                        <td>Phillips</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Model Keyboard</th>
-                                        <td>:</td>
-                                        <td>Phillips 203v</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Jenis Perangkat</th>
-                                        <td>:</td>
-                                        <td>Keyboard</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <td>:</td>
-                                        <td>21-November-2022</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Posisi</th>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>No IP Address</th>
-                                        <td>:</td>
-                                        <td>127.11.1.156</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Serial Number</th>
-                                        <td>:</td>
-                                        <td>3423-3453-7876-2332</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Vendor</th>
-                                        <td>:</td>
-                                        <td>ELS Komputer</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Admin</th>
-                                        <td>:</td>
-                                        <td>Udin</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Keterangan</th>
-                                        <td>:</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Status</th>
-                                        <td>:</td>
-                                        <td>Continue - Baik</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer text-right">
-                            <a href="/inventory-keyboard" class="btn btn-primary text-right">Kembali</a>
-                        </div>
+            <div class="section-body">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table-striped table" id="table-1">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 15%">ID Keyboard</th>
+                                    <td style="width: 1%">:</td>
+                                    <td>{{ $keyboard->id_keyboard }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Merk Keyboard</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->merk->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Model Keyboard</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->model_keyboard }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Jenis Perangkat</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->jenisperangkat->keterangan }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->tanggal_input }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Posisi</th>
+                                    <td>:</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <th>No IP Address</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboardData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Serial Number</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->serial_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboardData->vendor->perusahaan ?? 'N/A' }}</td>
+                                </tr>
+                                {{-- <tr>
+                                    <th>Admin</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->admin }}</td>
+                                </tr> --}}
+                                <tr>
+                                    <th>Status</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->status->status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keterangan</th>
+                                    <td>:</td>
+                                    <td>{{ $keyboard->keterangan }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            @endforeach --}}
+            </div>
 
         </section>
     </div>

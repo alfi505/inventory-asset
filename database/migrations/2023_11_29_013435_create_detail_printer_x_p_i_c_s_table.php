@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_printer_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailprinterxpic')->primary();
-            $table->foreignId('printer_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
+            $table->id();
+            $table->string('printer_id')->nullable();
+            $table->foreign('printer_id')->references('id_printer')->on('inventory_printers')->onDelete('cascade');
+            $table->foreignId('pic_id')->constrained();
+            $table->foreignId('vendor_id')->constrained();
             $table->foreignId('workstation_id');
             $table->timestamps();
         });

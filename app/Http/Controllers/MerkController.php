@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merk;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StoremerkRequest;
 use App\Http\Requests\UpdatemerkRequest;
 
 class MerkController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
         $data = [
-        'merk' => Merk::get()
+        'merk' => Merk::get(),
+        'totalCount' => Merk::count(),
+        'slug' => 'utilities',
         ];
         return view('main.utilities.merk.utilities-merk', $data);
     }
@@ -25,27 +31,36 @@ class MerkController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'slug' => 'utilities',
+        ];
+
+        return view('main.utilities.merk.tambah-merk', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoremerkRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoremerkRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'merk' => 'required',
+            'keterangan' => 'required',
+        ]);
+        Merk::create($validateData);
+        return redirect('/utilities-merk')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\merk  $merk
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(merk $merk)
+    public function show($id)
     {
         //
     }
@@ -53,34 +68,44 @@ class MerkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\merk  $merk
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(merk $merk)
+    public function edit($id)
     {
-        //
+        $data = [
+            'merk' => Merk::findOrFail($id),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.merk.edit-merk', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatemerkRequest  $request
-     * @param  \App\Models\merk  $merk
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatemerkRequest $request, merk $merk)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'merk' => 'required',
+            'keterangan' => 'required',
+        ]);
+        Merk::where('id', $id)->update($validateData);
+        return redirect('/utilities-merk/edit-merk/' . $id)->with('toast_success', 'Data Telah Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\merk  $merk
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(merk $merk)
+    public function destroy($id)
     {
-        //
+        Merk::whereId($id)->delete();
+        return redirect('/utilities-merk')->with('toast_success', 'Data Telah Dihapus');
     }
 }

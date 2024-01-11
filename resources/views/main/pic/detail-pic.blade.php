@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
 @endpush
 
-@section('main')<div class="main-content">
+@section('main')
+    <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data CPU</h1>
+                <a href="/pic">
+                    <i class="fas fa-arrow-left ml-1"></i>
+                </a>
+                <h1 class="ml-3">Detail Data CPU</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/pic') }}">Pic</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Detail Pic</div>
+                </div>
             </div>
 
             <div class="section-body">
@@ -19,71 +28,63 @@
                     <div class="card-body">
                         <table class="table-striped table" id="table-1">
                             <tbody>
-                                <tr>
+                                <tr hidden>
                                     <th style="width: 15%">ID PIC</th>
                                     <td style="width: 1%">:</td>
-                                    <td>MAK/001</td>
+                                    <td>{{ $pic->id }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama Komputer</th>
                                     <td>:</td>
-                                    <td>Parangkusumo</td>
+                                    <td>{{ $pic->nama_komputer }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama PIC</th>
                                     <td>:</td>
-                                    <td>Alfi</td>
-                                </tr>
-                                <tr>
-                                    <th>Zona</th>
-                                    <td>:</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <th>ID CPU</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/CPU-RKT/1105/6024</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Monitor</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/MTR-PHL/1121/1144</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Keyboard</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/KBR-LGH/0819/2010</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Mouse</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/MOS-LGH/0420/3120</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Speaker</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/SPK-LGH/0501/4061</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Network</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/SWC-TPL/1106/5115</td>
-                                </tr>
-                                <tr>
-                                    <th>ID Printer</th>
-                                    <td>:</td>
-                                    <td>MAK/IT/PTR-BTR/0723/7012</td>
+                                    <td>{{ $pic->nama_pic }}</td>
                                 </tr>
                                 <tr>
                                     <th>Posisi</th>
                                     <td>:</td>
                                     <td>-</td>
                                 </tr>
+                                <tr>
+                                    <th>ID CPU</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_cpu ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Monitor</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_monitor ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Keyboard</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_keyboard ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Mouse</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_mouse ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Speaker</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_speaker ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Network</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_network ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ID Printer</th>
+                                    <td>:</td>
+                                    <td>{{ $pic->id_printer ?? '-' }}</td>
+                                </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer text-right">
-                        <a href="/data-pic" class="btn btn-primary text-right">Kembali</a>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
                             <i class="fas fa-computer"></i>
@@ -26,12 +26,12 @@
                                 <h4>CPU</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCpu }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
                             <i class="fas fa-desktop"></i>
@@ -41,12 +41,12 @@
                                 <h4>Monitor</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{ $totalMonitor }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
                             <i class="fas fa-keyboard"></i>
@@ -56,12 +56,14 @@
                                 <h4>Keyboard</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{ $totalKeyboard }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
                             <i class="fas fa-mouse"></i>
@@ -71,12 +73,12 @@
                                 <h4>Mouse</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{ $totalMouse }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
                             <i class="fas fa-headphones"></i>
@@ -86,12 +88,12 @@
                                 <h4>Speaker</h4>
                             </div>
                             <div class="card-body">
-                                86
+                                {{ $totalSpeaker }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
                             <i class="fas fa-network-wired"></i>
@@ -101,12 +103,14 @@
                                 <h4>Network</h4>
                             </div>
                             <div class="card-body">
-                                30
+                                {{ $totalNetwork }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
                             <i class="fas fa-print"></i>
@@ -116,12 +120,12 @@
                                 <h4>Printer</h4>
                             </div>
                             <div class="card-body">
-                                110
+                                {{ $totalPrinter }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
                             <i class="fas fa-person"></i>
@@ -131,12 +135,12 @@
                                 <h4>PIC</h4>
                             </div>
                             <div class="card-body">
-                                230
+                                {{ $totalPic }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
                             <i class="fas fa-print"></i>
@@ -146,20 +150,19 @@
                                 <h4>Workstation</h4>
                             </div>
                             <div class="card-body">
-                                40
+                                {{ $totalWorkstation }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col">
+            {{-- <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h4>Data Perolehan</h4>
                     </div>
                     <div class="card-body">
-                        {{-- myChart nya ada di public -> js -> page -> index-0.js --}}
                         <canvas id="chart_inventory" width="1200" height="400"></canvas>
                     </div>
                 </div>
@@ -171,11 +174,10 @@
                         <h4>Data Jumlah</h4>
                     </div>
                     <div class="card-body">
-                        {{-- myChart nya ada di public -> js -> page -> index-0.js --}}
                         <canvas id="chart_pic" width="1200" height="400"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
     </div>
     </section>
@@ -198,4 +200,77 @@
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
     <script src="{{ asset('js/page/dashboard.js') }}"></script>
+
+    <script>
+        function date_time(id) {
+            var date = new Date();
+            var tahun = date.getFullYear();
+            var bulan = date.getMonth();
+            var tanggal = date.getDate();
+            var hari = date.getDay();
+
+            var namabulan = new Array(
+                "Januari",
+                "Februari",
+                "Maret",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Agustus",
+                "September",
+                "Oktober",
+                "November",
+                "Desember"
+            );
+            var namahari = new Array(
+                "Minggu",
+                "Senin",
+                "Selasa",
+                "Rabu",
+                "Kamis",
+                "Jumat",
+                "Sabtu"
+            );
+
+            var h = date.getHours();
+            if (h < 10) {
+                h = "0" + h;
+            }
+            var m = date.getMinutes();
+            if (m < 10) {
+                m = "0" + m;
+            }
+            var s = date.getSeconds();
+            if (s < 10) {
+                s = "0" + s;
+            }
+            var result =
+                namahari[hari] +
+                ", " +
+                tanggal +
+                " " +
+                namabulan[bulan] +
+                " " +
+                tahun +
+                " / " +
+                h +
+                ":" +
+                m +
+                ":" +
+                s;
+            document.getElementById(id).innerHTML = result;
+            setTimeout('date_time("' + id + '");', "1000");
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            $(document).ready(function() {
+                window.onload = date_time("date_time");
+                $(".tag-true").select2({
+                    tags: true,
+                });
+            });
+        });
+    </script>
 @endpush

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\unit;
+use App\Models\Unit;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreunitRequest;
 use App\Http\Requests\UpdateunitRequest;
 
@@ -15,7 +17,12 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'unit' => Unit::get(),
+            'totalCount' => Unit::count(),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.unit.utilities-unit', $data);
     }
 
     /**
@@ -25,18 +32,27 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.unit.tambah-unit', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreunitRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreunitRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'unit' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        Unit::create($validateData);
+        return redirect('/utilities-unit')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -53,34 +69,44 @@ class UnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\unit  $unit
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(unit $unit)
+    public function edit($id)
     {
-        //
+        $data = [
+            'unit' => Unit::findOrFail($id),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.unit.edit-unit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateunitRequest  $request
-     * @param  \App\Models\unit  $unit
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateunitRequest $request, unit $unit)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'unit' => 'required',
+            'keterangan' => 'required',
+        ]);
+        Unit::where('id', $id)->update($validateData);
+        return redirect('/utilities-unit/edit-unit/' . $id)->with('toast_success', 'Data Telah Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\unit  $unit
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(unit $unit)
+    public function destroy($id)
     {
-        //
+        Unit::whereId($id)->delete();
+        return redirect('/utilities-unit')->with('toast_success', 'Data Telah Dihapus');
     }
 }

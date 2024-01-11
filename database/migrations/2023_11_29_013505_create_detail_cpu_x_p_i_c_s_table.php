@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detail_cpu_x_pics', function (Blueprint $table) {
-            $table->string('id_detailcpuxpic')->primary();
-            $table->foreignId('cpu_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
+        Schema::create('detail_cpu_x_p_i_c_s', function (Blueprint $table) {
+            $table->id();
+            $table->string('cpu_id')->nullable();
+            $table->foreign('cpu_id')->references('id_cpu')->on('inventory_cpus')->onDelete('cascade');
+            $table->foreignId('pic_id')->constrained();
+            $table->foreignId('vendor_id')->constrained();
             $table->foreignId('workstation_id');
             $table->foreignId('software_id');
             $table->timestamps();

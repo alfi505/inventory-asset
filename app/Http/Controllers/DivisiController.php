@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\divisi;
+use App\Models\Divisi;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StoredivisiRequest;
 use App\Http\Requests\UpdatedivisiRequest;
 
@@ -15,7 +17,12 @@ class DivisiController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'divisi' => Divisi::get(),
+            'totalCount' => Divisi::count(),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.div.utilities-div', $data);
     }
 
     /**
@@ -25,18 +32,27 @@ class DivisiController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.div.tambah-div', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoredivisiRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoredivisiRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'divisi' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        Divisi::create($validateData);
+        return redirect('/utilities-div')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -53,34 +69,45 @@ class DivisiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\divisi  $divisi
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(divisi $divisi)
+    public function edit($id)
     {
-        //
+        $data = [
+            'divisi' => Divisi::findOrFail($id),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.div.edit-div', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatedivisiRequest  $request
-     * @param  \App\Models\divisi  $divisi
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatedivisiRequest $request, divisi $divisi)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'divisi' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        Divisi::where('id', $id)->update($validateData);
+        return redirect('/utilities-div/edit-div/' . $id)->with('toast_success', 'Data Telah Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\divisi  $divisi
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(divisi $divisi)
+    public function destroy($id)
     {
-        //
+        Divisi::where($id)->delete();
+        return redirect('/utilities-div')->with('toast_success', 'Data Telah Dihapus');
     }
 }

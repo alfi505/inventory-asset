@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Software;
+use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSoftwareRequest;
 use App\Http\Requests\UpdateSoftwareRequest;
 
@@ -15,7 +17,12 @@ class SoftwareController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'software' => Software::get(),
+            'totalCount' => Software::count(),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.software.utilities-software', $data);
     }
 
     /**
@@ -25,18 +32,26 @@ class SoftwareController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.software.tambah-software', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSoftwareRequest  $request
+     * @param  Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSoftwareRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_software' => 'required',
+        ]);
+
+        Software::create($validateData);
+        return redirect('/utilities-software')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -53,34 +68,43 @@ class SoftwareController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Software  $software
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Software $software)
+    public function edit($id)
     {
-        //
+        $data = [
+            'software' => Software::find($id),
+            'slug' => 'utilities',
+        ];
+        return view('main.utilities.software.edit-software', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSoftwareRequest  $request
-     * @param  \App\Models\Software  $software
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSoftwareRequest $request, Software $software)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'nama_software' => 'required',
+        ]);
+        Software::where('id', $id)->update($validateData);
+        return redirect('/utilities-software/edit-software/' . $id)->with('toast_success', 'Data Telah Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Software  $software
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Software $software)
+    public function destroy($id)
     {
-        //
+        Software::where($id)->delete();
+        return redirect('/utilities-software')->with('toast_success', 'Data Telah Dihapus');
     }
 }

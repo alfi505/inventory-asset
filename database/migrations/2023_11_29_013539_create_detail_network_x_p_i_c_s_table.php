@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_network_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailnetworkxpic');
-            $table->foreignId('network_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
+            $table->id();
+            $table->string('network_id')->nullable();
+            $table->foreign('network_id')->references('id_network')->on('inventory_networks')->onDelete('cascade');
+            $table->foreignId('pic_id')->constrained();
+            $table->foreignId('vendor_id')->constrained();
             $table->foreignId('workstation_id');
             $table->timestamps();
         });

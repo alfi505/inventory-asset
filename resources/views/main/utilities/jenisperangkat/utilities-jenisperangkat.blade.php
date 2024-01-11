@@ -14,6 +14,8 @@
             <div class="section-header">
                 <h1>Jenis Perangkat</h1>
             </div>
+
+            @csrf
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
@@ -25,14 +27,9 @@
                                 <h4>Jenis Perangkat</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCount }}
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
-                    <div class="buttons py-5">
-                        <a href="/tambah-jenisperangkat" class="btn btn-primary">Tambah Jenis Perangkat</a>
                     </div>
                 </div>
             </div>
@@ -42,61 +39,50 @@
                         <div class="card-header">
                             <h4>Data Jenis Perangkat</h4>
                             <div class="card-header-form">
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/utilities-jenisperangkat/create" class="btn btn-primary">Tambah Jenis
+                                            Perangkat</a>
                                     </div>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                </div>
                                 </form>
                             </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table-striped table-md table">
-                                    <tr>
-                                        <th>No</th>
-                                        <th style="width: 30%">Jenis Perangkat</th>
-                                        <th style="width: 30%">Keterangan</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>MTR</td>
-                                        <td>Monitor</td>
-                                        <td>
-                                            <a href="/detail-jenisperangkat" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>KBR</td>
-                                        <td>Keyboard</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>MOS</td>
-                                        <td>Mouse</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th style="width: 30%">Jenis Perangkat</th>
+                                            <th style="width: 30%">Keterangan</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($jenisPerangkat as $jenisPerangkats)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $jenisPerangkats->jenisperangkat }}</td>
+                                                <td>{{ $jenisPerangkats->keterangan }}</td>
+                                                <td>
+                                                    <a href="/detail-jenisperangkat" class="btn btn-info">Detail</a>
+                                                    <a href="#" class="btn btn-secondary">Edit</a>
+                                                    <a href="#">
+                                                        <button class="btn btn-danger" id="swal-6">Hapus</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+
                                 </table>
                             </div>
                         </div>

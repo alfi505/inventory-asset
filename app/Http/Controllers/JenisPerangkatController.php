@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\JenisPerangkat;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\Storejenis_perangkatRequest;
 use App\Http\Requests\Updatejenis_perangkatRequest;
 
 class JenisPerangkatController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
         $data = [
-        'jenisPerangkat' => JenisPerangkat::get()
+        'jenisPerangkat' => JenisPerangkat::get(),
+        'totalCount' => JenisPerangkat::count(),
+        'slug' => 'utilities',
         ];
         return view('main.utilities.jenisperangkat.utilities-jenisperangkat', $data);
     }
@@ -25,18 +31,31 @@ class JenisPerangkatController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'jenisperangkat' =>  JenisPerangkat::all(),
+            'slug' => 'utilities',
+        ];
+
+        return view('main.utilities.jenisperangkat.tambah-jenisperangkat', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storejenis_perangkatRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storejenis_perangkatRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'id_detail' => 'required',
+            'jenisperangkat' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        JenisPerangkat::create($validateData);
+
+        return redirect('/utilities-jenisperangkat');
     }
 
     /**

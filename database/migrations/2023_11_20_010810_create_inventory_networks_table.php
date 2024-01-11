@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('admin');
             $table->text('keterangan')->nullable();
             $table->foreignId('status_id');
+            $table->date('tanggal_input');
             $table->timestamps();
         });
     }

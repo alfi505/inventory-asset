@@ -1,18 +1,28 @@
 <?php
 
+use App\Http\Controllers\InventoryAsset;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PicController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InventoryCpuController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DirektoratController;
+use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\InventoryMouseController;
+use App\Http\Controllers\JenisPerangkatController;
 use App\Http\Controllers\InventoryMonitorController;
 use App\Http\Controllers\InventoryNetworkController;
 use App\Http\Controllers\InventoryPrinterController;
 use App\Http\Controllers\InventorySpeakerController;
 use App\Http\Controllers\InventoryKeyboardController;
-use App\Http\Controllers\PicController;
-use App\Models\Pic;
+use App\Http\Controllers\PIC;
+use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\WorkstationController;
+use App\Models\Workstation;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,108 +39,75 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//admin
-// Route::get('/login', function () {
-//     return view('main.auth.login');
-// });
-
 Route::middleware(['auth.data'])->group(function () {
 
-    // navbar dashboard
-    Route::get('/dashboard-admin', function () {
-        return view('main.home.dashboard-admin', ['type_menu' => 'dashboard']);
-    })->middleware('auth');
+// navbar dashboard
+Route::get('/searchHeader', [SearchController::class, 'index']);
+Route::get('/searchFilter', [SearchController::class, 'searchFilter']);
 
-    // Route::get('/dashboard-admin', [DashboardAdminController::class, 'index']);
-    Route::get('/inventory-asset', function () {
-        return view('main.home.inventory-asset', ['type_menu' => 'dashboard']);
-    });
-    Route::get('/pic', function () {
-        return view('main.home.pic', ['type_menu' => 'dashboard']);
-    });
+Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->middleware('auth');
 
+Route::get('/inventory-asset', [InventoryAsset::class, 'index'])->middleware('auth');
+
+Route::get('/pic', [PIC::class, 'index'])->middleware('auth');
 
 Route::resource('/inventory-cpu',InventoryCpuController::class);
-Route::get('/detail-cpu', function () {
-    return view('main.inventory.cpu.detail-cpu', ['type_menu'=> 'inventory']);
-});
-Route::get('/tambah-cpu', function () {
-    return view('main.inventory.cpu.tambah-cpu', ['type_menu'=> 'inventory']);
-});
-
+Route::get('/inventory-cpu/detail-cpu/{id}', [InventoryCpuController::class, 'detail']);
+Route::get('/inventory-cpu/edit-cpu/{id}', [InventoryCpuController::class, 'edit']);
 
 Route::resource('/inventory-monitor',InventoryMonitorController::class);
-// Route::get('/tambah-monitor', [InventoryMonitorController::class, 'create']);
-// Route::get('/inventory-monitor', [InventoryMonitorController::class, 'index']);
 Route::get('/inventory-monitor/detail-monitor/{id}', [InventoryMonitorController::class, 'detail']);
 Route::get('/inventory-monitor/edit-monitor/{id}', [InventoryMonitorController::class, 'edit']);
-Route::patch('/inventory-monitor/edit-monitor/{id}', [InventoryMonitorController::class, 'edit']);
-// Route::post('/store', [InventoryMonitorController::class, 'store']);
-
 
 Route::resource('/inventory-keyboard', InventoryKeyboardController::class);
+Route::get('/inventory-keyboard/detail-keyboard/{id}', [InventoryKeyboardController::class, 'detail']);
+Route::get('/inventory-keyboard/edit-keyboard/{id}', [InventoryKeyboardController::class, 'edit']);
+
 Route::resource('/inventory-mouse', InventoryMouseController::class);
+Route::get('/inventory-mouse/detail-mouse/{id}', [InventoryMouseController::class, 'detail']);
+Route::get('/inventory-mouse/edit-mouse/{id}', [InventoryMouseController::class, 'edit']);
+
 Route::resource('/inventory-printer', InventoryPrinterController::class);
+Route::get('/inventory-printer/detail-printer/{id}', [InventoryPrinterController::class, 'detail']);
+Route::get('/inventory-printer/edit-printer/{id}', [InventoryPrinterController::class, 'edit']);
+
 Route::resource('/inventory-speaker', InventorySpeakerController::class);
+Route::get('/inventory-speaker/detail-speaker/{id}', [InventorySpeakerController::class, 'detail']);
+Route::get('/inventory-speaker/edit-speaker/{id}', [InventorySpeakerController::class, 'edit']);
+
 Route::resource('/inventory-network', InventoryNetworkController::class);
+Route::get('/inventory-network/detail-network/{id}', [InventoryNetworkController::class, 'detail']);
+Route::get('/inventory-network/edit-network/{id}', [InventoryNetworkController::class, 'edit']);
 
-// pic
-// Route::get('/data-pic', function () {
-//     return view('main.pic.data-pic', ['type_menu' => 'pic']);
-// });
 Route::resource('/data-pic', PicController::class);
+Route::get('/pic/detail-pic/{id}', [PicController::class, 'detail']);
+Route::get('/pic/edit-pic/{id}', [PicController::class, 'edit']);
 
-Route::get('/tambah-pic', function () {
-    return view('main.pic.tambah-pic', ['type_menu' => 'pic']);
-});
-Route::get('/detail-pic', function () {
-    return view('main.pic.detail-pic', ['type_menu' => 'pic']);
-});
-Route::get('/data-workstation', function () {
-    return view('main.pic.workstation.data-workstation', ['type_menu' => 'pic']);
-});
-Route::get('/tambah-workstation', function () {
-    return view('main.pic.workstation.tambah-workstation', ['type_menu' => 'pic']);
-});
+Route::resource('/workstation', WorkstationController::class);
+Route::get('/pic/workstation/detail-workstation/{id}', [WorkstationController::class, 'detail']);
+Route::get('/pic/workstation/edit-workstation/{id}', [WorkstationController::class, 'edit']);
 
 // utilities
-Route::get('/utilities-dir', function () {
-    return view('main.utilities.dir.utilities-dir', ['type_menu' => 'utilities']);
-});
-Route::get('/tambah-dir', function () {
-    return view('main.utilities.dir.tambah-dir', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-div', function () {
-    return view('main.utilities.div.utilities-div', ['type_menu' => 'utilities']);
-});
-Route::get('/tambah-div', function () {
-    return view('main.utilities.div.tambah-div', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-unit', function () {
-    return view('main.utilities.unit.utilities-unit', ['type_menu' => 'utilities']);
-});
-Route::get('/tambah-unit', function () {
-    return view('main.utilities.tambah-unit', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-vendor', function () {
-    return view('main.utilities.vendor.utilities-vendor', ['type_menu' => 'utilities']);
-});
-Route::get('/tambah-vendor', function () {
-    return view('main.utilities.vendor.tambah-vendor', ['type_menu' => 'utilities']);
-});
-// Route::get('/utilities-merk', function () {
-    //     return view('main.utilities.merk.utilities-merk', ['type_menu' => 'utilities']);
-    // });
-Route::get('/utilities-merk', [MerkController::class, 'index']);
-Route::get('/tambah-merk', function () {
-    return view('main.utilities.merk.tambah-merk', ['type_menu' => 'utilities']);
-});
-Route::get('/utilities-jenisperangkat', function () {
-    return view('main.utilities.jenisperangkat.utilities-jenisperangkat', ['type_menu' => 'utilities']);
-});
-Route::get('/tambah-jenisperangkat', function () {
-    return view('main.utilities.jenisperangkat.tambah-jenisperangkat', ['type_menu' => 'utilities']);
-});
+Route::resource('/utilities-dir', DirektoratController::class);
+Route::get('/utilities-dir/edit-dir/{id}', [DirektoratController::class, 'edit']);
+
+Route::resource('/utilities-div', DivisiController::class);
+Route::get('/utilities-div/edit-div/{id}', [DivisiController::class, 'edit']);
+
+Route::resource('/utilities-unit', UnitController::class);
+Route::get('/utilities-unit/edit-unit/{id}', [UnitController::class, 'edit']);
+
+Route::resource('/utilities-vendor', VendorController::class);
+Route::get('/utilities-vendor/edit-vendor/{id}', [VendorController::class, 'edit']);
+
+Route::resource('/utilities-merk', MerkController::class);
+Route::get('/utilities-merk/edit-merk/{id}', [MerkController::class, 'edit']);
+
+Route::resource('/utilities-jenisperangkat', JenisPerangkatController::class);
+Route::get('/utilities-jenisperangkat/edit-jenisperangkat/{id}', [JenisPerangkatController::class, 'edit']);
+
+Route::resource('/utilities-software', SoftwareController::class);
+Route::get('/utilities-software/edit-software/{id}', [SoftwareController::class, 'edit']);
 
 });
 

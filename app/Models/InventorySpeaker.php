@@ -14,6 +14,24 @@ class InventorySpeaker extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id_speaker'];
+    protected $primaryKey = 'id_speaker';
+    protected $table = 'inventory_speakers';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
+    protected $fillable = [
+        'id_speaker',
+        'merk_id',
+        'jenisperangkat_id',
+        'serial_number',
+        'model_speaker',
+        'admin',
+        'tanggal_input',
+        'keterangan',
+        'status_id',
+    ];
+
     public function detailspeaker():HasMany{
         return $this->hasMany(DetailSpeakerXPIC::class);
     }
@@ -26,21 +44,8 @@ class InventorySpeaker extends Model
         return $this->belongsTo(JenisPerangkat::class);
     }
 
-    protected $guarded = ['id_speaker'];
-    protected $primaryKey = 'id_speaker';
-    protected $table = 'inventory_speakers';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
 
-    protected $fillable = [
-        'id_speaker',
-        'merk_id',
-        'jenisperangkat_id',
-        'serial_number',
-        'model_speaker',
-        'admin',
-        'tanggal_input',
-        'keterangan',
-        'status_id',
-    ];
 }

@@ -14,8 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class DetailMonitorXPIC extends Model
 {
     use HasFactory;
-    protected $guarded = ['id_detailmonitorxpic'];
-    protected $primaryKey = 'id_detailmonitorxpic';
+
+    protected $guarded = ['id'];
+    protected $primaryKey = 'id';
     protected $table = 'detail_monitor_x_p_i_c_s';
     public $incrementing = true;
     protected $keyType = 'string';
@@ -35,8 +36,8 @@ class DetailMonitorXPIC extends Model
         return $this->belongsTo(Pic::class, 'pic_id', 'id');
     }
 
-        public function workstation():BelongsTo{
-        return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
+    public function workstation():BelongsTo{
+    return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
     }
 
     public function vendor():BelongsTo{

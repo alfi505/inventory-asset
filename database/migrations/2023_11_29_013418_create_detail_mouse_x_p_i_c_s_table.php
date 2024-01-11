@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_mouse_x_p_i_c_s', function (Blueprint $table) {
-            $table->string('id_detailmousexpic')->primary();
-            $table->foreignId('mouse_id');
-            $table->foreignId('pic_id');
-            $table->foreignId('vendor_id');
+            $table->id();
+            $table->string('mouse_id')->nullable();
+            $table->foreign('mouse_id')->references('id_mouse')->on('inventory_mice')->onDelete('cascade');
+            $table->foreignId('pic_id')->constrained();
+            $table->foreignId('vendor_id')->constrained();
             $table->foreignId('workstation_id');
             $table->timestamps();
         });

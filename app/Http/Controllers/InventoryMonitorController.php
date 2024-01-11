@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pic;
 use App\Models\Merk;
 use App\Models\Status;
 use App\Models\Vendor;
@@ -10,8 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\JenisPerangkat;
 use App\Models\InventoryMonitor;
 use App\Models\DetailMonitorXPIC;
-use App\Models\Pic;
+use App\Models\User;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Session;
 
 class InventoryMonitorController extends Controller
 {
@@ -24,9 +26,26 @@ class InventoryMonitorController extends Controller
     {
         $pbrungkad = [
         'aug' => InventoryMonitor::get(),
-        'totalCount' => InventoryMonitor::count()
+        'totalCount' => InventoryMonitor::count(),
+        'slug' => 'inventory'
         ];
+
         return view('main.inventory.monitor.inventory-monitor', $pbrungkad);
+    }
+
+    public function alert()
+    {
+        try {
+            // Your success logic here
+
+            Session::flash('success', 'Operation completed successfully');
+        } catch (\Exception $e) {
+            // Your error logic here
+
+            Session::flash('error', 'Operation failed. Please try again.');
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -39,9 +58,9 @@ class InventoryMonitorController extends Controller
 
         $id_monitor = str_replace('_', '/', $id);
         $data = [
-            // 'monitor' => InventoryMonitor::findOrFail($id_monitor),
             'monitor' => InventoryMonitor::where('id_monitor', $id_monitor)->first(),
             'monitorData' => DetailMonitorXPIC::where('id', $id)->first(),
+            'slug' => 'inventory',
         ];
 
         return view('main.inventory.monitor.detail-monitor', $data);
@@ -54,15 +73,20 @@ class InventoryMonitorController extends Controller
      */
     public function create()
     {
-        $status = Status::all();
-        $jenisPerangkat = JenisPerangkat::all();
-        $merks = Merk::all();
-        $vendor = Vendor::all();
-        $workstation = Workstation::all();
-        $monitors = InventoryMonitor::all();
-        $pic = Pic::all();
+        $data = [
+            'status' => Status::all(),
+            // Untuk jenis perangkat berdasarkan detail atau assetnya
+            'jenisPerangkat' => JenisPerangkat::where('detail', 1)->get(),
+            'merks' => Merk::all(),
+            'vendor' => Vendor::all(),
+            'workstation' => Workstation::all(),
+            'monitors' => InventoryMonitor::all(),
+            'pic' => Pic::all(),
+            'admin' => User::all(),
+            'slug' => 'inventory',
+        ];
 
-        return view('main.inventory.monitor.tambah-monitor', compact('status','jenisPerangkat','merks', 'vendor', 'workstation', 'monitors', 'pic'));
+        return view('main.inventory.monitor.tambah-monitor', $data);
     }
 
     /**
@@ -72,9 +96,12 @@ class InventoryMonitorController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // function getLastnumber($count) {
+    function getTheIncrement($count) {
+        $count = InventoryMonitor::count()+1;
 
-    // }
+        return ($count);
+    }
+
     function generateId($kategori_id, $merk_id, $tgl_perolehan) {
         $count = InventoryMonitor::count()+1;
         if ($count > 0 && $count < 10) {
@@ -84,7 +111,7 @@ class InventoryMonitorController extends Controller
         }
         $kategori = JenisPerangkat::findOrFail($kategori_id);
         $merk = Merk::findOrFail($merk_id);
-        return "MAK/IT/{$kategori->jenisperangkat}-{$merk->merk}/{$tgl_perolehan}/{$kategori->id_detail}{$count}";
+        return "MAK/IT/{$kategori->jenisperangkat}-{$merk->merk}/{$tgl_perolehan}/{$kategori->detail}{$count}";
     }
 
     public function store(Request $request)
@@ -92,39 +119,41 @@ class InventoryMonitorController extends Controller
         $originalDate = $request->tanggal_input;
         $newDate = date("md", strtotime($originalDate));
 
-        $jenisP = $request->jenisperangkat_id = 1;
-
+        //manggil data
         $id = $this->generateId($request->jenisperangkat_id, $request->merk_id, $newDate);
+
         // validasi data
         $validateData1 = $request->validate([
-            // 'id_monitor' => 'required',
             'model_monitor' => 'required',
             'merk_id' => 'required',
+            'jenisperangkat_id' => 'required',
             'serial_number' => 'required',
-            // 'jenisperangkat_id' => 'required',
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
             'keterangan' => 'required',
         ]);
 
-        $validateData1['jenisperangkat_id'] = $jenisP;
-
         $validateData2 = $request->validate([
-            // 'monitor_id' => 'required',
             'pic_id' => 'required',
             'vendor_id' => 'required',
             'workstation_id' => 'required',
         ]);
+
+        //update data yang ada di pic buat nambah id asset
+        $validateData3['id_monitor'] = $id;
+        $resource = Pic::findOrFail($request->pic_id);
+        $resource->update($validateData3);
 
         $newData = [
             'monitor_id' => $id
         ];
 
         $data1 = array_merge($validateData1, [
-            "id_monitor"=>$id
+            "id_monitor" => $id,
         ]);
 
+        //menggabungkan 2 variabel
         $data2 = array_merge($validateData2, $newData);
 
         //create post
@@ -132,7 +161,7 @@ class InventoryMonitorController extends Controller
         DetailMonitorXPIC::create($data2);
 
         //balik
-        return redirect('/inventory-monitor');
+        return redirect('/inventory-monitor')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -166,7 +195,10 @@ class InventoryMonitorController extends Controller
             'detail' => DetailMonitorXPIC::where('monitor_id', $id_monitor)->first(),
             'monitors' => InventoryMonitor::where('id_monitor', $id_monitor)->first(),
             'pic' => Pic::all(),
+            'admin' => User::all(),
+            'slug' => 'inventory',
         ];
+
         return view('main.inventory.monitor.edit-monitor', $hehe);
     }
 
@@ -179,10 +211,7 @@ class InventoryMonitorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         $id_monitor = str_replace('_', '/', $id);
-        $invenMonitor = InventoryMonitor::where('id_monitor', $id_monitor)->first();
-        $detailMonitor = DetailMonitorXPIC::where('monitor_id', $id_monitor)->first();
 
         $validateData1 = $request->validate([
             'id_monitor' => 'required',
@@ -200,16 +229,31 @@ class InventoryMonitorController extends Controller
             'vendor_id' => 'required',
             'workstation_id' => 'required',
         ]);
-        
-        // dd($validateData2);
-        //update post
-        $invenMonitor->update($validateData1);
-        $detailMonitor->update($validateData2);
 
-        return redirect('/inventory-monitor');
+        $request->validate([
+            'pic_id' => 'required',
+            'id_monitor' => 'required',
+        ]);
+        $validateData3 = [
+            'id_monitor' => $request->id_monitor,
+        ];
 
+        $existingPic = Pic::where('id_monitor', $id_monitor)->first();
+
+        // Update or create the Pic record
+        if ($existingPic) {
+            // Update the existing Pic
+            $existingPic->update(['id_monitor' => null]);
+        } else {
+        }
+
+        //update data yang ada di pic buat nambah id asset
+        InventoryMonitor::where('id_monitor', $id_monitor)->update($validateData1);
+        DetailMonitorXPIC::where('monitor_id', $id_monitor)->update($validateData2);
+        Pic::where('id', $request->pic_id)->update($validateData3);
+
+        return redirect('/inventory-monitor/edit-monitor/'.$id)->with('toast_success', 'Data Telah Diubah');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -220,9 +264,9 @@ class InventoryMonitorController extends Controller
     public function destroy($id)
     {
         $id_monitor = str_replace('_', '/', $id);
-        $hapus = InventoryMonitor::findOrFail($id_monitor);
-        $hapus->delete();
+        $inventory = InventoryMonitor::findOrFail($id_monitor);
+        $inventory->delete();
 
-        return redirect('/inventory-monitor');
+        return redirect('/inventory-monitor')->with('toast_warning', 'Data Telah Dihapus');
     }
 }

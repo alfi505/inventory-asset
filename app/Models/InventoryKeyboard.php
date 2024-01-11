@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Merk;
+use App\Models\Status;
 use App\Models\JenisPerangkat;
 use App\Models\DetailKeyboardXPIC;
 use Illuminate\Database\Eloquent\Model;
@@ -13,34 +14,38 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class InventoryKeyboard extends Model
 {
     use HasFactory;
+    
+    protected $guarded = ['id_keyboard'];
+    protected $primaryKey = 'id_keyboard';
+    protected $table = 'inventory_keyboards';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    
+    protected $fillable = [
+        'id_keyboard',
+        'no_keyboard',
+        'merk_id',
+        'jenisperangkat_id',
+        'serial_number',
+        'model_keyboard',
+        'admin',
+        'tanggal_input',
+        'keterangan',
+        'status_id',
+    ];
 
     public function detailkeyboard():HasMany{
         return $this->hasMany(DetailKeyboardXPIC::class);
     }
 
     public function merk():BelongsTo{
-        return $this->belongsTo(Merk::class);
+        return $this->belongsTo(Merk::class, 'merk_id', 'id');
     }
 
     public function jenisperangkat():BelongsTo{
         return $this->belongsTo(JenisPerangkat::class);
     }
-
-    protected $guarded = ['id_keyboard'];
-    protected $primaryKey = 'id_keyboard';
-    protected $table = 'inventory_keyboards';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
-    protected $fillable = [
-        'id_keyboard',
-        'id_merk',
-        'id_jenisperangkat',
-        'serial_number',
-        'model_keyboard',
-        'admin',
-        'tanggal_input',
-        'keterangan',
-        'id_status',
-    ];
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
 }

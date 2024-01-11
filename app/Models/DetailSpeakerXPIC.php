@@ -14,31 +14,32 @@ class DetailSpeakerXPIC extends Model
 {
     use HasFactory;
 
-    public function speaker():BelongsTo{
-        return $this->belongsTo(InventorySpeaker::class);
-    }
-
-    public function pic():BelongsTo{
-        return $this->belongsTo(Pic::class);
-    }
-
-        public function workstation():BelongsTo{
-        return $this->belongsTo(Workstation::class);
-    }
-
-    public function vendor():BelongsTo{
-        return $this->belongsTo(Vendor::class);
-    }
-
-    protected $primaryKey = 'id_detailspeakerxpic';
-    public $incrementing = false;
+     protected $guarded = ['id'];
+    protected $primaryKey = 'id';
+    protected $table = 'detail_speaker_x_p_i_c_s';
+    public $incrementing = true;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id_detailspeakerxpic',
-        'id_speaker',
-        'id_pic',
-        'id_vendor',
-        'id_workstation',
+        'speaker_id',
+        'pic_id',
+        'vendor_id',
+        'workstation_id',
     ];
+
+    public function speaker(){
+        return $this->belongsTo(InventorySpeaker::class,  'speaker_id','id_speaker');
+    }
+
+    public function pic():BelongsTo{
+        return $this->belongsTo(Pic::class, 'pic_id', 'id');
+    }
+
+        public function workstation():BelongsTo{
+        return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
+    }
+
+    public function vendor():BelongsTo{
+        return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
+    }
 }

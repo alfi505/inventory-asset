@@ -20,6 +20,23 @@ class PicController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function detail($id){
+
+        // $id_monitor = str_replace('_', '/', $id);
+        $data = [
+            'pic' => Pic::where('id', $id)->first(),
+            'slug' => 'pic',
+        ];
+
+        return view('main.pic.detail-pic', $data);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

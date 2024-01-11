@@ -12,7 +12,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data Monitor</h1>
+                <a href="/inventory-monitor">
+                    <i class="fas fa-arrow-left ml-1"></i>
+                </a>
+                <h1 class="ml-3">Detail Data Monitor</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="{{ url('/inventory-monitor') }}">Inventory Monitor</a></div>
@@ -70,26 +73,23 @@
                                     <td>:</td>
                                     <td>{{ $monitorData->id_vendor->perusahaan ?? 'N/A' }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th>Admin</th>
                                     <td>:</td>
                                     <td>{{ $monitor->admin }}</td>
+                                </tr> --}}
+                                <tr>
+                                    <th>Status</th>
+                                    <td>:</td>
+                                    <td>{{ $monitor->status->status }}</td>
                                 </tr>
                                 <tr>
                                     <th>Keterangan</th>
                                     <td>:</td>
                                     <td>{{ $monitor->keterangan }}</td>
                                 </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>:</td>
-                                    <td>{{ $monitor->status->status }}</td>
-                                </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer text-right">
-                        <a href="/inventory-monitor" class="btn btn-primary text-right">Kembali</a>
                     </div>
                 </div>
             </div>

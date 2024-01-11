@@ -17,6 +17,9 @@ class MerkSeeder extends Seeder
     {
         //
         $data = [[
+            'merk' => 'RKT',
+            'keterangan' => 'Rakit',
+        ],[
             'merk' => 'LGH',
             'keterangan' => 'Logitech',
         ],[

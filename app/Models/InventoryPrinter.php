@@ -14,18 +14,6 @@ class InventoryPrinter extends Model
 {
     use HasFactory;
 
-    public function detailprinter():HasMany{
-        return $this->hasMany(DetailPrinterXPIC::class);
-    }
-
-    public function merk():BelongsTo{
-        return $this->belongsTo(Merk::class);
-    }
-
-    public function jenisperangkat():BelongsTo{
-        return $this->belongsTo(JenisPerangkat::class);
-    }
-
     protected $guarded = ['id_printer'];
     protected $primaryKey = 'id_printer';
     protected $table = 'inventory_printers';
@@ -43,4 +31,17 @@ class InventoryPrinter extends Model
         'keterangan',
         'status_id',
     ];
+    public function detailprinter():HasMany{
+        return $this->hasMany(DetailPrinterXPIC::class);
+    }
+    public function merk():BelongsTo{
+        return $this->belongsTo(Merk::class);
+    }
+    public function jenisperangkat():BelongsTo{
+        return $this->belongsTo(JenisPerangkat::class);
+    }
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
+
 }

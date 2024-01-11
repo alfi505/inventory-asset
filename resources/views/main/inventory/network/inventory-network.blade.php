@@ -6,9 +6,23 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 
 @section('main')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
@@ -25,56 +39,70 @@
                                 <h4>Network</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCount }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
-                    <div class="buttons py-5">
-                        <a href="/inventory-network/create" class="btn btn-primary">Tambah Network</a>
-                    </div>
-                </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Data Network</h4>
                             <div class="card-header-form">
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/inventory-network/create" class="btn btn-primary">Tambah Network</a>
                                     </div>
-                                </form>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table-striped table-md table">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>ID Network</th>
-                                        <th>No Ip</th>
-                                        <th>Posisi</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    @foreach ($network as $data)
+                                <table class="table-striped table-md table" id="networkses">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $data->id_network }}</td>
-                                            <td>{{ $data->id_ip_address }}</td>
-                                            <td>-</td>
-                                            <td>
-                                                <a href="/detail-network" class="btn btn-info">Detail</a>
-                                                <a href="#" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger" id="swal-6">Hapus</a>
-                                            </td>
+                                            <th>No</th>
+                                            <th>ID Network</th>
+                                            <th>No Ip</th>
+                                            <th>Posisi</th>
+                                            <th>Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($network as $data)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data->id_network }}</td>
+                                                <td>{{ $data->id_ip_address }}</td>
+                                                <td>-</td>
+                                                <td>
+
+                                                    <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('inventory-network.destroy', str_replace('/', '_', $data->id_network)) }}">
+                                                        <a href="/inventory-network/detail-network/{{ str_replace('/', '_', $data->id_network) }}"
+                                                            class="btn btn-info">Detail</a>
+                                                        <a href="/inventory-network/edit-network/{{ str_replace('/', '_', $data->id_network) }}"
+                                                            class="btn btn-secondary">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -94,7 +122,22 @@
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#networkses').DataTable({
+                searching: false, // Disable searching
+                paging: false, // Hide Pagination
+                info: false, // Hide information
+                lengthChange: false, // Hide entries per page
+                order: [
+                    [1, 'asc']
+                ]
+            });
+        });
+    </script>
 @endpush

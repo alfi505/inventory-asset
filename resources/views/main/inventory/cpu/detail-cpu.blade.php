@@ -11,7 +11,15 @@
 @section('main')<div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Data CPU</h1>
+                <a href="/inventory-cpu">
+                    <i class="fas fa-arrow-left ml-1"></i>
+                </a>
+                <h1 class="ml-3">Detail Data CPU</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/inventory-cpu') }}">Inventory Cpu</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Detail Cpu</div>
+                </div>
             </div>
 
             <div class="section-body">
@@ -22,17 +30,22 @@
                                 <tr>
                                     <th style="width: 15%">ID CPU</th>
                                     <td style="width: 1%">:</td>
-                                    <td>MAK/IT/CPU-RKT/1105/6024</td>
+                                    <td>{{ $cpu->id_cpu }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama Komputer</th>
                                     <td>:</td>
-                                    <td>Parangkusumo</td>
+                                    <td>{{ $cpu->nama_komputer }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama PIC</th>
                                     <td>:</td>
-                                    <td>Alfi</td>
+                                    <td>{{ $cpuData->PIC->nama_pic ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>No IP Address</th>
+                                    <td>:</td>
+                                    <td>{{ $cpuData->Workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Zona</th>
@@ -40,95 +53,92 @@
                                     <td>-</td>
                                 </tr>
                                 <tr>
-                                    <th>Nomor IP Address</th>
-                                    <td>:</td>
-                                    <td>127.11.1.156</td>
-                                </tr>
-                                <tr>
                                     <th>Kategori</th>
                                     <td>:</td>
-                                    <td>Administrasi</td>
+                                    <td>{{ $cpu->kategori }}</td>
                                 </tr>
                                 <tr>
                                     <th>Serial Number</th>
                                     <td>:</td>
-                                    <td>9864-0998-3422-8847</td>
+                                    <td>{{ $cpu->serial_number }}</td>
                                 </tr>
                                 <tr>
                                     <th>OS</th>
                                     <td>:</td>
-                                    <td>Windows 10</td>
+                                    <td>{{ $cpu->os }}</td>
                                 </tr>
                                 <tr>
                                     <th>Processor</th>
                                     <td>:</td>
-                                    <td>Intel i5 12450H</td>
+                                    <td>{{ $cpu->processor }}</td>
                                 </tr>
                                 <tr>
                                     <th>Mainboard</th>
                                     <td>:</td>
-                                    <td>MSI H670</td>
+                                    <td>{{ $cpu->mainboard }}</td>
                                 </tr>
                                 <tr>
                                     <th>RAM</th>
                                     <td>:</td>
-                                    <td>8GB DDR5</td>
+                                    <td>{{ $cpu->ram }}</td>
                                 </tr>
                                 <tr>
                                     <th>ROM</th>
                                     <td>:</td>
-                                    <td>1TB NVME</td>
+                                    <td>{{ $cpu->rom }}</td>
                                 </tr>
                                 <tr>
                                     <th>VGA</th>
                                     <td>:</td>
-                                    <td>NVIDIA RTX 5090</td>
+                                    <td>{{ $cpu->vga }}</td>
                                 </tr>
                                 <tr>
                                     <th>Soundcard</th>
                                     <td>:</td>
-                                    <td>-</td>
+                                    <td>{{ $cpu->soundcard }}</td>
                                 </tr>
                                 <tr>
                                     <th>CDRom</th>
                                     <td>:</td>
-                                    <td>-</td>
+                                    <td>{{ $cpu->cdroom }}</td>
                                 </tr>
                                 <tr>
                                     <th>NIC</th>
                                     <td>:</td>
-                                    <td>-</td>
+                                    <td>{{ $cpu->nic }}</td>
                                 </tr>
                                 <tr>
                                     <th>MAC</th>
                                     <td>:</td>
-                                    <td>-</td>
+                                    <td>{{ $cpu->mac }}</td>
                                 </tr>
                                 <tr>
                                     <th>Casing</th>
                                     <td>:</td>
-                                    <td>Digital Alliance N23</td>
+                                    <td>{{ $cpu->casing }}</td>
                                 </tr>
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    <td>ELS Komputer</td>
+                                    {{-- <td>{{ $cpuData->vendor_id }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th>Software Lain</th>
                                     <td>:</td>
-                                    <td>MS Office 2019, Corel Draw</td>
+                                    {{-- <td>{{ $cpuData->software_id }}</td> --}}
                                 </tr>
                                 <tr>
                                     <th>Status</th>
                                     <td>:</td>
-                                    <td>Continue - Baik</td>
+                                    <td>{{ $cpu->status->status }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Keterangan</th>
+                                    <td>:</td>
+                                    <td>{{ $cpu->keterangan }}</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer text-right">
-                        <a href="/inventory-cpu" class="btn btn-primary text-right">Kembali</a>
                     </div>
                 </div>
             </div>

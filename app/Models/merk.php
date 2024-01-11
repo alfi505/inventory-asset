@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\InventoryCpu;
 use App\Models\InventoryMouse;
 use App\Models\InventoryMonitor;
 use App\Models\InventoryNetwork;
@@ -16,7 +17,18 @@ class Merk extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     protected $primaryKey = 'id';
+    protected $table = 'merks';
+
+    protected $fillable =[
+        'merk',
+        'keterangan',
+    ];
+
+    public function cpu():HasOne{
+        return $this->hasOne(InventoryCpu::class);
+    }
     public function monitor():HasOne{
         return $this->hasOne(InventoryMonitor::class);
     }
@@ -36,9 +48,4 @@ class Merk extends Model
         return $this->hasOne(InventorySpeaker::class);
     }
 
-    protected $fillable =[
-        'merk_id',
-        'merk',
-        'keterangan',
-    ];
 }

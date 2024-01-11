@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pic;
+use App\Models\Status;
+use App\Models\DetailCpuXPIC;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InventoryCpu extends Model
 {
@@ -14,20 +19,22 @@ class InventoryCpu extends Model
         return $this->belongsTo(Pic::class);
     }
 
+    protected $guarded = ['id_cpu'];
     protected $primaryKey = 'id_cpu';
+    protected $table = 'inventory_cpus';
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = [
         'id_cpu',
         'nama_komputer',
-        'nama_pic',
+        'jenisperangkat_id',
+        'merk_id',
         'zona',
-        'id_ip',
         'kategori',
         'serial_number',
         'os',
         'processor',
-        'mainvoard',
+        'mainboard',
         'ram',
         'rom',
         'vga',
@@ -36,9 +43,21 @@ class InventoryCpu extends Model
         'nic',
         'mac',
         'casing',
-        'id_vendor',
-        'id_software',
+        'admin',
         'tanggal_input',
-        'status',
+        'status_id',
     ];
+
+    public function detailcpu():HasMany{
+        return $this->hasMany(DetailCpuXPIC::class);
+    }
+    public function merk():BelongsTo{
+        return $this->belongsTo(Merk::class, 'merk_id', 'id');
+    }
+    public function jenisperangkat():BelongsTo{
+        return $this->belongsTo(JenisPerangkat::class);
+    }
+    public function status():BelongsTo{
+        return $this->belongsTo(Status::class);
+    }
 }

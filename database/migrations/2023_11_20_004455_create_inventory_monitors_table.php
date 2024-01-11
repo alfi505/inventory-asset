@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('inventory_monitors', function (Blueprint $table) {
             $table->string('id_monitor')->primary();
+            // $table->integer('no_monitor');
             $table->foreignId('merk_id');
             $table->foreignId('jenisperangkat_id');
             $table->string('serial_number');
