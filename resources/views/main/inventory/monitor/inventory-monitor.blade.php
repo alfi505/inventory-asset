@@ -107,9 +107,6 @@
                                                         <button class="btn btn-danger" type="submit">Delete</button>
                                                     </form>
 
-                                                    {{-- <a href="/inventory-monitor/hapus/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
-                                                            onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
-                                                            class="btn btn-danger">Delete</a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -174,7 +171,7 @@
                 info: false, // Hide information
                 lengthChange: false, // Hide entries per page
                 order: [
-                    [1, 'asc']
+                    [0, 'asc']
                 ]
             });
         });

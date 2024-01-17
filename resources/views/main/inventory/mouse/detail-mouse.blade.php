@@ -61,7 +61,7 @@
                                 <tr>
                                     <th>No IP Address</th>
                                     <td>:</td>
-                                    <td>{{ $mouseData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                    <td>{{ $mouseData->workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Serial Number</th>
@@ -71,7 +71,7 @@
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    <td>{{ $mouseData->id_vendor->perusahaan ?? 'N/A' }}</td>
+                                    <td>{{ $mouseData->vendor->perusahaan ?? 'N/A' }}</td>
                                 </tr>
                                 {{-- <tr>
                                     <th>Admin</th>

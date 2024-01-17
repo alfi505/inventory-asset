@@ -6,13 +6,31 @@
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 
 @section('main')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>PIC</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">PIC</div>
+                </div>
             </div>
             <div class="row position-relative">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -25,14 +43,9 @@
                                 <h4>PIC</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCount }}
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
-                    <div class="buttons py-5">
-                        <a href="/data-pic/create" class="btn btn-primary">Tambah PIC</a>
                     </div>
                 </div>
             </div>
@@ -43,73 +56,53 @@
                         <div class="card-header">
                             <h4>Data PIC</h4>
                             <div class="card-header-form">
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/data-pic/create" class="btn btn-primary">Tambah PIC</a>
                                     </div>
-                                </form>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table-striped table">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama PIC</th>
-                                        <th>Nama Komputer</th>
-                                        <th>Nomor IP</th>
-                                        <th>ID CPU</th>
-                                        <th>Unit</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Alfi</td>
-                                        <td>Parangkusumo</td>
-                                        <td>127.11.1.156</td>
-                                        <td>MAK/IT/CPU-RKT/1105/6024</td>
-                                        <td>RND</td>
-                                        <td>
-                                            <a href="/detail-pic" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andrew</td>
-                                        <td>Semen Tiga Roda</td>
-                                        <td>127.11.1.160</td>
-                                        <td>MAK/IT/CPU-RKT/0420/6030</td>
-                                        <td>MARK</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Budi</td>
-                                        <td>Cap Badak</td>
-                                        <td>127.11.1.78</td>
-                                        <td>MAK/IT/CPU-RKT/1230/6044</td>
-                                        <td>HRD</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            <a href="#" class="btn btn-secondary">Edit</a>
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <table class="table-striped table" id="pic">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama PIC</th>
+                                            <th>Posisi</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($pic as $pics)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $pics->nama_pic }}</td>
+                                                <td>{{ $pics->posisi_id ?? '-' }}</td>
+                                                <td>
+                                                    <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('data-pic.destroy', $pics->id) }}">
+                                                        <a href="/detail-pic/{{ $pics->id }}"
+                                                            class="btn btn-info">Detail</a>
+                                                        <a href="/data-pic/edit-pic/{{ $pics->id }}"
+                                                            class="btn btn-secondary">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -133,4 +126,17 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pic').DataTable({
+                searching: false, // Disable searching
+                paging: false, // Hide Pagination
+                info: false, // Hide information
+                lengthChange: false, // Hide entries per page
+                order: [
+                    [1, 'desc']
+                ]
+            });
+        });
+    </script>
 @endpush

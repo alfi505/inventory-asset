@@ -26,14 +26,14 @@
                                     <h4>PIC</h4>
                                 </div>
                                 <div class="card-body">
-                                    10
+                                    {{ $totalCountpic }}
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <a href="/data-workstation">
+                    <a href="/workstation">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger">
                                 <i class="fas fa-desktop"></i>
@@ -43,7 +43,7 @@
                                     <h4>Workstation</h4>
                                 </div>
                                 <div class="card-body">
-                                    42
+                                    {{ $totalCount1 }}
                                 </div>
                             </div>
                         </div>

@@ -58,7 +58,7 @@ class InventorySpeakerController extends Controller
         $id_speaker = str_replace('_', '/', $id);
         $data = [
             'speaker' => InventorySpeaker::where('id_speaker', $id_speaker)->first(),
-            'speakerData' => DetailSpeakerXPIC::where('id', $id)->first(),
+            'speakerData' => DetailSpeakerXPIC::where('speaker_id', $id_speaker)->first(),
             'slug' => 'inventory'
         ];
 

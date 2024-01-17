@@ -52,7 +52,7 @@ class InventoryMouseController extends Controller
         $id_mouse = str_replace('_', '/', $id);
         $data = [
             'mouse' => InventoryMouse::where('id_mouse', $id_mouse)->first(),
-            'mouseData' => DetailMouseXPIC::where('id', $id)->first(),
+            'mouseData' => DetailMouseXPIC::where('mouse_id', $id_mouse)->first(),
             'slug' => 'inventory',
         ];
 

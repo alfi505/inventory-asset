@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Workstation;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\Storeno_ipRequest;
 use App\Http\Requests\Updateno_ipRequest;
@@ -16,7 +17,13 @@ class WorkstationController extends Controller
      */
     public function index()
     {
-        return view('main.pic.workstation.data-workstation');
+
+        $data = [
+            'workstation' => Workstation::all(),
+            'totalCount' => Workstation::count(),
+            'slug' => 'pic',
+        ];
+        return view('main.pic.workstation.data-workstation', $data);
     }
 
     /**
@@ -27,7 +34,6 @@ class WorkstationController extends Controller
 
     public function detail($id){
 
-        $id_monitor = str_replace('_', '/', $id);
         $data = [
             'workstation' => Workstation::where('id', $id)->first(),
             'slug' => 'pic',
@@ -43,18 +49,25 @@ class WorkstationController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'slug' => 'pic',
+        ];
+        return view('main.pic.workstation.tambah-workstation', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeno_ipRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeno_ipRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'no_ip_address' => 'required',
+        ]);
+        Workstation::create($validateData);
+        return redirect('/workstation')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -94,11 +107,12 @@ class WorkstationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\no_ip  $no_ip
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(no_ip $no_ip)
+    public function destroy($id)
     {
-        //
+        Workstation::destroy($id);
+        return redirect('/workstation')->with('toast_success', 'Data Telah Dihapus');
     }
 }

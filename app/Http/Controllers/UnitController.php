@@ -106,7 +106,7 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        Unit::whereId($id)->delete();
+        Unit::destroy($id);
         return redirect('/utilities-unit')->with('toast_success', 'Data Telah Dihapus');
     }
 }

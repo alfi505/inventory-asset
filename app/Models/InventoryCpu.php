@@ -15,10 +15,6 @@ class InventoryCpu extends Model
     use HasFactory;
 
     // protected $guarded = ['id_cpu'];
-    public function pic(){
-        return $this->belongsTo(Pic::class);
-    }
-
     protected $guarded = ['id_cpu'];
     protected $primaryKey = 'id_cpu';
     protected $table = 'inventory_cpus';
@@ -48,6 +44,9 @@ class InventoryCpu extends Model
         'status_id',
     ];
 
+    public function pic(){
+        return $this->belongsTo(Pic::class);
+    }
     public function detailcpu():HasMany{
         return $this->hasMany(DetailCpuXPIC::class);
     }
@@ -59,5 +58,21 @@ class InventoryCpu extends Model
     }
     public function status():BelongsTo{
         return $this->belongsTo(Status::class);
+    }
+    public function software():HasMany{
+        return $this->hasMany(CpuXSoftware::class);
+    }
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('id_cpu', 'like', '%' . $keyword . '%')
+            ->orWhereHas('merk', function ($query) use ($keyword) {
+                $query->where('merk', 'like', '%' . $keyword . '%');
+            })
+            ->orWhereHas('jenisperangkat', function ($query) use ($keyword) {
+                $query->where('jenisperangkat', 'like', '%' . $keyword . '%');
+            })
+            ->orWhereHas('status', function ($query) use ($keyword) {
+                $query->where('status', 'like', '%' . $keyword . '%');
+            });
     }
 }

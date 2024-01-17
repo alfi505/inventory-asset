@@ -7,23 +7,22 @@ use App\Models\Status;
 use App\Models\JenisPerangkat;
 use App\Models\DetailKeyboardXPIC;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class InventoryKeyboard extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = ['id_keyboard'];
     protected $primaryKey = 'id_keyboard';
     protected $table = 'inventory_keyboards';
     public $incrementing = false;
     protected $keyType = 'string';
-    
+
     protected $fillable = [
         'id_keyboard',
-        'no_keyboard',
+        // 'no_keyboard',
         'merk_id',
         'jenisperangkat_id',
         'serial_number',
@@ -34,8 +33,8 @@ class InventoryKeyboard extends Model
         'status_id',
     ];
 
-    public function detailkeyboard():HasMany{
-        return $this->hasMany(DetailKeyboardXPIC::class);
+    public function detailkeyboard(){
+        return $this->hasMany(DetailKeyboardXPIC::class, 'keyboard_id');
     }
 
     public function merk():BelongsTo{

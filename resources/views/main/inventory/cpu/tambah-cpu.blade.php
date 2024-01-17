@@ -117,7 +117,6 @@
                             <div class="form-group col">
                                 <label>Merk Cpu</label>
                                 <select class="form-control select2" name="merk_id" id="merk_id">
-                                    <option value="">Pilih Dulu</option>
                                     @foreach ($merks as $data)
                                         <option value="{{ $data->id }}">{{ $data->keterangan }}</option>
                                     @endforeach

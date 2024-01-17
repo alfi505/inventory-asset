@@ -2,26 +2,25 @@
 
 namespace App\Models;
 
-use App\Models\Posisi;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Divisi extends Model
+class CpuXSoftware extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
     protected $primaryKey = 'id';
-    protected $table = 'divisis';
+    protected $table = 'CpuXSoftware';
     public $incrementing = true;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'divisi',
-        'keterangan',
+        'cpu_id',
+        'software_id',
     ];
 
-    public function posisi(){
-        return $this->hasMany(Posisi::class, 'divisi_id', 'id');
+    public function cpu(){
+        return $this->belongsTo(InventoryCpu::class, 'cpu_id', 'id_cpu');
     }
 }

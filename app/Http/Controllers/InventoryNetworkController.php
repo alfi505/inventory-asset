@@ -42,7 +42,7 @@ class InventoryNetworkController extends Controller
         $id_network = str_replace('_', '/', $id);
         $data = [
             'network' => InventoryNetwork::where('id_network', $id_network)->first(),
-            'networkData' => DetailNetworkXPIC::where('id', $id)->first(),
+            'networkData' => DetailNetworkXPIC::where('network_id', $id_network)->first(),
             'slug' => 'inventory',
         ];
 

@@ -61,7 +61,7 @@
                                 <tr>
                                     <th>No IP Address</th>
                                     <td>:</td>
-                                    <td>{{ $printerData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                    <td>{{ $printerData->workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Serial Number</th>
@@ -71,7 +71,7 @@
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    <td>{{ $printerData->id_vendor->perusahaan ?? 'N/A' }}</td>
+                                    <td>{{ $printerData->vendor->perusahaan ?? 'N/A' }}</td>
                                 </tr>
                                 {{-- <tr>
                                     <th>Admin</th>

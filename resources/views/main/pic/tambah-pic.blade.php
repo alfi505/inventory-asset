@@ -19,6 +19,11 @@
         <section class="section">
             <div class="section-header">
                 <h1>PIC</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/pic') }}">PIC</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Tambah PIC</div>
+                </div>
             </div>
 
             <form action="{{ url('/data-pic') }}" method="POST">

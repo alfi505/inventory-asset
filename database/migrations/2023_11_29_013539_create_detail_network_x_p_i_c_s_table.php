@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('network_id')->references('id_network')->on('inventory_networks')->onDelete('cascade');
             $table->foreignId('pic_id')->constrained();
             $table->foreignId('vendor_id')->constrained();
-            $table->foreignId('workstation_id');
+            $table->foreignId('workstation_id')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@
                 <a href="/pic">
                     <i class="fas fa-arrow-left ml-1"></i>
                 </a>
-                <h1 class="ml-3">Detail Data CPU</h1>
+                <h1 class="ml-3">Detail Data PIC</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="{{ url('/pic') }}">Pic</a></div>
@@ -33,11 +33,11 @@
                                     <td style="width: 1%">:</td>
                                     <td>{{ $pic->id }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th>Nama Komputer</th>
                                     <td>:</td>
-                                    <td>{{ $pic->nama_komputer }}</td>
-                                </tr>
+                                    <td>{{ $pic->workstation->hostname }}</td>
+                                </tr> --}}
                                 <tr>
                                     <th>Nama PIC</th>
                                     <td>:</td>

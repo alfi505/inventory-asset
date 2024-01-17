@@ -107,7 +107,7 @@ class DivisiController extends Controller
      */
     public function destroy($id)
     {
-        Divisi::where($id)->delete();
+        Divisi::destroy($id);
         return redirect('/utilities-div')->with('toast_success', 'Data Telah Dihapus');
     }
 }

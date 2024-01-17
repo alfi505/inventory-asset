@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pic;
+use App\Models\Workstation;
+use Illuminate\Http\Request;
+use App\Models\DetailCpuXPIC;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\UpdatepicRequest;
-use Illuminate\Http\Request;
 
 class PicController extends Controller
 {
@@ -16,7 +18,14 @@ class PicController extends Controller
      */
     public function index()
     {
-        return view('main.pic.data-pic');
+
+        $data = [
+            'pic' => Pic::all(),
+            'totalCount' => Pic::count(),
+            'slug' => 'pic',
+        ];
+        return view('main.pic.data-pic', $data);
+
     }
 
     /**
@@ -26,13 +35,12 @@ class PicController extends Controller
      */
 
     public function detail($id){
-
-        // $id_monitor = str_replace('_', '/', $id);
         $data = [
             'pic' => Pic::where('id', $id)->first(),
+            'detail' => DetailCpuXPIC::where('pic_id', $id)->first(),
             'slug' => 'pic',
         ];
-
+        // dd($data);
         return view('main.pic.detail-pic', $data);
     }
 
@@ -43,7 +51,10 @@ class PicController extends Controller
      */
     public function create()
     {
-        return view('main.pic.tambah-pic');
+        $data = [
+            'slug' => 'pic',
+        ];
+        return view('main.pic.tambah-pic', $data);
     }
 
     /**
@@ -56,11 +67,12 @@ class PicController extends Controller
     {
         $validateData = $request->validate([
             'nama_pic' => 'required',
+            'posisi_id' => 'required',
         ]);
 
         Pic::create($validateData);
 
-        return redirect('/data-pic');
+        return redirect('/data-pic')->with('toast_success', 'Data Telah Ditambahkan');
     }
 
     /**
@@ -100,11 +112,13 @@ class PicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\pic  $pic
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pic $pic)
+    public function destroy($id)
     {
-        //
+        $pic = Pic::findOrFail($id);
+        $pic->delete();
+        return redirect('/data-pic')->with('toast_success', 'Data Telah Dihapus');
     }
 }

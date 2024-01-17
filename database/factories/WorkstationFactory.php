@@ -18,7 +18,6 @@ class WorkstationFactory extends Factory
     {
         return [
             'no_ip_address' => fake()->ipv4(),
-            'hostname' => fake()->name(),
         ];
     }
 }

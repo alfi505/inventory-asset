@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Posisi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
@@ -19,4 +20,8 @@ class Unit extends Model
         'unit',
         'keterangan',
     ];
+
+    public function posisi(){
+        return $this->hasMany(Posisi::class, 'unit_id', 'id');
+    }
 }

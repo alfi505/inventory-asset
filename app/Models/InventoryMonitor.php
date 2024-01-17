@@ -7,7 +7,6 @@ use App\Models\Status;
 use App\Models\JenisPerangkat;
 use App\Models\DetailMonitorXPIC;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -34,16 +33,19 @@ class InventoryMonitor extends Model
         'status_id',
     ];
 
-    public function detailmonitor():HasMany{
-        return $this->hasMany(DetailMonitorXPIC::class);
+    public function detailmonitor(){
+        return $this->hasMany(DetailMonitorXPIC::class, 'monitor_id');
     }
     public function merk():BelongsTo{
-        return $this->belongsTo(Merk::class, 'merk_id', 'id');
+        return $this->belongsTo(Merk::class);
     }
     public function jenisperangkat():BelongsTo{
         return $this->belongsTo(JenisPerangkat::class);
     }
     public function status():BelongsTo{
         return $this->belongsTo(Status::class);
+    }
+    public function workstation():BelongsTo{
+        return $this->belongsTo(Workstation::class);
     }
 }

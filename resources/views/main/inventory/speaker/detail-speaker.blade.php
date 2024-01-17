@@ -61,7 +61,7 @@
                                 <tr>
                                     <th>No IP Address</th>
                                     <td>:</td>
-                                    <td>{{ $speakerData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                    <td>{{ $speakerData->workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Serial Number</th>
@@ -71,7 +71,7 @@
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    <td>{{ $speakerData->id_vendor->perusahaan ?? 'N/A' }}</td>
+                                    <td>{{ $speakerData->vendor->perusahaan ?? 'N/A' }}</td>
                                 </tr>
                                 {{-- <tr>
                                     <th>Admin</th>

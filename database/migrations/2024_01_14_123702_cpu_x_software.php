@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('workstations', function (Blueprint $table) {
+        Schema::create('CpuXSoftware', function (Blueprint $table) {
             $table->id();
-            $table->string('no_ip_address');
-            $table->string('hostname')->nullable();
+            $table->string('cpu_id')->nullable();
+            $table->foreign('cpu_id')->references('id_cpu')->on('inventory_cpus')->onDelete('cascade');
+            $table->foreignId('software_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workstations');
+        Schema::dropIfExists('CpuXSoftware');
     }
 };

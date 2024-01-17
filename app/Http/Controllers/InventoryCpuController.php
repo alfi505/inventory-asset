@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CpuXSoftware;
 use App\Models\Pic;
 use App\Models\Merk;
 use App\Models\User;
@@ -45,7 +46,7 @@ class InventoryCpuController extends Controller
         $id_cpu = str_replace('_', '/', $id);
         $data = [
             'cpu' => InventoryCpu::where('id_cpu', $id_cpu)->first(),
-            'cpuData' => DetailCpuXPIC::where('id', $id)->first(),
+            'cpuData' => DetailCpuXPIC::where('cpu_id', $id_cpu)->first(),
             'slug' => 'inventory',
         ];
 
@@ -137,7 +138,11 @@ class InventoryCpuController extends Controller
             'pic_id' => 'required',
             'vendor_id' => 'required',
             'workstation_id' => 'required',
-            'software_id' => 'required|array',
+            'software_id' => 'required',
+        ]);
+
+        $validateData4 = $request->validate([
+            'software_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -150,8 +155,8 @@ class InventoryCpuController extends Controller
         foreach ($request->software_id as $softwareId) {
         $softwareRelations[] = [
             'software_id' => $softwareId,
-    ];
-}
+        ];
+        }
 
         $newData = [
             'cpu_id' => $id
@@ -164,12 +169,13 @@ class InventoryCpuController extends Controller
         //menggabungkan 2 variabel
         $data2 = array_merge($validateData2, $newData);
 
+        $data3 = array_merge($validateData4, $newData);
+
         //create post
         $inventorycpu = InventoryCpu::create($data1);
         $inventorycpu->detailcpu()->create($data2);
+        CpuXSoftware::create($data3);
         $inventorycpu->detailcpu->software()->attach($softwareRelations);
-        // InventoryCpu::create($data1);
-        // DetailCpuXPIC::create($data2);
 
         //balik
         return redirect('/inventory-cpu')->with('toast_success', 'Data Telah Ditambahkan');

@@ -1,18 +1,36 @@
 @extends('layouts.app')
 
-@section('title', 'No IP')
+@section('title', 'Workstation')
 
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 @endpush
 
 @section('main')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>No IP</h1>
+                <h1>Workstation</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ url('/dashboard-admin') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active" aria-current="page">Workstation</div>
+                </div>
             </div>
             <div class="row position-relative">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -22,17 +40,12 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>No IP</h4>
+                                <h4>Workstation</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{ $totalCount }}
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-6 col-sm-6 col-12 text-right">
-                    <div class="buttons py-5">
-                        <a href="/tambah-workstation" class="btn btn-primary">Tambah IP</a>
                     </div>
                 </div>
             </div>
@@ -43,65 +56,50 @@
                         <div class="card-header">
                             <h4>Data No IP</h4>
                             <div class="card-header-form">
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="/workstation/create" class="btn btn-primary">Tambah Workstation</a>
                                     </div>
-                                </form>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table-striped table-md table">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Komputer</th>
-                                        <th>No IP Address</th>
-                                        <th>Keterangan</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Parangkusumo</td>
-                                        <td>127.11.1.156</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Semen Tiga Roda</td>
-                                        <td>127.11.1.160</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Cap Badak</td>
-                                        <td>127.11.1.78</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info">Detail</a>
-                                            {{-- <a href="#" class="btn btn-secondary">Edit</a> --}}
-                                            <a href="#">
-                                                <button class="btn btn-danger" id="swal-6">Hapus</button>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                <table class="table-striped table-md table" id="workstation">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>IP Address</th>
+                                            <th>Hostname</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($workstation as $data)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data->no_ip_address }}</td>
+                                                <td>{{ $data->hostname }}</td>
+                                                <td>
+                                                    <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('workstation.destroy', $data->id) }}">
+                                                        <a href="/workstation/edit-workstation/{{ $data->id }}"
+                                                            class="btn btn-secondary">Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
+                                                </td>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -125,4 +123,17 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#workstation').DataTable({
+                searching: false, // Disable searching
+                paging: false, // Hide Pagination
+                info: false, // Hide information
+                lengthChange: false, // Hide entries per page
+                order: [
+                    [1, 'desc']
+                ]
+            });
+        });
+    </script>
 @endpush

@@ -106,7 +106,7 @@ class DirektoratController extends Controller
      */
     public function destroy($id)
     {
-        Direktorat::whereId($id)->delete();
+        Direktorat::destroy($id);
         return redirect('/utilities-dir')->with('toast_success', 'Data Telah Dihapus');
     }
 }

@@ -42,7 +42,7 @@ class InventoryPrinterController extends Controller
         $id_printer = str_replace('_', '/', $id);
         $data = [
             'printer' => InventoryPrinter::where('id_printer', $id_printer)->first(),
-            'printerData' => DetailPrinterXPIC::where('id', $id)->first(),
+            'printerData' => DetailPrinterXPIC::where('printer_id', $id_printer)->first(),
             'slug' => 'inventory',
         ];
 

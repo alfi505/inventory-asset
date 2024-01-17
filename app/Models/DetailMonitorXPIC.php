@@ -7,9 +7,7 @@ use App\Models\Vendor;
 use App\Models\Workstation;
 use App\Models\InventoryMonitor;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DetailMonitorXPIC extends Model
 {
@@ -29,19 +27,35 @@ class DetailMonitorXPIC extends Model
     ];
 
     public function monitor(){
-        return $this->belongsTo(InventoryMonitor::class,  'monitor_id','id_monitor');
+        return $this->belongsTo(InventoryMonitor::class, 'monitor_id');
     }
 
-    public function pic():BelongsTo{
+    public function pic(){
         return $this->belongsTo(Pic::class, 'pic_id', 'id');
     }
 
-    public function workstation():BelongsTo{
-    return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
+    public function workstation(){
+        return $this->belongsTo(Workstation::class, 'workstation_id', 'id');
     }
 
-    public function vendor():BelongsTo{
+    public function vendor(){
         return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
+    }
+
+    public function scopeSearch($query, $keyword){
+    return $query->select('detail_monitor_x_p_i_c_s.*', 'im.id_monitor', 'w.hostname', 'w.no_ip_address', 's.status', 'im.tanggal_input')
+        ->join('inventory_monitors as im', 'detail_monitor_x_p_i_c_s.monitor_id', '=', 'im.id_monitor')
+        ->join('pics as p', 'detail_monitor_x_p_i_c_s.pic_id', '=', 'p.id')
+        ->join('vendors as v', 'detail_monitor_x_p_i_c_s.vendor_id', '=', 'v.id')
+        ->join('workstations as w', 'detail_monitor_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->join('statuses as s', 'im.status_id', '=', 's.id')
+        ->where('im.id_monitor', 'like', '%' . $keyword . '%')
+        ->orWhere('w.hostname', 'like', '%' . $keyword . '%')
+        ->orWhere('p.nama_pic', 'like', '%' . $keyword . '%')
+        ->orWhere('v.id', 'like', '%' . $keyword . '%')
+        ->orWhere('w.no_ip_address', 'like', '%' . $keyword . '%')
+        ->orWhere('s.status', 'like', '%' . $keyword . '%')
+        ->orWhere('im.tanggal_input', 'like', '%' . $keyword . '%');
     }
 
 }

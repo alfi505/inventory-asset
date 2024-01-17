@@ -59,7 +59,7 @@ class InventoryMonitorController extends Controller
         $id_monitor = str_replace('_', '/', $id);
         $data = [
             'monitor' => InventoryMonitor::where('id_monitor', $id_monitor)->first(),
-            'monitorData' => DetailMonitorXPIC::where('id', $id)->first(),
+            'monitorData' => DetailMonitorXPIC::where('monitor_id', $id_monitor)->first(),
             'slug' => 'inventory',
         ];
 

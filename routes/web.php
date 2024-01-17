@@ -17,7 +17,7 @@ use App\Http\Controllers\InventoryNetworkController;
 use App\Http\Controllers\InventoryPrinterController;
 use App\Http\Controllers\InventorySpeakerController;
 use App\Http\Controllers\InventoryKeyboardController;
-use App\Http\Controllers\PIC;
+use App\Http\Controllers\PICS;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\VendorController;
@@ -44,12 +44,13 @@ Route::middleware(['auth.data'])->group(function () {
 // navbar dashboard
 Route::get('/searchHeader', [SearchController::class, 'index']);
 Route::get('/searchFilter', [SearchController::class, 'searchFilter']);
+Route::get('/inventory-{$filter}/detail-{$filter}/{id}', [SearchController::class, 'detail']);
 
 Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->middleware('auth');
 
 Route::get('/inventory-asset', [InventoryAsset::class, 'index'])->middleware('auth');
 
-Route::get('/pic', [PIC::class, 'index'])->middleware('auth');
+Route::get('/pic', [PICS::class, 'index'])->middleware('auth');
 
 Route::resource('/inventory-cpu',InventoryCpuController::class);
 Route::get('/inventory-cpu/detail-cpu/{id}', [InventoryCpuController::class, 'detail']);
@@ -80,12 +81,12 @@ Route::get('/inventory-network/detail-network/{id}', [InventoryNetworkController
 Route::get('/inventory-network/edit-network/{id}', [InventoryNetworkController::class, 'edit']);
 
 Route::resource('/data-pic', PicController::class);
-Route::get('/pic/detail-pic/{id}', [PicController::class, 'detail']);
-Route::get('/pic/edit-pic/{id}', [PicController::class, 'edit']);
+Route::get('/detail-pic/{id}', [PicController::class, 'detail']);
+Route::get('/edit-pic/{id}', [PicController::class, 'edit']);
 
 Route::resource('/workstation', WorkstationController::class);
-Route::get('/pic/workstation/detail-workstation/{id}', [WorkstationController::class, 'detail']);
-Route::get('/pic/workstation/edit-workstation/{id}', [WorkstationController::class, 'edit']);
+Route::get('/workstation/detail-workstation/{id}', [WorkstationController::class, 'detail']);
+Route::get('/workstation/edit-workstation/{id}', [WorkstationController::class, 'edit']);
 
 // utilities
 Route::resource('/utilities-dir', DirektoratController::class);

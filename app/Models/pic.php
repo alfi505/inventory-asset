@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Posisi;
+use App\Models\Workstation;
+use App\Models\DetailCpuXPIC;
 use App\Models\DetailMouseXPIC;
 use App\Models\DetailMonitorXPIC;
 use App\Models\DetailNetworkXPIC;
@@ -39,6 +42,9 @@ class Pic extends Model
     public function keyboard():HasMany{
         return $this->hasMany(DetailKeyboardXPIC::class);
     }
+    public function cpu():HasMany{
+        return $this->hasMany(DetailCpuXPIC::class);
+    }
     public function mouse():HasMany{
         return $this->hasMany(DetailMouseXPIC::class);
     }
@@ -51,5 +57,10 @@ class Pic extends Model
     public function speaker():HasMany{
         return $this->hasMany(DetailSpeakerXPIC::class);
     }
-
+    public function posisi(){
+        return $this->belongsTo(Posisi::class, 'posisi_id', 'id');
+    }
+    public function workstation(){
+    return $this->belongsTo(Workstation::class, 'workstation_id');
+    }
 }

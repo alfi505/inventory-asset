@@ -45,7 +45,7 @@
                                 <tr>
                                     <th>No IP Address</th>
                                     <td>:</td>
-                                    <td>{{ $cpuData->Workstation->no_ip_address ?? 'N/A' }}</td>
+                                    <td>{{ $cpuData->workstation->no_ip_address ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Zona</th>

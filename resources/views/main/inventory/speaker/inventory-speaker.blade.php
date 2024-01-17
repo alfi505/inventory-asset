@@ -141,7 +141,7 @@
                 info: false, // Hide information
                 lengthChange: false, // Hide entries per page
                 order: [
-                    [1, 'desc']
+                    [0, 'desc']
                 ]
             });
         });
