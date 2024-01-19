@@ -35,7 +35,7 @@
                                 <tr>
                                     <th>Nama Komputer</th>
                                     <td>:</td>
-                                    <td>{{ $cpu->nama_komputer }}</td>
+                                    <td>{{ $cpu->hostname }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama PIC</th>
@@ -120,12 +120,13 @@
                                 <tr>
                                     <th>Vendor</th>
                                     <td>:</td>
-                                    {{-- <td>{{ $cpuData->vendor_id }}</td> --}}
+                                    <td>{{ $cpuData->vendor->perusahaan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Software Lain</th>
                                     <td>:</td>
-                                    {{-- <td>{{ $cpuData->software_id }}</td> --}}
+                                    {{-- cara mengambil data yang disimpan di cpuxsoftware --}}
+                                    <td>{{ $cpuData->software_id ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status</th>

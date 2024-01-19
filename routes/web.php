@@ -22,7 +22,6 @@ use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WorkstationController;
-use App\Models\Workstation;
 
 /*
 |--------------------------------------------------------------------------

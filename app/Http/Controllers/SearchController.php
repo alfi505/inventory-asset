@@ -29,8 +29,10 @@ class SearchController extends Controller
         $results['keyboard'] = DetailKeyboardXPIC::search($keyword)->get();
         $results['monitor'] = DetailMonitorXPIC::search($keyword)->get();
         $results['mouse'] = DetailMouseXPIC::search($keyword)->get();
-        // $results['cpu'] = DetailCpuXPIC::search($keyword)->get();
-        // $results['printer'] = DetailPrinterXPIC::search($keyword)->get();
+        $results['cpu'] = DetailCpuXPIC::search($keyword)->get();
+        $results['printer'] = DetailPrinterXPIC::search($keyword)->get();
+        $results['speaker'] = DetailSpeakerXPIC::search($keyword)->get();
+        $results['network'] = DetailNetworkXPIC::search($keyword)->get();
 
         // dd($results);
         $slug = 'search';
@@ -38,6 +40,7 @@ class SearchController extends Controller
     }
 
     public function searchFilter(Request $request){
+        // dd($request);
         $slug = 'search';
         $status = Status::get();
         $filter = $request->input('filter');
@@ -48,7 +51,7 @@ class SearchController extends Controller
                 $filterData = DetailCpuXPIC::join('inventory_cpus', 'detail_cpu_x_p_i_c_s.cpu_id', '=', 'inventory_cpus.id_cpu')
                 ->join('pics', 'detail_cpu_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_cpu_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_cpu_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_cpu_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_cpus.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_cpus.status_id', '=', $request->status_id)
                 ->select('detail_cpu_x_p_i_c_s.*')
@@ -58,7 +61,7 @@ class SearchController extends Controller
                 $filterData = DetailMonitorXPIC::join('inventory_monitors', 'detail_monitor_x_p_i_c_s.monitor_id', '=', 'inventory_monitors.id_monitor')
                 ->join('pics', 'detail_monitor_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_monitor_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_monitor_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_monitor_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_monitors.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_monitors.status_id', '=', $request->status_id)
                 ->select('detail_monitor_x_p_i_c_s.*')
@@ -68,19 +71,19 @@ class SearchController extends Controller
                 $filterData = DetailKeyboardXPIC::join('inventory_keyboards', 'detail_keyboard_x_p_i_c_s.keyboard_id', '=', 'inventory_keyboards.id_keyboard')
                 ->join('pics', 'detail_keyboard_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_keyboard_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_keyboard_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_keyboard_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_keyboards.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_keyboards.status_id', '=', $request->status_id)
                 ->select('detail_keyboard_x_p_i_c_s.*')
                 ->get();
             break;
             case 'mouse':
-                $filterData = DetailMouseXPIC::join('inventory_mouses', 'detail_mouse_x_p_i_c_s.mouse_id', '=', 'inventory_mouses.id_mouse')
+                $filterData = DetailMouseXPIC::join('inventory_mice', 'detail_mouse_x_p_i_c_s.mouse_id', '=', 'inventory_mice.id_mouse')
                 ->join('pics', 'detail_mouse_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_mouse_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_mouse_x_p_i_c_s.workstation_id', '=', 'workstations.id')
-                ->orwhere('inventory_mouses.tanggal_input', '=', $request->tanggal_input)
-                ->orwhere('inventory_mouses.status_id', '=', $request->status_id)
+                ->leftJoin('workstations', 'detail_mouse_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->orwhere('inventory_mice.tanggal_input', '=', $request->tanggal_input)
+                ->orwhere('inventory_mice.status_id', '=', $request->status_id)
                 ->select('detail_mouse_x_p_i_c_s.*')
                 ->get();
             break;
@@ -88,7 +91,7 @@ class SearchController extends Controller
                 $filterData = DetailSpeakerXPIC::join('inventory_speakers', 'detail_speaker_x_p_i_c_s.speaker_id', '=', 'inventory_speakers.id_speaker')
                 ->join('pics', 'detail_speaker_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_speaker_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_speaker_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_speaker_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_speakers.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_speakers.status_id', '=', $request->status_id)
                 ->select('detail_speaker_x_p_i_c_s.*')
@@ -98,7 +101,7 @@ class SearchController extends Controller
                 $filterData = DetailNetworkXPIC::join('inventory_networks', 'detail_network_x_p_i_c_s.network_id', '=', 'inventory_networks.id_network')
                 ->join('pics', 'detail_network_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_network_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_network_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_network_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_networks.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_networks.status_id', '=', $request->status_id)
                 ->select('detail_network_x_p_i_c_s.*')
@@ -108,7 +111,7 @@ class SearchController extends Controller
                 $filterData = DetailPrinterXPIC::join('inventory_printers', 'detail_printer_x_p_i_c_s.printer_id', '=', 'inventory_printers.id_printer')
                 ->join('pics', 'detail_printer_x_p_i_c_s.pic_id', '=', 'pics.id')
                 ->join ('vendors', 'detail_printer_x_p_i_c_s.vendor_id', '=', 'vendors.id')
-                ->join('workstations', 'detail_printer_x_p_i_c_s.workstation_id', '=', 'workstations.id')
+                ->leftJoin('workstations', 'detail_printer_x_p_i_c_s.workstation_id', '=', 'workstations.id')
                 ->orwhere('inventory_printers.tanggal_input', '=', $request->tanggal_input)
                 ->orwhere('inventory_printers.status_id', '=', $request->status_id)
                 ->select('detail_printer_x_p_i_c_s.*')

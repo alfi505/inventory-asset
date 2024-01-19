@@ -25,7 +25,7 @@ class InventoryMouseController extends Controller
     public function index()
     {
         $data= [
-        'mouse' => InventoryMouse::get(),
+        'mouse' => DetailMouseXPIC::get(),
         'totalCount' => InventoryMouse::count(),
         'slug' => 'inventory',
         ];
@@ -134,7 +134,6 @@ class InventoryMouseController extends Controller
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -227,7 +226,6 @@ class InventoryMouseController extends Controller
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

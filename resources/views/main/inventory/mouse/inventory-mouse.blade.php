@@ -89,15 +89,15 @@
                                         @foreach ($mouse as $data)
                                             <tr>
                                                 <td>{{ $data->no_mouse }}</td>
-                                                <td>{{ $data->id_mouse }}</td>
-                                                <td>{{ $data->id_ip_address }}</td>
+                                                <td>{{ $data->mouse->id_mouse }}</td>
+                                                <td>{{ $data->mouse->no_ip_address ?? 'N/A' }}</td>
                                                 <td>-</td>
                                                 <td>
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-mouse.destroy', str_replace('/', '_', $data->id_mouse)) }}">
-                                                        <a href="/inventory-mouse/detail-mouse/{{ str_replace('/', '_', $data->id_mouse) }}"
+                                                        action="{{ route('inventory-mouse.destroy', str_replace('/', '_', $data->mouse->id_mouse)) }}">
+                                                        <a href="/inventory-mouse/detail-mouse/{{ str_replace('/', '_', $data->mouse->id_mouse) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-mouse/edit-mouse/{{ str_replace('/', '_', $data->id_mouse) }}"
+                                                        <a href="/inventory-mouse/edit-mouse/{{ str_replace('/', '_', $data->mouse->id_mouse) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

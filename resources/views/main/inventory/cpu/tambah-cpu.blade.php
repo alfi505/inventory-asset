@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group col">
                                 <label>Nama Komputer</label>
-                                <input type="text" class="form-control" name="nama_komputer">
+                                <input type="text" class="form-control" name="hostname" id="hostname">
                             </div>
                             <div class="form-group col">
                                 <label>Kategori</label>
@@ -195,11 +195,6 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
-    <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
-    <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
     <script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
     <script src="{{ asset('library/cleave.js/dist/addons/cleave-phone.us.js') }}"></script>
@@ -218,4 +213,25 @@
             tags: true
         });
     </script>
+    {{-- <script>
+        $(document).ready(function() {
+            // Listen for the select2:select event
+            $('#workstation_id').on('select2:select', function(e) {
+                // Get the selected data
+                var selectedData = e.params.data;
+
+                fetch('/api/cekHostname/' + selectedData.text)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the fetched data
+                        // $('#result').text(JSON.stringify(data, null, 2));
+                        console.log(data.data.hostname);
+                        $('#nama_komputer').val(data.data.hostname);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script> --}}
 @endpush

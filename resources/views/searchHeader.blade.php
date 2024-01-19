@@ -57,18 +57,23 @@
                                             </td>
                                             <td>{{ $hehe->pic->nama_pic }}</td>
                                             <td>{{ $hehe->status }}</td>
-                                            {{-- @empty($hehe->workstation->hostname)
+                                            @empty($hehe->workstation->hostname)
                                                 <td>N/A</td>
                                             @else
                                                 <td>{{ $hehe->workstation->hostname }}</td>
-                                            @endempty --}}
-                                            {{-- @empty($hehe->workstation->no_ip_address)
+                                            @endempty
+                                            @empty($hehe->workstation->no_ip_address)
                                                 <td>N/A</td>
                                             @else
                                                 <td>{{ $hehe->workstation->no_ip_address }}</td>
-                                            @endempty --}}
-                                            <td>{{ optional($hehe->workstation)->hostname ?? 'N/A' }}</td>
-                                            <td>{{ optional($hehe->workstation)->no_ip_address ?? 'N/A' }}</td>
+                                            @endempty
+                                            {{-- @if ($hehe->workstation->hostname != null && $hehe->workstation->no_ip_address != null)
+                                                <td>{{ $hehe->workstation->hostname }}</td>
+                                                <td>{{ $hehe->workstation->no_ip_address }}</td>
+                                            @else
+                                                <td>N/A</td>
+                                                <td>N/A</td>
+                                            @endif --}}
                                             <td>{{ $hehe->tanggal_input }}</td>
                                             <td>
                                                 <a href="/detail-pic/{{ $hehe->pic->id }}" class="btn btn-info">Detail</a>

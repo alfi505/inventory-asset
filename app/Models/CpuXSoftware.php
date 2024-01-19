@@ -20,7 +20,4 @@ class CpuXSoftware extends Model
         'software_id',
     ];
 
-    public function cpu(){
-        return $this->belongsTo(InventoryCpu::class, 'cpu_id', 'id_cpu');
-    }
 }

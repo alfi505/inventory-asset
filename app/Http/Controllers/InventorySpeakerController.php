@@ -25,7 +25,7 @@ class InventorySpeakerController extends Controller
     public function index()
     {
         $data = [
-        'speaker' => InventorySpeaker::get(),
+        'speaker' => DetailSpeakerXPIC::get(),
         'totalCount' => InventorySpeaker::count(),
         'slug' => 'inventory'
         ];
@@ -130,13 +130,11 @@ class InventorySpeakerController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -223,13 +221,11 @@ class InventorySpeakerController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
         $validateData2 = $request->validate([
             // 'speaker_id' => 'required',
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

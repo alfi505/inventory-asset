@@ -24,7 +24,7 @@ class InventoryNetworkController extends Controller
     public function index()
     {
         $data = [
-        'network' => InventoryNetwork::get(),
+        'network' => DetailNetworkXPIC::get(),
         'totalCount' => InventoryNetwork::count(),
         'slug' => 'inventory',
         ];
@@ -107,13 +107,11 @@ class InventoryNetworkController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -198,12 +196,10 @@ class InventoryNetworkController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

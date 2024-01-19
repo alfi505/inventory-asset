@@ -91,16 +91,16 @@
                                             <tr>
                                                 {{-- <td>{{ $krissbatik->no_monitor }}</td> --}}
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $krissbatik->id_monitor }}</td>
-                                                <td>{{ $krissbatik->id_ip_address }}</td>
+                                                <td>{{ $krissbatik->monitor->id_monitor }}</td>
+                                                <td>{{ $krissbatik->monitor->no_ip_address ?? 'N/A' }}</td>
                                                 <td>-</td>
                                                 <td>
 
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-monitor.destroy', str_replace('/', '_', $krissbatik->id_monitor)) }}">
-                                                        <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                        action="{{ route('inventory-monitor.destroy', str_replace('/', '_', $krissbatik->monitor->id_monitor)) }}">
+                                                        <a href="/inventory-monitor/detail-monitor/{{ str_replace('/', '_', $krissbatik->monitor->id_monitor) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->id_monitor) }}"
+                                                        <a href="/inventory-monitor/edit-monitor/{{ str_replace('/', '_', $krissbatik->monitor->id_monitor) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

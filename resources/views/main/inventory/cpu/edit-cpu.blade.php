@@ -56,8 +56,7 @@
                             </div>
                             <div class="form-group col">
                                 <label>Nama Komputer</label>
-                                <input type="text" class="form-control" name="nama_komputer"
-                                    value="{{ $data->nama_komputer }}">
+                                <input type="text" class="form-control" name="hostname" value="{{ $data->hostname }}">
                             </div>
                             <div class="form-group col">
                                 <label>Kategori</label>

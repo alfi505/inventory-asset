@@ -45,7 +45,7 @@ class DetailMouseXPIC extends Model
         ->join('inventory_mice as im', 'detail_mouse_x_p_i_c_s.mouse_id', '=', 'im.id_mouse')
         ->join('pics as p', 'detail_mouse_x_p_i_c_s.pic_id', '=', 'p.id')
         ->join('vendors as v', 'detail_mouse_x_p_i_c_s.vendor_id', '=', 'v.id')
-        ->join('workstations as w', 'detail_mouse_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->leftJoin('workstations as w', 'detail_mouse_x_p_i_c_s.workstation_id', '=', 'w.id')
         ->join('statuses as s', 'im.status_id', '=', 's.id')
         ->where('im.id_mouse', 'like', '%' . $keyword . '%')
         ->orWhere('w.hostname', 'like', '%' . $keyword . '%')

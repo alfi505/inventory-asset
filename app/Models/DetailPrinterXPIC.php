@@ -42,4 +42,19 @@ class DetailPrinterXPIC extends Model
     public function vendor():BelongsTo{
         return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
     }
+    public function scopeSearch($query, $keyword){
+    return $query->select('detail_printer_x_p_i_c_s.*', 'ip.id_printer', 'w.hostname', 'w.no_ip_address', 's.status', 'ip.tanggal_input')
+        ->join('inventory_printers as ip', 'detail_printer_x_p_i_c_s.printer_id', '=', 'ip.id_printer')
+        ->join('pics as p', 'detail_printer_x_p_i_c_s.pic_id', '=', 'p.id')
+        ->join('vendors as v', 'detail_printer_x_p_i_c_s.vendor_id', '=', 'v.id')
+        ->leftJoin('workstations as w', 'detail_printer_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->join('statuses as s', 'ip.status_id', '=', 's.id')
+        ->where('ip.id_printer', 'like', '%' . $keyword . '%')
+        ->orWhere('w.hostname', 'like', '%' . $keyword . '%')
+        ->orWhere('p.nama_pic', 'like', '%' . $keyword . '%')
+        ->orWhere('v.id', 'like', '%' . $keyword . '%')
+        ->orWhere('w.no_ip_address', 'like', '%' . $keyword . '%')
+        ->orWhere('s.status', 'like', '%' . $keyword . '%')
+        ->orWhere('ip.tanggal_input', 'like', '%' . $keyword . '%');
+    }
 }

@@ -76,7 +76,7 @@
                             <div class="form-group col">
                                 <label>Workstation</label>
                                 <select class="form-control select2" name="workstation_id" id="workstation_id">
-                                    <option value="0">-</option>
+                                    <option value="">-</option>
                                     @foreach ($workstation as $data)
                                         <option value="{{ $data->id }}">{{ $data->no_ip_address }}</option>
                                     @endforeach

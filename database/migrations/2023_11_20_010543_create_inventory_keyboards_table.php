@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('inventory_keyboards', function (Blueprint $table) {
             $table->string('id_keyboard')->primary();
-            $table->integer('no_keyboard');
             $table->foreignId('merk_id');
             $table->foreignId('jenisperangkat_id');
             $table->string('serial_number');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('inventory_cpus', function (Blueprint $table) {
             $table->string('id_cpu')->primary();
-            $table->string('nama_komputer');
+            $table->string('hostname');
             $table->string('id_zona')->nullable();
             $table->string('id_spek')->nullable();
             $table->foreignId('jenisperangkat_id');

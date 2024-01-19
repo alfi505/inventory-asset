@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('direktorat_id');
             $table->foreignId('divisi_id');
             $table->foreignId('unit_id');
+            $table->foreignId('pic_id');
             $table->timestamps();
         });
     }

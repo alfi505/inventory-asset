@@ -24,7 +24,7 @@ class InventoryPrinterController extends Controller
     public function index()
     {
         $data = [
-        'printer' => InventoryPrinter::get(),
+        'printer' => DetailPrinterXPIC::get(),
         'totalCount' => InventoryPrinter::count(),
         'slug' => 'inventory',
         ];
@@ -113,13 +113,11 @@ class InventoryPrinterController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -204,12 +202,10 @@ class InventoryPrinterController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

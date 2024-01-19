@@ -87,18 +87,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($keyboards as $keyboard)
+                                        @foreach ($keyboards as $keyboardes)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $keyboard->id_keyboard }}</td>
-                                                <td>{{ $keyboard->ip_address }}</td>
+                                                <td>{{ $keyboardes->keyboard->id_keyboard }}</td>
+                                                <td>{{ $keyboardes->keyboard->no_ip_address ?? 'N/A' }}</td>
                                                 <td>-</td>
                                                 <td>
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-keyboard.destroy', str_replace('/', '_', $keyboard->id_keyboard)) }}">
-                                                        <a href="/inventory-keyboard/detail-keyboard/{{ str_replace('/', '_', $keyboard->id_keyboard) }}"
+                                                        action="{{ route('inventory-keyboard.destroy', str_replace('/', '_', $keyboardes->keyboard->id_keyboard)) }}">
+                                                        <a href="/inventory-keyboard/detail-keyboard/{{ str_replace('/', '_', $keyboardes->keyboard->id_keyboard) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-keyboard/edit-keyboard/{{ str_replace('/', '_', $keyboard->id_keyboard) }}"
+                                                        <a href="/inventory-keyboard/edit-keyboard/{{ str_replace('/', '_', $keyboardes->keyboard->id_keyboard) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

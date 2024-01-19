@@ -91,15 +91,15 @@
                                         @foreach ($speaker as $data)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $data->id_speaker }}</td>
-                                                <td>{{ $data->id_ip_address }}</td>
+                                                <td>{{ $data->speaker->id_speaker }}</td>
+                                                <td>{{ $data->speaker->no_ip_address ?? 'N/A' }}</td>
                                                 <td>-</td>
                                                 <td>
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-speaker.destroy', str_replace('/', '_', $data->id_speaker)) }}">
-                                                        <a href="/inventory-speaker/detail-speaker/{{ str_replace('/', '_', $data->id_speaker) }}"
+                                                        action="{{ route('inventory-speaker.destroy', str_replace('/', '_', $data->speaker->id_speaker)) }}">
+                                                        <a href="/inventory-speaker/detail-speaker/{{ str_replace('/', '_', $data->speaker->id_speaker) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-speaker/edit-speaker/{{ str_replace('/', '_', $data->id_speaker) }}"
+                                                        <a href="/inventory-speaker/edit-speaker/{{ str_replace('/', '_', $data->speaker->id_speaker) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

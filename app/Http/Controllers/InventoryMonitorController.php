@@ -25,7 +25,7 @@ class InventoryMonitorController extends Controller
     public function index()
     {
         $pbrungkad = [
-        'aug' => InventoryMonitor::get(),
+        'aug' => DetailMonitorXPIC::get(),
         'totalCount' => InventoryMonitor::count(),
         'slug' => 'inventory'
         ];
@@ -137,7 +137,6 @@ class InventoryMonitorController extends Controller
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -227,7 +226,6 @@ class InventoryMonitorController extends Controller
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

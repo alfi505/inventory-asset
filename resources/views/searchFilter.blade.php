@@ -45,7 +45,7 @@
                             </div>
                             <div class="selectgroup w-100 mt-5">
                                 <label class="selectgroup-item">
-                                    <input type="radio" name="filter" value="jaringan" class="selectgroup-input">
+                                    <input type="radio" name="filter" value="network" class="selectgroup-input">
                                     <span class="selectgroup-button selectgroup-button-icon"><i
                                             class="fa-solid fa-network-wired mr-2"></i> NETWORK</span>
                                 </label>
@@ -88,52 +88,6 @@
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table-striped table-md table" id="search">
-
-                            {{-- @foreach ($filterData as $data)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            @if ($data->monitor)
-                                            {{ $data->monitor->id_monitor }}
-                                            @else
-                                            No Monitor Data
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($data->pic)
-                                                {{ $data->pic->nama_pic }}
-                                            @else
-                                                No PIC Data
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($data->monitor)
-                                                {{ $data->monitor->status->status }}
-                                                @else
-                                                No PIC Data
-                                                @endif
-                                            </td>
-                                        <td>
-                                            @if ($data->workstation)
-                                            {{ $data->workstation->hostname }}
-                                            @else
-                                            No Workstation Data
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($data->workstation)
-                                            {{ $data->workstation->no_ip_address }}
-                                            @else
-                                            No Workstation Data
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($data->monitor)
-                                            {{ $data->monitor->tanggal_input }}
-                                            @else
-                                            No Monitor Data
-                                            @endif
-                                        </td> --}}
                             <thead>
                                 <tr>
                                     <th>No</th>

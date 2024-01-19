@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('pic_id')->constrained();
             $table->foreignId('vendor_id')->constrained();
             $table->foreignId('workstation_id')->nullable();
-            $table->foreignId('software_id');
+            $table->string('inventory_cpu_id_cpu');
             $table->timestamps();
         });
     }

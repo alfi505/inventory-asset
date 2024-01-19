@@ -22,7 +22,7 @@ class InventoryCpu extends Model
     protected $keyType = 'string';
     protected $fillable = [
         'id_cpu',
-        'nama_komputer',
+        'hostname',
         'jenisperangkat_id',
         'merk_id',
         'zona',
@@ -58,9 +58,6 @@ class InventoryCpu extends Model
     }
     public function status():BelongsTo{
         return $this->belongsTo(Status::class);
-    }
-    public function software():HasMany{
-        return $this->hasMany(CpuXSoftware::class);
     }
     public function scopeSearch($query, $keyword)
     {

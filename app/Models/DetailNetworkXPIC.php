@@ -27,8 +27,8 @@ class DetailNetworkXPIC extends Model
         'workstation_id',
     ];
 
-    public function monitor(){
-        return $this->belongsTo(InventoryMonitor::class,  'monitor_id','id_monitor');
+    public function network(){
+        return $this->belongsTo(InventoryNetwork::class,  'network_id');
     }
 
     public function pic():BelongsTo{
@@ -42,5 +42,16 @@ class DetailNetworkXPIC extends Model
     public function vendor():BelongsTo{
         return $this->belongsTo(Vendor::class, 'vendor_id', 'id');
     }
-
+    public function scopeSearch($query, $keyword){
+    return $query->select('detail_network_x_p_i_c_s.*', 'in.id_network', 'w.hostname', 'w.no_ip_address', 's.status', 'in.tanggal_input')
+        ->join('inventory_networks as in', 'detail_network_x_p_i_c_s.network_id', '=', 'in.id_network')
+        ->join('pics as p', 'detail_network_x_p_i_c_s.pic_id', '=', 'p.id')
+        ->join('vendors as v', 'detail_network_x_p_i_c_s.vendor_id', '=', 'v.id')
+        ->leftJoin('workstations as w', 'detail_network_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->join('statuses as s', 'in.status_id', '=', 's.id')
+        ->where('in.id_network', 'like', '%' . $keyword . '%')
+        ->orWhere('w.hostname', 'like', '%' . $keyword . '%')
+        ->orWhere('p.nama_pic', 'like', '%' . $keyword . '%')
+        ->orWhere('w.no_ip_address', 'like', '%' . $keyword . '%');
+    }
 }

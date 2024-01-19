@@ -83,16 +83,16 @@
                                         @foreach ($network as $data)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $data->id_network }}</td>
-                                                <td>{{ $data->id_ip_address }}</td>
+                                                <td>{{ $data->network->id_network }}</td>
+                                                <td>{{ $data->network->no_ip_address ?? 'N/A' }}</td>
                                                 <td>-</td>
                                                 <td>
 
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-network.destroy', str_replace('/', '_', $data->id_network)) }}">
-                                                        <a href="/inventory-network/detail-network/{{ str_replace('/', '_', $data->id_network) }}"
+                                                        action="{{ route('inventory-network.destroy', str_replace('/', '_', $data->network->id_network)) }}">
+                                                        <a href="/inventory-network/detail-network/{{ str_replace('/', '_', $data->network->id_network) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-network/edit-network/{{ str_replace('/', '_', $data->id_network) }}"
+                                                        <a href="/inventory-network/edit-network/{{ str_replace('/', '_', $data->network->id_network) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

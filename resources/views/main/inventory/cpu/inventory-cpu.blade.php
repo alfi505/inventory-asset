@@ -90,15 +90,15 @@
                                         @foreach ($cpu as $cpus)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $cpus->id_cpu }}</td>
-                                                <td>{{ $cpus->nama_komputer }}</td>
-                                                <td>{{ $cpus->id_ip }}</td>
+                                                <td>{{ $cpus->cpu->id_cpu }}</td>
+                                                <td>{{ $cpus->cpu->hostname }}</td>
+                                                <td>{{ $cpus->workstation->no_ip_address ?? 'N/A' }}</td>
                                                 <td>
                                                     <form method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('inventory-cpu.destroy', str_replace('/', '_', $cpus->id_cpu)) }}">
-                                                        <a href="/inventory-cpu/detail-cpu/{{ str_replace('/', '_', $cpus->id_cpu) }}"
+                                                        action="{{ route('inventory-cpu.destroy', str_replace('/', '_', $cpus->cpu->id_cpu)) }}">
+                                                        <a href="/inventory-cpu/detail-cpu/{{ str_replace('/', '_', $cpus->cpu->id_cpu) }}"
                                                             class="btn btn-info">Detail</a>
-                                                        <a href="/inventory-cpu/edit-cpu/{{ str_replace('/', '_', $cpus->id_cpu) }}"
+                                                        <a href="/inventory-cpu/edit-cpu/{{ str_replace('/', '_', $cpus->cpu->id_cpu) }}"
                                                             class="btn btn-secondary">Edit</a>
                                                         @csrf
                                                         @method('DELETE')

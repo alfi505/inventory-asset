@@ -47,15 +47,10 @@ class DetailMonitorXPIC extends Model
         ->join('inventory_monitors as im', 'detail_monitor_x_p_i_c_s.monitor_id', '=', 'im.id_monitor')
         ->join('pics as p', 'detail_monitor_x_p_i_c_s.pic_id', '=', 'p.id')
         ->join('vendors as v', 'detail_monitor_x_p_i_c_s.vendor_id', '=', 'v.id')
-        ->join('workstations as w', 'detail_monitor_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->leftJoin('workstations as w', 'detail_monitor_x_p_i_c_s.workstation_id', '=', 'w.id')
         ->join('statuses as s', 'im.status_id', '=', 's.id')
         ->where('im.id_monitor', 'like', '%' . $keyword . '%')
-        ->orWhere('w.hostname', 'like', '%' . $keyword . '%')
         ->orWhere('p.nama_pic', 'like', '%' . $keyword . '%')
-        ->orWhere('v.id', 'like', '%' . $keyword . '%')
-        ->orWhere('w.no_ip_address', 'like', '%' . $keyword . '%')
-        ->orWhere('s.status', 'like', '%' . $keyword . '%')
-        ->orWhere('im.tanggal_input', 'like', '%' . $keyword . '%');
+        ->orWhere('w.no_ip_address', 'like', '%' . $keyword . '%');
     }
-
 }

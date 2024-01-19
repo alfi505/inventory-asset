@@ -25,7 +25,7 @@ class InventoryKeyboardController extends Controller
      * @return \Illuminate\Http\Response
      */
         $data =[
-            'keyboards' => InventoryKeyboard::get(),
+            'keyboards' => DetailKeyboardXPIC::get(),
             'totalCount' => InventoryKeyboard::count(),
             'slug' => 'inventory',
         ];
@@ -135,7 +135,6 @@ class InventoryKeyboardController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData1['jenisperangkat_id'] = $jenisP;
@@ -143,7 +142,6 @@ class InventoryKeyboardController extends Controller
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -157,7 +155,7 @@ class InventoryKeyboardController extends Controller
 
         $data1 = array_merge($validateData1, [
             "id_keyboard" => $id,
-            "no_keyboard" => $nokeyboard,
+            // "no_keyboard" => $nokeyboard,
         ]);
 
         //menggabungkan 2 variabel
@@ -239,7 +237,6 @@ class InventoryKeyboardController extends Controller
             // 'keyboard_id' => 'required',
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
         ]);
 
         $request->validate([

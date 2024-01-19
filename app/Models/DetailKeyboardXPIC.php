@@ -47,7 +47,7 @@ class DetailKeyboardXPIC extends Model
         ->join('inventory_keyboards as ik', 'detail_keyboard_x_p_i_c_s.keyboard_id', '=', 'ik.id_keyboard')
         ->join('pics as p', 'detail_keyboard_x_p_i_c_s.pic_id', '=', 'p.id')
         ->join('vendors as v', 'detail_keyboard_x_p_i_c_s.vendor_id', '=', 'v.id')
-        ->join('workstations as w', 'detail_keyboard_x_p_i_c_s.workstation_id', '=', 'w.id')
+        ->leftJoin('workstations as w', 'detail_keyboard_x_p_i_c_s.workstation_id', '=', 'w.id')
         ->join('statuses as s', 'ik.status_id', '=', 's.id')
         ->where('ik.id_keyboard', 'like', '%' . $keyword . '%')
         ->orWhere('p.nama_pic', 'like', '%' . $keyword . '%')

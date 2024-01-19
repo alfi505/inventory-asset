@@ -27,7 +27,7 @@ class InventoryCpuController extends Controller
     {
         //
         $data = [
-        'cpu' => InventoryCpu::get(),
+        'cpu' => DetailCpuXPIC::get(),
         'totalCount' => InventoryCpu::count(),
         'slug' => 'inventory'
         ];
@@ -57,6 +57,14 @@ class InventoryCpuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // public function cekHostname($id){
+    //     $nama_kom = Workstation::where('no_ip_address', $id)->first();
+    //     return response()->json([
+    //         'data' => $nama_kom
+    //     ]);
+    // }
+
     public function create()
     {
         $data = [
@@ -101,8 +109,8 @@ class InventoryCpuController extends Controller
         return "MAK/IT/{$kategori->jenisperangkat}-{$merk->merk}/{$tgl_perolehan}/{$kategori->detail}{$count}";
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        // dd($request);
         $originalDate = $request->tanggal_input;
         $newDate = date("md", strtotime($originalDate));
 
@@ -111,7 +119,7 @@ class InventoryCpuController extends Controller
 
         // validasi data
         $validateData1 = $request->validate([
-            'nama_komputer' => 'required',
+            'hostname' => 'required',
             'jenisperangkat_id' => 'required',
             'merk_id' => 'required',
             // 'zona' => 'required',
@@ -131,18 +139,12 @@ class InventoryCpuController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
             'workstation_id' => 'required',
-            'software_id' => 'required',
-        ]);
-
-        $validateData4 = $request->validate([
-            'software_id' => 'required',
         ]);
 
         //update data yang ada di pic buat nambah id asset
@@ -151,31 +153,36 @@ class InventoryCpuController extends Controller
         $resource->update($validateData3);
 
         // Create an array for software relationships
-        $softwareRelations = [];
-        foreach ($request->software_id as $softwareId) {
-        $softwareRelations[] = [
-            'software_id' => $softwareId,
-        ];
-        }
-
-        $newData = [
-            'cpu_id' => $id
-        ];
-
         $data1 = array_merge($validateData1, [
             "id_cpu" => $id,
         ]);
-
+        
+        $works = Workstation::where('id', $request->workstation_id)->first();
+        $works->update([
+            'hostname' => $request->hostname,
+        ]);
+        
+        foreach ($request->software_id as $softwareId) {
+        CpuXSoftware::create([
+            'software_id' => $softwareId,
+            'cpu_id' => $id,
+        ]);
+        }
         //menggabungkan 2 variabel
-        $data2 = array_merge($validateData2, $newData);
+        // $data2 = array_merge($validateData2, [
+            //     "cpu_id" => $id,
+        // ]);
 
-        $data3 = array_merge($validateData4, $newData);
-
+        // dd($data2);
         //create post
         $inventorycpu = InventoryCpu::create($data1);
-        $inventorycpu->detailcpu()->create($data2);
-        CpuXSoftware::create($data3);
-        $inventorycpu->detailcpu->software()->attach($softwareRelations);
+        $inventorycpu->detailcpu()->create([
+            'pic_id' => $validateData2['pic_id'],
+            'vendor_id' => $validateData2['vendor_id'],
+            'workstation_id' => $validateData2['workstation_id'],
+            "cpu_id" => $id,
+        ]);
+
 
         //balik
         return redirect('/inventory-cpu')->with('toast_success', 'Data Telah Ditambahkan');
@@ -232,7 +239,7 @@ class InventoryCpuController extends Controller
         $id_cpu = str_replace('_', '/', $id);
 
         $validateData1 = $request->validate([
-            'nama_komputer' => 'required',
+            'hostname' => 'required',
             'jenisperangkat_id' => 'required',
             'merk_id' => 'required',
             // 'zona' => 'required',
@@ -252,14 +259,11 @@ class InventoryCpuController extends Controller
             'admin' => 'required',
             'tanggal_input' => 'required',
             'status_id' => 'required',
-            'keterangan' => 'required',
         ]);
 
         $validateData2 = $request->validate([
             'pic_id' => 'required',
             'vendor_id' => 'required',
-            'workstation_id' => 'required',
-            'software_id' => 'required',
         ]);
 
         $request->validate([

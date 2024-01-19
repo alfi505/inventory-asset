@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('CpuXSoftware', function (Blueprint $table) {
             $table->id();
             $table->string('cpu_id')->nullable();
-            $table->foreign('cpu_id')->references('id_cpu')->on('inventory_cpus')->onDelete('cascade');
             $table->foreignId('software_id')->constrained();
             $table->timestamps();
         });

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pic;
+use App\Models\Unit;
+use App\Models\Divisi;
+use App\Models\Direktorat;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class posisi extends Model
 {
@@ -19,6 +23,6 @@ class posisi extends Model
         return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
     public function pic(){
-        return $this->hasMany(Pic::class, 'posisi_id', 'id');
+        return $this->hasOne(Pic::class, 'posisi_id', 'id');
     }
 }
